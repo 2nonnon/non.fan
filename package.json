@@ -1,0 +1,27 @@
+{
+	"name": "non.fan",
+	"type": "module",
+	"private": true,
+	"packageManager": "pnpm@10.3.0",
+	"scripts": {
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"lint": "turbo run lint",
+		"check": "taze major -r",
+		"tup": "taze major -r -I",
+		"postinstall": "npx simple-git-hooks"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"lint-staged": "^15.4.3",
+		"simple-git-hooks": "^2.11.1",
+		"taze": "^18.5.0",
+		"turbo": "^2.4.1"
+	},
+	"simple-git-hooks": {
+		"pre-commit": "pnpm lint-staged"
+	},
+	"lint-staged": {
+		"*": "biome lint --write ."
+	}
+}
