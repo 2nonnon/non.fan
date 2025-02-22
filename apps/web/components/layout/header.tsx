@@ -7,8 +7,8 @@ export default function Header() {
 	return (
 		<header className="sticky top-0 z-10 h-[calc(var(--length-main-cell)+1px)] bg-base-100/90 backdrop-blur bg-cell">
 			<div className="flex items-center justify-between gap-4 h-full px-6 py-3 max-w-screen-xl mx-auto">
-				<Link href="/">
-					<Image src="/logo.svg" alt="non.fan" width={24} height={24} />
+				<Link className='font-bold' href="/">
+					LOGO.svg
 				</Link>
 
 				<nav className="flex items-center gap-2">
