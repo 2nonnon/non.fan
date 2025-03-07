@@ -11,8 +11,8 @@ export default function Page() {
 
 	return (
 		<Layout>
-			<div className="flex flex-col gap-4 max-w-[1200px] mx-auto md:px-10">
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-(--length-main-cell) py-(--length-main-cell)">
+			<div className="flex flex-col gap-4 max-w-screen-lg mx-auto">
+				<div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-4">
 					{toys.map((item) => (
 						<Link
 							key={item.link}

@@ -47,12 +47,12 @@ export const ThemeChanger = () => {
 
 	return (
 		<div className="dropdown dropdown-end">
-			<div tabIndex={0} role="button" className="btn btn-soft">
+			<div tabIndex={0} role="button" className="btn btn-ghost">
 				<NavItem label={map[theme].label} icon={map[theme].icon} />
 			</div>
 			<ul
 				tabIndex={0}
-				className="dropdown-content menu bg-base-300 rounded-box z-1 p-2 shadow-2xl mt-1"
+				className="dropdown-content menu bg-base-300 rounded-box z-1 gap-1 p-2 shadow-2xl mt-1"
 			>
 				{themes.map((t) => (
 					<li key={t}>

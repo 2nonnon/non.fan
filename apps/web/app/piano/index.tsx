@@ -29,7 +29,7 @@ export default function Page() {
           }
         </RadioGroup>
       </div> */}
-			<div className="flex items-start gap-[1px] overflow-y-hidden overflow-x-auto">
+			<div className="grid grid-cols-12 gap-2">
 				{hotkeys.map((hotkey, index) => {
 					const octave = Math.floor(index / 12) + +startOctave;
 					const note = notes[index % 12];

@@ -1,8 +1,4 @@
 {
-	"files.associations": {
-		"*.css": "tailwindcss"
-	},
-
 	// Disable the default formatter
 	"prettier.enable": false,
 	"editor.formatOnSave": false,
@@ -13,7 +9,15 @@
 	"[typescript]": {
 		"editor.defaultFormatter": "biomejs.biome"
 	},
-	"[tailwindcss]": {
+	"[css]": {
 		"editor.defaultFormatter": "biomejs.biome"
-	}
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+
+	"tailwindCSS.experimental.classRegex": [
+		["cva\\(((?:[^()]|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+		["cx\\(((?:[^()]|\\([^()]*\\))*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+	]
 }

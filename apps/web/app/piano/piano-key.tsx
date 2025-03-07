@@ -3,20 +3,17 @@ import { useRef, useState } from 'react';
 import { type VariantProps, cva } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-const buttonVariants = cva(
-	'flex-grow-0 flex-shrink-0 aspect-[1/4] h-auto p-0 flex-col justify-end focus-visible:ring-0',
-	{
-		variants: {
-			variant: {
-				white: 'xl:w-16 lg:w-14 w-12',
-				black: 'xl:w-12 xl:-mx-6 lg:w-10 lg:-mx-5 w-8 -mx-4 relative z-10',
-			},
-		},
-		defaultVariants: {
-			variant: 'white',
+const buttonVariants = cva('btn aspect-square h-auto w-auto', {
+	variants: {
+		variant: {
+			white: 'btn-primary',
+			black: 'btn-secondary',
 		},
 	},
-);
+	defaultVariants: {
+		variant: 'white',
+	},
+});
 
 interface PianoKeyProps extends VariantProps<typeof buttonVariants> {
 	className?: string;
@@ -96,7 +93,7 @@ export default function PianoKey({
 				activeAnimation();
 			}}
 		>
-			<div className="w-full py-4 text-center">
+			<div className="w-full py-4 flex flex-col items-center">
 				<div className="w-6 h-6 items-center justify-center">{hotkey}</div>
 
 				<div>{freq}</div>
