@@ -5,22 +5,30 @@ import matter from 'gray-matter';
 
 const postsDirectory = path.join(process.cwd(), 'app/posts/content');
 
-export function getPostSlugs() {
+type Metadata = {
+	slug: string;
+	title: string;
+	description: string;
+};
+
+export function getAllFiles() {
 	return fs.readdirSync(postsDirectory);
 }
 
-export function getPostBySlug(slug: string) {
-	const realSlug = slug.replace(/\.mdx$/, '');
-	const fullPath = path.join(postsDirectory, `${realSlug}.mdx`);
+export function getMetadataBySlug(slug: string) {
+	const fullPath = path.join(postsDirectory, `${slug}.yaml`);
 	const fileContents = fs.readFileSync(fullPath, 'utf8');
-	const { data, content } = matter(fileContents);
+	const { data } = matter(fileContents);
 
-	return { metadata: data, slug: realSlug, content };
+	return { ...data, slug } as Metadata;
 }
 
-export function getAllPosts() {
-	const slugs = getPostSlugs();
-	const posts = slugs.map((slug) => getPostBySlug(slug));
+export function getAllMetadata() {
+	const filenames = getAllFiles();
+	const metaFiles = filenames.filter((filename) => filename.endsWith('.yaml'));
+	const metadata = metaFiles.map((filename) =>
+		getMetadataBySlug(filename.replace(/\.yaml$/, '')),
+	);
 
-	return posts;
+	return metadata;
 }

@@ -25,7 +25,7 @@ export const ThemeChanger = () => {
 	}
 
 	return (
-		<div className="flex gap-4 px-4 py-2 border border-primary-content rounded-full text-2xl leading-0">
+		<div className="w-fit flex gap-4 px-4 py-2 border border-primary-content rounded-full text-2xl leading-0">
 			{themes.map((t) => (
 				<label
 					key={t}

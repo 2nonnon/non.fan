@@ -1,17 +1,19 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getAllPosts, getPostBySlug } from '@/app/posts/utils';
+import { getAllMetadata, getMetadataBySlug } from '@/app/posts/utils';
 
 export default async function Page({
 	params,
 }: { params: Promise<{ slug: string }> }) {
 	const slug = (await params).slug;
 	const { default: Content } = await import(`@/app/posts/content/${slug}.mdx`);
+	const metadata = getMetadataBySlug(slug);
 
 	return (
 		<main>
 			<article className="mb-32">
 				<div className={'prose dark:prose-invert mx-auto'}>
+					<h1>{metadata.title}</h1>
 					<Content />
 				</div>
 			</article>
@@ -22,22 +24,21 @@ export default async function Page({
 export async function generateMetadata({
 	params,
 }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-	const post = getPostBySlug((await params).slug);
+	const metadata = getMetadataBySlug((await params).slug);
 
-	if (!post) return notFound();
-
-	const title = `${post.slug} | Next.js Blog`;
+	if (!metadata) return notFound();
 
 	return {
-		title,
+		title: metadata.title,
+		description: metadata.description,
 	};
 }
 
 export async function generateStaticParams() {
-	const posts = getAllPosts();
+	const allMetadata = getAllMetadata();
 
-	return posts.map((post) => ({
-		slug: post.slug,
+	return allMetadata.map((data) => ({
+		slug: data.slug,
 	}));
 }
 
