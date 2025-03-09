@@ -2,33 +2,12 @@
 
 import clsx from 'clsx';
 import { useTheme } from 'next-themes';
-import { NavItem } from './nav-item';
 import { useEffect, useState } from 'react';
 
-const map: Record<string, { label: string; icon: string }> = {
-	light: {
-		label: '日间',
-		icon: 'i-lucide:sun',
-	},
-	dark: {
-		label: '夜间',
-		icon: 'i-lucide:moon',
-	},
-	system: {
-		label: '系统',
-		icon: 'i-lucide:monitor',
-	},
-};
-
-type Theme = 'light' | 'dark' | 'system';
-
-const ThemeItem = ({ theme }: { theme: Theme }) => {
-	return (
-		<div className="flex items-center gap-2 whitespace-nowrap">
-			<span className={map[theme].icon} />
-			<span>{map[theme].label}</span>
-		</div>
-	);
+const map: Record<string, string> = {
+	light: 'i-lucide:sun',
+	dark: 'i-lucide:moon',
+	system: 'i-lucide:monitor',
 };
 
 export const ThemeChanger = () => {
@@ -46,31 +25,26 @@ export const ThemeChanger = () => {
 	}
 
 	return (
-		<div className="dropdown dropdown-end">
-			<div tabIndex={0} role="button" className="btn btn-ghost">
-				<NavItem label={map[theme].label} icon={map[theme].icon} />
-			</div>
-			<ul
-				tabIndex={0}
-				className="dropdown-content menu bg-base-300 rounded-box z-1 gap-1 p-2 shadow-2xl mt-1"
-			>
-				{themes.map((t) => (
-					<li key={t}>
-						<label className={clsx({ 'menu-active': t === theme })}>
-							<input
-								type="radio"
-								name="theme-dropdown"
-								className="hidden"
-								onClick={() => setTheme(t)}
-								aria-label={t}
-								value={t}
-								checked={t === theme}
-							/>
-							<ThemeItem theme={t as Theme} />
-						</label>
-					</li>
-				))}
-			</ul>
+		<div className="flex gap-4 px-4 py-2 border border-primary-content rounded-full text-2xl leading-0">
+			{themes.map((t) => (
+				<label
+					key={t}
+					className={clsx('rounded-full', {
+						'text-primary': t === theme,
+					})}
+				>
+					<input
+						type="radio"
+						name="theme-dropdown"
+						className="hidden"
+						onChange={() => setTheme(t)}
+						aria-label={t}
+						value={t}
+						checked={t === theme}
+					/>
+					<span className={map[t]}></span>
+				</label>
+			))}
 		</div>
 	);
 };

@@ -1,12 +1,15 @@
-import Header from "./header";
-import Main from "./main";
+import Header from './header';
+import Main from './main';
+import Footer from './footer';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
+	return (
+		<div className="flex min-h-screen flex-col">
+			<Header />
 
-      <Main>{children}</Main>
-    </div>
-  );
+			<Main>{children}</Main>
+
+			<Footer />
+		</div>
+	);
 }

@@ -1,30 +1,38 @@
 import Link from 'next/link';
 import Layout from '@/components/layout';
 
-export default function Page() {
-	const toys = [
-		{
-			name: '疑似钢琴',
-			link: '/piano',
-		},
-	] as const;
+const apps = [
+	{
+		title: '疑似钢琴',
+		description: '疑似钢琴',
+		link: '/piano',
+	},
+] as const;
 
+const addZero = (num: number) => (num < 10 ? `0${num}` : num);
+
+export default function Page() {
 	return (
 		<Layout>
 			<div className="flex flex-col gap-4 max-w-screen-lg mx-auto">
-				<div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-4">
-					{toys.map((item) => (
-						<Link
-							key={item.link}
-							className="grid place-items-center aspect-square bg-base-300 text-base-content rounded-4xl"
-							href={item.link}
-						>
-							<div>
-								<h2>{item.name}</h2>
+				<ul className="list bg-base-100 rounded-box border border-primary-content">
+					<li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
+						应用列表
+					</li>
+					{apps.map((app, index) => (
+						<li key={app.link} className="list-row">
+							<div className="text-4xl font-thin opacity-30 tabular-nums">
+								{addZero(index + 1)}
 							</div>
-						</Link>
+							<Link className="list-col-grow" href={app.link}>
+								<div>{app.title}</div>
+								<div className="text-xs uppercase font-semibold opacity-60">
+									{app.description}
+								</div>
+							</Link>
+						</li>
 					))}
-				</div>
+				</ul>
 			</div>
 		</Layout>
 	);
