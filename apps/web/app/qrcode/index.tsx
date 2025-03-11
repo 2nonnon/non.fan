@@ -38,8 +38,8 @@ export default function Page() {
 	};
 
 	return (
-		<div className="w-full flex flex-col gap-4">
-			<div>
+		<div className="w-full flex flex-col gap-4 py-2">
+			<div className="w-full">
 				<textarea
 					className="textarea h-24 w-full"
 					placeholder={defaultContent}
@@ -48,7 +48,7 @@ export default function Page() {
 				></textarea>
 			</div>
 
-			<div className="max-w-80 mx-auto flex flex-col gap-4">
+			<div className="w-full max-w-80 mx-auto flex flex-col gap-4">
 				<div className="aspect-square border border-primary-content rounded overflow-hidden">
 					{url ? (
 						<img src={url} className="w-full h-full" alt="qrcode" />
