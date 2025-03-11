@@ -7,6 +7,11 @@ const apps = [
 		description: '疑似钢琴',
 		link: '/piano',
 	},
+	{
+		title: '二维码生成器',
+		description: '二维码生成器',
+		link: '/qrcode',
+	},
 ] as const;
 
 const addZero = (num: number) => (num < 10 ? `0${num}` : num);
