@@ -65,7 +65,7 @@ export const FileArea = (props: FileAreaProps) => {
 
 	return (
 		<div className="absolute inset-0 flex flex-col overflow-hidden">
-			<div className="flex-1 shrink-0 flex flex-col overflow-hidden bg-base-100 rounded-box shadow-md">
+			<div className="flex-1 shrink-0 flex flex-col overflow-hidden bg-base-100 rounded-box">
 				<p className="p-4 pb-2 text-xs opacity-60 tracking-wide">
 					目标上传列表
 				</p>
@@ -75,22 +75,24 @@ export const FileArea = (props: FileAreaProps) => {
 						{remoteData.map((data) => (
 							<li
 								key={data.timestamp}
-								className="list-row !flex justify-between items-center"
+								className="list-row !flex justify-between items-center gap-4"
 							>
-								<div className="flex items-center gap-2">
+								<div className="flex items-center gap-2 overflow-hidden">
 									<div
 										className={cn(
-											'text-xl',
+											'text-xl shrink-0',
 											data.type === 'text'
 												? 'i-lucide:file-text'
 												: 'i-lucide:file',
 										)}
 									></div>
 
-									<div>{data.name}</div>
+									<div className="whitespace-nowrap overflow-ellipsis overflow-hidden">
+										{data.name}
+									</div>
 								</div>
 
-								<div>
+								<div className='shrink-0'>
 									<button
 										className="btn btn-link btn-sm"
 										type="button"
@@ -111,7 +113,7 @@ export const FileArea = (props: FileAreaProps) => {
 
 			<div className="divider"></div>
 
-			<div className="flex-1 shrink-0 flex flex-col overflow-hidden bg-base-100 rounded-box shadow-md">
+			<div className="flex-1 shrink-0 flex flex-col overflow-hidden bg-base-100 rounded-box">
 				<div className="p-4 pb-2 text-xs opacity-60 tracking-wide">
 					<div className="flex items-center justify-between">
 						<p>本地上传列表</p>
@@ -167,19 +169,21 @@ export const FileArea = (props: FileAreaProps) => {
 						{localData.map((data) => (
 							<li
 								key={data.timestamp}
-								className="list-row !flex justify-between items-center"
+								className="list-row !flex justify-between items-center gap-4"
 							>
-								<div className="flex items-center gap-2">
+								<div className="flex items-center gap-2 overflow-hidden">
 									<div
 										className={cn(
-											'text-xl',
+											'text-xl shrink-0',
 											data.type === 'text'
 												? 'i-lucide:file-text'
 												: 'i-lucide:file',
 										)}
 									></div>
 
-									<div>{data.name}</div>
+									<div className="whitespace-nowrap overflow-ellipsis overflow-hidden">
+										{data.name}
+									</div>
 								</div>
 
 								<div></div>

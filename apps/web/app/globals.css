@@ -13,6 +13,9 @@
 }
 
 @layer components {
+  .btn-link {
+    @apply !p-0 !h-auto;
+  }
 }
 
 :root {
