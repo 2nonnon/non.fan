@@ -3,6 +3,7 @@
 import Peer, { type DataConnection } from 'peerjs';
 import { useState, useEffect, useLayoutEffect } from 'react';
 import { LocalArea, queryKey } from './local-area';
+import { FileArea } from './file-area';
 
 export default function Page() {
 	const [localRoomId, setLocalRoomId] = useState('');
@@ -37,10 +38,6 @@ export default function Page() {
 				console.log('Connection closed');
 				setIsConnected(false);
 			});
-
-			connection.on('data', (data) => {
-				console.log('Received data:', data);
-			});
 		}
 	}, [connection]);
 
@@ -72,21 +69,9 @@ export default function Page() {
 	}, []);
 
 	return (
-		<div className="w-full max-w-screen-md mx-auto">
+		<div className="flex-1 w-full max-w-screen-md mx-auto relative">
 			{isConnected ? (
-				<div>
-					<button
-						className="btn btn-primary"
-						type="button"
-						onClick={() => {
-							if (connection) {
-								connection.send('hello');
-							}
-						}}
-					>
-						发送
-					</button>
-				</div>
+				<FileArea connection={connection} />
 			) : (
 				<div className="flex flex-col gap-4">
 					<div className="flex flex-col gap-2">

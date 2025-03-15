@@ -21,7 +21,7 @@ export default function RootLayout({
 			</head>
 			<body
 				className={cn(
-					'min-h-screen bg-base-200 font-sans text-base antialiased',
+					'bg-base-200 font-sans text-base antialiased',
 					inter.className,
 				)}
 			>

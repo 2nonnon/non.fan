@@ -12,7 +12,7 @@ export default function Page() {
 	const [startGroup, setStartGroup] = useState('3');
 
 	return (
-		<div className="w-full">
+		<div className="w-full max-w-screen-lg mx-auto">
 			<div className="w-full mb-2">
 				<input
 					type="range"

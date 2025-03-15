@@ -10,14 +10,10 @@ export default async function Page({
 	const metadata = getMetadataBySlug(slug);
 
 	return (
-		<main>
-			<article className="mb-32">
-				<div className={'prose dark:prose-invert mx-auto'}>
-					<h1>{metadata.title}</h1>
-					<Content />
-				</div>
-			</article>
-		</main>
+		<article className="mb-32 prose dark:prose-invert w-full mx-auto">
+			<h1>{metadata.title}</h1>
+			<Content />
+		</article>
 	);
 }
 
