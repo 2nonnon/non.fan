@@ -16,16 +16,18 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html
+			lang="en"
+			className={cn(
+				'bg-base-200 font-sans text-base antialiased',
+				inter.className,
+			)}
+			suppressHydrationWarning
+		>
 			<head>
 				{/* <script src="https://unpkg.com/react-scan/dist/auto.global.js" async /> */}
 			</head>
-			<body
-				className={cn(
-					'bg-base-200 font-sans text-base antialiased',
-					inter.className,
-				)}
-			>
+			<body>
 				<ThemeProvider
 					attribute="data-theme"
 					disableTransitionOnChange

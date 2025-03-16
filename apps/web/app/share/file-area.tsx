@@ -6,6 +6,7 @@ import { useDialog } from '@/components/Dialog/provider';
 
 interface FileAreaProps {
 	connection: DataConnection | null;
+	disconnect: () => void;
 }
 
 interface MessageData {
@@ -40,7 +41,7 @@ const Empty = () => {
 };
 
 export const FileArea = (props: FileAreaProps) => {
-	const { connection } = props;
+	const { connection, disconnect } = props;
 	const [remoteData, setRemoteData] = useState<MessageData[]>([]);
 	const [localData, setLocalData] = useState<MessageData[]>([]);
 	const content = useRef('');
@@ -70,9 +71,19 @@ export const FileArea = (props: FileAreaProps) => {
 	return (
 		<div className="absolute inset-0 flex flex-col overflow-hidden">
 			<div className="flex-1 shrink-0 flex flex-col overflow-hidden bg-base-100 rounded-box">
-				<p className="p-4 pb-2 text-xs opacity-60 tracking-wide">
-					目标上传列表
-				</p>
+				<div className="flex items-center justify-between p-4 pb-2">
+					<p className="text-xs opacity-60 tracking-wide">目标上传列表</p>
+
+					<div className="flex gap-2">
+						<button
+							className="btn btn-link btn-sm"
+							type="button"
+							onClick={disconnect}
+						>
+							断开连接
+						</button>
+					</div>
+				</div>
 
 				{remoteData.length ? (
 					<ul className="flex-1 list overflow-y-auto overflow-x-hidden">
@@ -130,87 +141,85 @@ export const FileArea = (props: FileAreaProps) => {
 			<div className="divider"></div>
 
 			<div className="flex-1 shrink-0 flex flex-col overflow-hidden bg-base-100 rounded-box">
-				<div className="p-4 pb-2 text-xs opacity-60 tracking-wide">
-					<div className="flex items-center justify-between">
-						<p>本地上传列表</p>
+				<div className="flex items-center justify-between p-4 pb-2">
+					<p className="text-xs opacity-60 tracking-wide">本地上传列表</p>
 
-						<div className="flex gap-2">
-							<button
-								className="btn btn-link btn-sm"
-								type="button"
-								onClick={async () => {
-									const fileHandle = await Fas.file();
-									const file = await fileHandle.getFile();
-									const messageData: MessageData = {
-										type: 'file',
-										name: file.name,
-										data: await file.arrayBuffer(),
-										size: file.size,
-										timestamp: Date.now(),
+					<div className="flex gap-2">
+						<button
+							className="btn btn-link btn-sm"
+							type="button"
+							onClick={async () => {
+								const fileHandle = await Fas.file();
+								const file = await fileHandle.getFile();
+								const messageData: MessageData = {
+									type: 'file',
+									name: file.name,
+									data: await file.arrayBuffer(),
+									size: file.size,
+									timestamp: Date.now(),
+								};
+
+								setLocalData((prev) => [...prev, messageData]);
+
+								if (connection) {
+									const message: Message = {
+										type: 'transfer',
+										data: messageData,
 									};
 
-									setLocalData((prev) => [...prev, messageData]);
+									console.log('Sending message:', messageData);
 
-									if (connection) {
-										const message: Message = {
-											type: 'transfer',
-											data: messageData,
-										};
+									connection.send(message);
+								}
+							}}
+						>
+							上传文件
+						</button>
+						<button
+							className="btn btn-link btn-sm"
+							type="button"
+							onClick={() => {
+								content.current = '';
+								const dialog = create({
+									title: '发送文本',
+									content() {
+										return (
+											<textarea
+												className="textarea h-24 w-full"
+												placeholder="请输入要发送的内容"
+												onChange={(e) => {
+													content.current = e.target.value;
+												}}
+											></textarea>
+										);
+									},
+									positiveText: '发送',
+									onPositiveClick: () => {
+										if (connection) {
+											const messageData: MessageData = {
+												type: 'text',
+												name: content.current,
+												data: content.current,
+												size: content.current.length,
+												timestamp: Date.now(),
+											};
 
-										console.log('Sending message:', messageData);
+											const message: Message = {
+												type: 'transfer',
+												data: messageData,
+											};
 
-										connection.send(message);
-									}
-								}}
-							>
-								上传文件
-							</button>
-							<button
-								className="btn btn-link btn-sm"
-								type="button"
-								onClick={() => {
-									content.current = '';
-									const dialog = create({
-										title: '发送文本',
-										content() {
-											return (
-												<textarea
-													className="textarea h-24 w-full"
-													placeholder="请输入要发送的内容"
-													onChange={(e) => {
-														content.current = e.target.value;
-													}}
-												></textarea>
-											);
-										},
-										positiveText: '发送',
-										onPositiveClick: () => {
-											if (connection) {
-												const messageData: MessageData = {
-													type: 'text',
-													name: content.current,
-													data: content.current,
-													size: content.current.length,
-													timestamp: Date.now(),
-												};
+											console.log('Sending message:', messageData);
 
-												const message: Message = {
-													type: 'transfer',
-													data: messageData,
-												};
-
-												console.log('Sending message:', messageData);
-
-												connection.send(message);
-											}
-										},
-									});
-									dialog.open();
-								}}
-							>
-								发送文本
-							</button>
-						</div>
+											connection.send(message);
+										}
+									},
+								});
+								dialog.open();
+							}}
+						>
+							发送文本
+						</button>
 					</div>
 				</div>
 

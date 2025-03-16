@@ -22,8 +22,12 @@ export default function Page() {
 
 	const connect = () => {
 		if (peer && remoteRoomId) {
-			const connection = peer.connect(remoteRoomId);
-			setConnection(connection);
+			if (connection && connection.peer === remoteRoomId) {
+				setIsConnected(true);
+			} else {
+				const connection = peer.connect(remoteRoomId);
+				setConnection(connection);
+			}
 		}
 	};
 
@@ -58,6 +62,10 @@ export default function Page() {
 
 			newPeer.on('error', (error) => {
 				console.error('Peer error:', error);
+				setLocalRoomId('');
+				setPeer(null);
+				setConnection(null);
+				setIsConnected(false);
 			});
 
 			return () => {
@@ -71,7 +79,10 @@ export default function Page() {
 	return (
 		<div className="flex-1 w-full max-w-screen-md mx-auto relative">
 			{isConnected ? (
-				<FileArea connection={connection} />
+				<FileArea
+					connection={connection}
+					disconnect={() => setIsConnected(false)}
+				/>
 			) : (
 				<div className="flex flex-col gap-4">
 					<div className="flex flex-col gap-2">
