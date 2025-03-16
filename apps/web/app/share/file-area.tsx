@@ -1,7 +1,8 @@
 import type { DataConnection } from 'peerjs';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as Fas from '@/utils/fsa';
 import { cn } from '@/lib/utils';
+import { useDialog } from '@/components/Dialog/provider';
 
 interface FileAreaProps {
 	connection: DataConnection | null;
@@ -42,6 +43,9 @@ export const FileArea = (props: FileAreaProps) => {
 	const { connection } = props;
 	const [remoteData, setRemoteData] = useState<MessageData[]>([]);
 	const [localData, setLocalData] = useState<MessageData[]>([]);
+	const content = useRef('');
+
+	const create = useDialog();
 
 	useEffect(() => {
 		if (connection) {
@@ -92,16 +96,28 @@ export const FileArea = (props: FileAreaProps) => {
 									</div>
 								</div>
 
-								<div className='shrink-0'>
-									<button
-										className="btn btn-link btn-sm"
-										type="button"
-										onClick={() => {
-											Fas.write(data.data, data.name);
-										}}
-									>
-										下载
-									</button>
+								<div className="shrink-0">
+									{data.type === 'file' ? (
+										<button
+											className="btn btn-link btn-sm"
+											type="button"
+											onClick={() => {
+												Fas.write(data.data, data.name);
+											}}
+										>
+											下载
+										</button>
+									) : (
+										<button
+											className="btn btn-link btn-sm"
+											type="button"
+											onClick={() => {
+												navigator.clipboard.writeText(data.data);
+											}}
+										>
+											复制
+										</button>
+									)}
 								</div>
 							</li>
 						))}
@@ -153,9 +169,43 @@ export const FileArea = (props: FileAreaProps) => {
 								className="btn btn-link btn-sm"
 								type="button"
 								onClick={() => {
-									if (connection) {
-										connection.send('hello');
-									}
+									content.current = '';
+									const dialog = create({
+										title: '发送文本',
+										content() {
+											return (
+												<textarea
+													className="textarea h-24 w-full"
+													placeholder="请输入要发送的内容"
+													onChange={(e) => {
+														content.current = e.target.value;
+													}}
+												></textarea>
+											);
+										},
+										positiveText: '发送',
+										onPositiveClick: () => {
+											if (connection) {
+												const messageData: MessageData = {
+													type: 'text',
+													name: content.current,
+													data: content.current,
+													size: content.current.length,
+													timestamp: Date.now(),
+												};
+
+												const message: Message = {
+													type: 'transfer',
+													data: messageData,
+												};
+
+												console.log('Sending message:', messageData);
+
+												connection.send(message);
+											}
+										},
+									});
+									dialog.open();
 								}}
 							>
 								发送文本

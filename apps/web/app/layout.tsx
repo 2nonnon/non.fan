@@ -3,6 +3,7 @@ import { inter } from './fonts';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { cn } from '@/lib/utils';
+import { DialogProvider } from '@/components/Dialog/provider';
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -31,7 +32,7 @@ export default function RootLayout({
 					defaultTheme="system"
 					enableSystem
 				>
-					{children}
+					<DialogProvider>{children}</DialogProvider>
 				</ThemeProvider>
 			</body>
 		</html>
