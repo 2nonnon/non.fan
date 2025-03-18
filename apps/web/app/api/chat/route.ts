@@ -14,5 +14,11 @@ export async function POST(req: Request) {
 		stream: true,
 	});
 
-	return new Response(completion.toReadableStream());
+	return new Response(completion.toReadableStream(), {
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+			'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+		},
+	});
 }
