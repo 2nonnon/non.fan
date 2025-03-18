@@ -17,6 +17,11 @@ const apps = [
 		description: '分享',
 		link: '/share',
 	},
+	{
+		title: '聊天',
+		description: '聊天',
+		link: '/chat',
+	},
 ] as const;
 
 const addZero = (num: number) => (num < 10 ? `0${num}` : num);

@@ -2,7 +2,7 @@
 	"name": "non.fan",
 	"type": "module",
 	"private": true,
-	"packageManager": "pnpm@10.6.1",
+	"packageManager": "pnpm@10.6.4",
 	"scripts": {
 		"build": "turbo run build",
 		"dev": "turbo run dev",
@@ -13,9 +13,9 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"lint-staged": "^15.4.3",
+		"lint-staged": "^15.5.0",
 		"simple-git-hooks": "^2.11.1",
-		"taze": "^18.6.0",
+		"taze": "^19.0.2",
 		"turbo": "^2.4.4"
 	},
 	"simple-git-hooks": {
