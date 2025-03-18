@@ -1,23 +1,17 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": [
-    "**/.env.*local"
-  ],
-  "tasks": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        ".next/**",
-        ".output/**",
-        "dist/**"
-      ]
-    },
-    "lint": {},
-    "dev": {
-      "cache": false,
-      "persistent": true
-    }
-  }
+	"$schema": "https://turbo.build/schema.json",
+	"globalDependencies": [".env"],
+	"tasks": {
+		"build": {
+			"env": ["GEMINI_KEY", "OPENAI_API_KEY"],
+			"dependsOn": ["^build"],
+			"outputs": [".next/**", ".output/**", "dist/**"],
+			"inputs": ["$TURBO_DEFAULT$", ".env"]
+		},
+		"lint": {},
+		"dev": {
+			"cache": false,
+			"persistent": true
+		}
+	}
 }
