@@ -5,7 +5,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 		pre: ({ children, className, ...props }) => {
 			return (
 				<div className="relative">
-					<pre {...props}>{children}</pre>
+					<pre className={className} {...props}>
+						{children}
+					</pre>
 				</div>
 			);
 		},

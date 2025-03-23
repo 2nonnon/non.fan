@@ -3,19 +3,12 @@
 import { cn } from '@/lib/utils';
 import type { ChatCompletionMessageParam } from 'openai/resources/index.mjs';
 import { renderMarkdown } from './utils';
-import { useEffect, useState } from 'react';
 
 const MarkdownContent = ({
 	content,
 	className,
 }: { content: string; className?: string }) => {
-	const [html, setHtml] = useState<any>('');
-
-	useEffect(() => {
-		(async () => {
-			setHtml(await renderMarkdown(content));
-		})();
-	}, [content]);
+	const html = renderMarkdown(content);
 
 	return (
 		<div className={cn('w-full max-w-full overflow-hidden', className)}>

@@ -41,7 +41,7 @@ export default function Page() {
 		setImgList([]);
 		setMessages([...messages, userMessage]);
 
-		const res = await fetch('/api/chat', {
+		const res = await fetch('https://dev.non.fan/api/chat', {
 			method: 'POST',
 			body: JSON.stringify({
 				messages: [

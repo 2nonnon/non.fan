@@ -1,22 +1,18 @@
-import rehypeShiki from '@shikijs/rehype';
 import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
+import rehypeShikiFromHighlighter from '@shikijs/rehype/core';
+import { highlighter, highlighterOptions } from '@/lib/shiki';
 
 const processor = unified()
 	.use(remarkParse)
 	.use(remarkRehype)
-	.use(rehypeShiki, {
-		themes: {
-			light: 'vitesse-light',
-			dark: 'vitesse-dark',
-		},
-	})
+	.use(rehypeShikiFromHighlighter, highlighter as any, highlighterOptions)
 	.use(rehypeStringify);
 
 export function renderMarkdown(markdown: string) {
-	return processor.process(markdown);
+	return processor.processSync(markdown);
 }
 
 export function fileToBase64(file: File) {
