@@ -12,15 +12,22 @@ export default function Page() {
 	const [url, setUrl] = useState<string>();
 
 	useEffect(() => {
-		renderCanvas(text || defaultContent, { pixelSize: 100 }).then((canvas) => {
-			setOffscreenCanvas(canvas);
+		generate();
+	}, []);
 
-			canvas.convertToBlob().then((blob) => {
-				const url = URL.createObjectURL(blob);
-				setUrl(url);
-			});
+	const generate = async () => {
+		const canvas = await renderCanvas(text || defaultContent, {
+			pixelSize: 100,
 		});
-	}, [text]);
+
+		setOffscreenCanvas(canvas);
+		const blob = await canvas.convertToBlob();
+
+		url && URL.revokeObjectURL(url);
+
+		const newUrl = URL.createObjectURL(blob);
+		setUrl(newUrl);
+	};
 
 	const download = () => {
 		if (Fsa.isSupport()) {
@@ -38,17 +45,21 @@ export default function Page() {
 	};
 
 	return (
-		<div className="w-full max-w-screen-lg mx-auto flex flex-col gap-4 py-2">
-			<div className="w-full">
+		<div className="w-full max-w-screen-md mx-auto flex flex-col gap-4 py-2">
+			<div className="w-full flex flex-col gap-4">
 				<textarea
 					className="textarea h-24 w-full"
 					placeholder={defaultContent}
 					value={text}
 					onChange={(e) => setText(e.target.value)}
 				></textarea>
+
+				<button type="button" className="btn btn-primary" onClick={generate}>
+					生成
+				</button>
 			</div>
 
-			<div className="w-full max-w-80 mx-auto flex flex-col gap-4">
+			<div className="w-full max-w-84 mx-auto flex flex-col gap-4">
 				<div className="aspect-square border border-primary-content rounded overflow-hidden">
 					{url ? (
 						<img src={url} className="w-full h-full" alt="qrcode" />

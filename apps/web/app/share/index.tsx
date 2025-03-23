@@ -34,12 +34,12 @@ export default function Page() {
 	useEffect(() => {
 		if (connection) {
 			connection.on('open', () => {
-				console.log('Connection opened');
+				// console.log('Connection opened');
 				setIsConnected(true);
 			});
 
 			connection.on('close', () => {
-				console.log('Connection closed');
+				// console.log('Connection closed');
 				setIsConnected(false);
 			});
 		}
@@ -55,7 +55,7 @@ export default function Page() {
 			});
 
 			newPeer.on('connection', (connection) => {
-				console.log('New connection:', connection, connection.dataChannel);
+				// console.log('New connection:', connection, connection.dataChannel);
 
 				setConnection(connection);
 			});

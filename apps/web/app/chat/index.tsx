@@ -60,14 +60,14 @@ export default function Page() {
 		const writeableStream = new WritableStream(
 			{
 				start() {
-					console.log('[start]');
+					// console.log('[start]');
 				},
 				async write(chunk) {
-					console.log('[write]', chunk);
+					// console.log('[write]', chunk);
 					const { promise, resolve } = Promise.withResolvers<void>();
 
 					requestAnimationFrame(() => {
-						console.log('[requestAnimationFrame]', chunk);
+						// console.log('[requestAnimationFrame]', chunk);
 						aiMessage.content += chunk;
 
 						setMessages([...messages, userMessage, aiMessage]);
@@ -78,7 +78,7 @@ export default function Page() {
 					return promise;
 				},
 				close() {
-					console.log('[close]');
+					// console.log('[close]');
 				},
 				abort(reason) {
 					console.log('[abort]', reason);
@@ -92,27 +92,16 @@ export default function Page() {
 		const transformStream = new TransformStream(
 			{
 				transform(chunk, controller) {
-					console.log('[transform]', chunk);
+					// console.log('[transform]', chunk);
 
 					const objs = (chunk as string).slice(1, -2).split('}\n{');
 
-					console.log('[objs]', objs);
-
 					const content = objs
 						.map((item, i) => {
-							console.log(item, i);
 							const obj = JSON.parse(`{${item}}`) as ChatCompletionChunk;
 							return obj.choices[0].delta.content;
 						})
 						.join('');
-
-					// const value = JSON.parse(chunk) as ChatCompletionChunk;
-
-					// const content = value.choices[0].delta.content || '';
-
-					console.log('[content]', content);
-
-					// controller.enqueue(content)
 
 					let i = 0;
 					const length = content.length;
@@ -120,7 +109,7 @@ export default function Page() {
 
 					while (i < length) {
 						// 这个desiredSize来自transformStream的readableStrategy
-						console.log('[desiredSize]', controller.desiredSize);
+						// console.log('[desiredSize]', controller.desiredSize);
 
 						const hasBackpressure =
 							typeof controller.desiredSize !== 'number' ||
@@ -136,7 +125,7 @@ export default function Page() {
 					}
 				},
 				flush(controller) {
-					console.log('[flush]');
+					// console.log('[flush]');
 					// 终止转换，转换结束
 					controller.terminate();
 				},
@@ -163,7 +152,7 @@ export default function Page() {
 	};
 
 	return (
-		<div className="w-[calc(100%+3rem)] -mx-6 h-full relative">
+		<div className="flex-1 w-[calc(100%+3rem)] -mx-6 relative">
 			<div className="absolute inset-0 flex flex-col gap-6 max-w-3xl mx-auto overflow-hidden">
 				<div className="flex-1 overflow-y-auto overflow-x-hidden px-6">
 					{messages.length > 0 ? (
@@ -257,6 +246,7 @@ export default function Page() {
 										type="button"
 										onClick={chat}
 										title="发送"
+										disabled={!text}
 									>
 										<i className="i-lucide:arrow-up"></i>
 									</button>

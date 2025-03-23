@@ -7,8 +7,6 @@ export default function Footer() {
 	const pathname = usePathname();
 	const router = useRouter();
 
-	console.log(pathname);
-
 	return (
 		<footer>
 			<div className="flex items-center px-6 py-4 max-w-screen-xl mx-auto">
@@ -16,7 +14,7 @@ export default function Footer() {
 					<div className="leading-0">
 						{pathname !== '/' && (
 							<button type="button" onClick={() => router.back()}>
-								<div className="i-lucide:arrow-left text-2xl"></div>
+								<i className="i-lucide:arrow-left text-2xl"></i>
 							</button>
 						)}
 					</div>

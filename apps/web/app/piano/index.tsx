@@ -67,7 +67,7 @@ export default function Page() {
 					return (
 						<button
 							key={key}
-							className="btn aspect-square h-auto w-auto relative"
+							className="btn bg-base-100 aspect-square h-auto w-auto relative"
 							type="button"
 							onClick={() => play(freq)}
 						>

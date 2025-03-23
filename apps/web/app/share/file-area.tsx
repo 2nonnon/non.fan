@@ -34,7 +34,7 @@ const isMessage = (message: any): message is Message => {
 const Empty = () => {
 	return (
 		<div className="flex flex-col gap-2 items-center justify-center m-auto opacity-60">
-			<div className="i-lucide:inbox text-5xl"></div>
+			<i className="i-lucide:inbox text-5xl"></i>
 			<div className="text-xs tracking-wide">空空如也</div>
 		</div>
 	);
@@ -51,7 +51,7 @@ export const FileArea = (props: FileAreaProps) => {
 	useEffect(() => {
 		if (connection) {
 			connection.on('data', (data) => {
-				console.log('Received data:', data);
+				// console.log('Received data:', data);
 
 				if (!isMessage(data)) {
 					return;
@@ -167,7 +167,7 @@ export const FileArea = (props: FileAreaProps) => {
 										data: messageData,
 									};
 
-									console.log('Sending message:', messageData);
+									// console.log('Sending message:', messageData);
 
 									connection.send(message);
 								}
@@ -209,7 +209,7 @@ export const FileArea = (props: FileAreaProps) => {
 												data: messageData,
 											};
 
-											console.log('Sending message:', messageData);
+											// console.log('Sending message:', messageData);
 
 											connection.send(message);
 										}
