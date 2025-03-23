@@ -4,7 +4,7 @@ import Layout from '@/components/layout';
 const apps = [
 	{
 		title: '疑似钢琴',
-		description: '96 键从 C0 到 B7。',
+		description: '120 键，从 C0 到 B9（科学音高记号法）。',
 		link: '/piano',
 	},
 	{

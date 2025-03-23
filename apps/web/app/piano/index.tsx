@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { getFreq, notes, play } from './utils';
 
-const groups = Array.from({ length: 8 }, (_, i) => i);
+const groups = Array.from({ length: 10 }, (_, i) => i);
 
 const keys = Array.from({ length: 12 }, (_, i) => i);
 
@@ -42,7 +42,7 @@ export default function Page() {
 					value={startGroup}
 					onChange={(e) => setStartGroup(e.target.value)}
 					min="0"
-					max="7"
+					max="9"
 					step="1"
 				/>
 				<div className="flex justify-between px-2.5 mt-1 text-xs">

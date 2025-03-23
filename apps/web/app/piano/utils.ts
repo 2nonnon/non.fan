@@ -28,7 +28,9 @@ export const names = [
 ] as const;
 
 export const a_index = notes.indexOf('A');
-export const a_freqs = [27.5, 55, 110, 220, 440, 880, 1760, 3520, 7040];
+export const a_freqs = [
+	27.5, 55, 110, 220, 440, 880, 1760, 3520, 7040, 14080, 28160,
+];
 
 export function getFreq(note: (typeof notes)[number], octave: number) {
 	return a_freqs[octave] * 2 ** ((notes.indexOf(note) - a_index) / 12);
@@ -47,10 +49,16 @@ export function play(freq: number) {
 	// 创建多个振荡器模拟钢琴的谐波成分
 	const harmonics = [];
 	for (let i = 2; i <= 5; i++) {
+		const harmonicFreq = freq * i;
+
+		if (harmonicFreq > 24000) {
+			break;
+		}
+
 		const harmonicOscillator = audioContext.createOscillator();
 		harmonicOscillator.type = 'sine';
 		harmonicOscillator.frequency.setValueAtTime(
-			freq * i,
+			harmonicFreq,
 			audioContext.currentTime,
 		); // C4频率的倍数
 		harmonics.push(harmonicOscillator);
