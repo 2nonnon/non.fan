@@ -25,8 +25,6 @@ const apps = [
 	},
 ] as const;
 
-const addZero = (num: number) => (num < 10 ? `0${num}` : num);
-
 export default function Page() {
 	return (
 		<Layout>
@@ -38,7 +36,7 @@ export default function Page() {
 					{apps.map((app, index) => (
 						<li key={app.link} className="list-row">
 							<div className="text-4xl font-thin opacity-30 tabular-nums">
-								{addZero(index + 1)}
+								{String(index + 1).padStart(2, '0')}
 							</div>
 							<Link
 								className="list-col-grow flex gap-4 items-center"

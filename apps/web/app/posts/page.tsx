@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import { getAllMetadata } from '@/app/posts/utils';
 
-const addZero = (num: number) => (num < 10 ? `0${num}` : num);
-
 export default async function Page() {
 	const allMetadata = getAllMetadata();
 
@@ -13,7 +11,7 @@ export default async function Page() {
 				{allMetadata.map((data, index) => (
 					<li key={data.slug} className="list-row">
 						<div className="text-4xl font-thin opacity-30 tabular-nums">
-							{addZero(index + 1)}
+							{String(index + 1).padStart(2, '0')}
 						</div>
 						<Link
 							className="list-col-grow flex gap-4 items-center"
