@@ -12,6 +12,7 @@ export const notes = [
 	'A#',
 	'B',
 ] as const;
+
 export const names = [
 	'do',
 	'',
@@ -32,8 +33,8 @@ export const a_freqs = [
 	27.5, 55, 110, 220, 440, 880, 1760, 3520, 7040, 14080, 28160,
 ];
 
-export function getFreq(note: (typeof notes)[number], octave: number) {
-	return a_freqs[octave] * 2 ** ((notes.indexOf(note) - a_index) / 12);
+export function getFreq(number: number, octave: number) {
+	return a_freqs[octave] * 2 ** ((number - a_index) / 12);
 }
 
 export function play(freq: number) {
@@ -41,14 +42,11 @@ export function play(freq: number) {
 		window.AudioContext || (window as any).webkitAudioContext
 	)();
 
-	// 创建基本的振荡器节点
-	const oscillator = audioContext.createOscillator();
-	oscillator.type = 'sine'; // 使用正弦波作为基础
-	oscillator.frequency.setValueAtTime(freq, audioContext.currentTime); // C4频率
+	const harmonicCount = 9;
+	const gains = [1, 0.398, 0.2, 0.1, 0.071, 0.04, 0.025, 0.025, 0.025];
 
-	// 创建多个振荡器模拟钢琴的谐波成分
 	const harmonics = [];
-	for (let i = 2; i <= 5; i++) {
+	for (let i = 1; i <= harmonicCount; i++) {
 		const harmonicFreq = freq * i;
 
 		if (harmonicFreq > 24000) {
@@ -56,11 +54,14 @@ export function play(freq: number) {
 		}
 
 		const harmonicOscillator = audioContext.createOscillator();
+
 		harmonicOscillator.type = 'sine';
+
 		harmonicOscillator.frequency.setValueAtTime(
 			harmonicFreq,
 			audioContext.currentTime,
-		); // C4频率的倍数
+		);
+
 		harmonics.push(harmonicOscillator);
 	}
 
@@ -80,13 +81,6 @@ export function play(freq: number) {
 	const sustainLevel = 0.4; // 持续音量
 	const releaseTime = 0.5; // 释放时间
 
-	// 连接节点
-	oscillator.connect(filter);
-
-	for (const harmonic of harmonics) {
-		harmonic.connect(filter);
-	}
-
 	filter.connect(gainNode);
 	gainNode.connect(audioContext.destination);
 
@@ -104,24 +98,105 @@ export function play(freq: number) {
 		audioContext.currentTime + attackTime + decayTime + releaseTime,
 	); // 释放音量, + 1 延音
 
-	// 开始振荡器
-	oscillator.start();
+	// 连接节点
+	harmonics.forEach((harmonic, i) => {
+		const gn = audioContext.createGain();
+		gn.gain.value = gains[i];
+		harmonic.connect(gn);
+		gn.connect(gainNode);
 
-	for (const harmonic of harmonics) {
 		harmonic.start();
-	}
-
-	oscillator.stop(
-		audioContext.currentTime + attackTime + decayTime + releaseTime,
-	); // 停止振荡器, + 1 延音
-
-	for (const harmonic of harmonics) {
 		harmonic.stop(
 			audioContext.currentTime + attackTime + decayTime + releaseTime,
-		); // 停止谐波振荡器, + 1 延音
-	}
+		);
 
-	oscillator.addEventListener('ended', () => {
-		audioContext.close();
+		if (i === 0) {
+			harmonic.addEventListener('ended', () => {
+				audioContext.close();
+			});
+		}
 	});
 }
+
+function derivingNote({
+	number,
+	group,
+	semiTone,
+}: { number: number; group: number; semiTone: number }) {
+	const $number = number + semiTone;
+	const $note = notes[$number % 12];
+	const $group = $number >= 12 ? +group + 1 : +group;
+	const $freq = getFreq($number, $group);
+
+	return { number: $number, note: $note, group: $group, freq: $freq };
+}
+
+export type DerivingFn = (args: { number: number; group: number }) => Array<{
+	number: number;
+	note: string;
+	group: number;
+	freq: number;
+}>;
+
+export const derivingMajorTriad: DerivingFn = ({ number, group }) => {
+	const semiTones = [0, 4, 7];
+	return semiTones.map((semiTone) => derivingNote({ number, group, semiTone }));
+};
+
+export const derivingMinorTriad: DerivingFn = ({ number, group }) => {
+	const semiTones = [0, 3, 7];
+	return semiTones.map((semiTone) => derivingNote({ number, group, semiTone }));
+};
+
+export const derivingAugmentedTriad: DerivingFn = ({ number, group }) => {
+	const semiTones = [0, 4, 8];
+	return semiTones.map((semiTone) => derivingNote({ number, group, semiTone }));
+};
+
+export const derivingDiminishedTriad: DerivingFn = ({ number, group }) => {
+	const semiTones = [0, 3, 6];
+	return semiTones.map((semiTone) => derivingNote({ number, group, semiTone }));
+};
+
+export const derivingMajor7th: DerivingFn = ({ number, group }) => {
+	const semiTones = [0, 4, 7, 11];
+	return semiTones.map((semiTone) => derivingNote({ number, group, semiTone }));
+};
+
+export const derivingDominant7th: DerivingFn = ({ number, group }) => {
+	const semiTones = [0, 4, 7, 10];
+	return semiTones.map((semiTone) => derivingNote({ number, group, semiTone }));
+};
+
+export const derivingMinor7th: DerivingFn = ({ number, group }) => {
+	const semiTones = [0, 3, 7, 10];
+	return semiTones.map((semiTone) => derivingNote({ number, group, semiTone }));
+};
+
+export const derivingHalfDiminished7th: DerivingFn = ({ number, group }) => {
+	const semiTones = [0, 3, 6, 10];
+	return semiTones.map((semiTone) => derivingNote({ number, group, semiTone }));
+};
+
+export const derivingDiminished7th: DerivingFn = ({ number, group }) => {
+	const semiTones = [0, 3, 6, 9];
+	return semiTones.map((semiTone) => derivingNote({ number, group, semiTone }));
+};
+
+export const derivingMinorMajor7th: DerivingFn = ({ number, group }) => {
+	const semiTones = [0, 3, 7, 11];
+	return semiTones.map((semiTone) => derivingNote({ number, group, semiTone }));
+};
+
+export const derivingAugmented7th: DerivingFn = ({ number, group }) => {
+	const semiTones = [0, 4, 8, 10];
+	return semiTones.map((semiTone) => derivingNote({ number, group, semiTone }));
+};
+
+export const derivingDominant7thSuspended4th: DerivingFn = ({
+	number,
+	group,
+}) => {
+	const semiTones = [0, 4, 7, 10];
+	return semiTones.map((semiTone) => derivingNote({ number, group, semiTone }));
+};
