@@ -3,9 +3,118 @@ import type { UnencodedFrame } from 'modern-gif'
 import { createTimeline } from 'animejs'
 import { encode } from 'modern-gif'
 import workerUrl from 'modern-gif/worker?url'
-import { BezierCurve } from '~/utils/bezierCurve'
 
 const signRef = useTemplateRef<SVGElement>('signRef')
+
+const isGeneratingImage = ref(false)
+
+async function generateSignImage() {
+  if (!signRef.value)
+    return
+
+  const signSvg = signRef.value.querySelector('svg')?.cloneNode(true) as SVGElement | undefined
+
+  if (!signSvg)
+    return
+
+  const viewBoxStr = signSvg.getAttribute('viewBox')
+
+  if (!viewBoxStr)
+    return
+
+  const [_x, _y, width, height] = viewBoxStr.trim().split(/\s+|,/).map(Number)
+
+  if (!width || !height)
+    return
+
+  isGeneratingImage.value = true
+
+  try {
+    const fileHandle = await Fsa.file({
+      suggestedName: 'non-sign.png',
+      create: true,
+    })
+
+    Array.from(signSvg.querySelectorAll('path')).map((path) => {
+      path.removeAttribute('style')
+      path.setAttribute('stroke-dashoffset', '0')
+      path.setAttribute('stroke', '#fff')
+
+      return path
+    })
+
+    const serializer = new XMLSerializer()
+
+    const scale = 20
+
+    const scaleCanvas = new OffscreenCanvas(width * scale, height * scale)
+
+    const renderScale = 2
+
+    const renderCanvas = new OffscreenCanvas(width * renderScale, height * renderScale)
+
+    const scaleCtx = scaleCanvas.getContext('2d', {
+      willReadFrequently: true,
+    })!
+    scaleCtx.imageSmoothingEnabled = true
+    scaleCtx.imageSmoothingQuality = 'high'
+
+    const renderCtx = renderCanvas.getContext('2d', {
+      willReadFrequently: true,
+    })!
+    renderCtx.imageSmoothingEnabled = true
+    renderCtx.imageSmoothingQuality = 'high'
+
+    const svgString = serializer.serializeToString(signSvg)
+    const svgUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`
+
+    console.log(svgUrl)
+
+    const img = new Image()
+    img.src = svgUrl
+    await img.decode()
+
+    scaleCtx.clearRect(0, 0, scaleCanvas.width, scaleCanvas.height)
+    scaleCtx.drawImage(img, 0, 0, scaleCanvas.width, scaleCanvas.height)
+
+    renderCtx.clearRect(0, 0, renderCanvas.width, renderCanvas.height)
+    renderCtx.drawImage(scaleCanvas, 0, 0, renderCanvas.width, renderCanvas.height)
+
+    renderCtx.globalCompositeOperation = 'lighter'
+    renderCtx.fillStyle = '#202020'
+    renderCtx.fillRect(0, 0, renderCanvas.width, renderCanvas.height)
+
+    const blob = await renderCanvas.convertToBlob()
+
+    const url = URL.createObjectURL(blob)
+    window.open(url, '_blank')
+
+    await Fsa.write(blob, fileHandle)
+  }
+  finally {
+    isGeneratingImage.value = false
+  }
+}
+
+const isGeneratingGif = ref(false)
+
+function getDuration(length: number) {
+  const minK = 2 // 最小系数
+  const maxK = 10 // 最大系数（极短路径）
+  const refLength = 100 // 参考长度
+
+  // 对数衰减
+  const k = minK + (maxK - minK) * Math.exp(-length / (refLength * 2))
+  return length * k
+}
+
+/**
+ *
+ * @param t [0, 1]
+ */
+function easeInOutSine(t: number) {
+  return -(Math.cos(Math.PI * t) - 1) / 2
+}
 
 async function generateSignGif() {
   if (!signRef.value)
@@ -26,96 +135,110 @@ async function generateSignGif() {
   if (!width || !height)
     return
 
-  const fileHandle = await Fsa.file({
-    suggestedName: 'non-sign.gif',
-    create: true,
-  })
+  isGeneratingGif.value = true
 
-  const paths = Array.from(signSvg.querySelectorAll('path')).map((path) => {
-    path.removeAttribute('style')
-
-    return path
-  })
-
-  const frames: Array<UnencodedFrame> = []
-
-  const serializer = new XMLSerializer()
-
-  const scale = 20
-
-  const scaleCanvas = new OffscreenCanvas(width * scale, height * scale)
-
-  const renderScale = 2
-
-  const renderCanvas = new OffscreenCanvas(width * renderScale, height * renderScale)
-
-  const scaleCtx = scaleCanvas.getContext('2d', {
-    willReadFrequently: true,
-  })!
-  scaleCtx.imageSmoothingEnabled = true
-  scaleCtx.imageSmoothingQuality = 'high'
-
-  const renderCtx = renderCanvas.getContext('2d', {
-    willReadFrequently: true,
-  })!
-  renderCtx.imageSmoothingEnabled = true
-  renderCtx.imageSmoothingQuality = 'high'
-
-  for (let i = 0; i < paths.length; i++) {
-    const path = paths[i]!
-    const length = Math.ceil(path.getTotalLength())
-
-    const duration = Math.ceil(length * 5)
-    const frameCount = Math.ceil(duration / 30)
-    const bezierCurve = new BezierCurve({ P2: { x: 0.445, y: 0.05 }, P3: { x: 0.55, y: 0.95 } })
-
-    const dashoffsets = Array.from({ length: frameCount }, (_, index) => {
-      const t = index / (frameCount - 1)
-      const progress = bezierCurve.getY(t)
-      return length * (1 - progress)
+  try {
+    const fileHandle = await Fsa.file({
+      suggestedName: 'non-sign.gif',
+      create: true,
     })
 
-    for (let j = 0; j < frameCount; j++) {
-      const dashoffset = dashoffsets[j]!
-      path.setAttribute('stroke-dashoffset', String(dashoffset))
-      path.setAttribute('stroke', '#fff')
+    const paths = Array.from(signSvg.querySelectorAll('path')).map((path) => {
+      path.removeAttribute('style')
 
-      const svgString = serializer.serializeToString(signSvg)
-      const svgUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`
+      return path
+    })
 
-      const img = new Image()
-      img.src = svgUrl
-      await img.decode()
+    const frames: Array<UnencodedFrame> = []
 
-      scaleCtx.clearRect(0, 0, scaleCanvas.width, scaleCanvas.height)
-      scaleCtx.drawImage(img, 0, 0, scaleCanvas.width, scaleCanvas.height)
+    const serializer = new XMLSerializer()
 
-      renderCtx.clearRect(0, 0, renderCanvas.width, renderCanvas.height)
-      renderCtx.drawImage(scaleCanvas, 0, 0, renderCanvas.width, renderCanvas.height)
+    const scale = 20
 
-      renderCtx.fillStyle = '#202020'
-      renderCtx.fillRect(0, 0, renderCanvas.width, renderCanvas.height)
-      renderCtx.globalCompositeOperation = 'lighter'
+    const scaleCanvas = new OffscreenCanvas(width * scale, height * scale)
 
-      frames.push({
-        width: renderCanvas.width,
-        height: renderCanvas.height,
-        data: renderCtx.getImageData(0, 0, renderCanvas.width, renderCanvas.height).data,
-        delay: j === frameCount - 1 ? 1000 : 30,
+    const renderScale = 2
+
+    const renderCanvas = new OffscreenCanvas(width * renderScale, height * renderScale)
+
+    const scaleCtx = scaleCanvas.getContext('2d', {
+      willReadFrequently: true,
+    })!
+    scaleCtx.imageSmoothingEnabled = true
+    scaleCtx.imageSmoothingQuality = 'high'
+
+    const renderCtx = renderCanvas.getContext('2d', {
+      willReadFrequently: true,
+    })!
+    renderCtx.imageSmoothingEnabled = true
+    renderCtx.imageSmoothingQuality = 'high'
+
+    for (let i = 0; i < paths.length; i++) {
+      const path = paths[i]!
+      const length = Math.ceil(path.getTotalLength())
+
+      const duration = getDuration(length)
+      const frameCount = Math.ceil(duration / 30)
+
+      const dashoffsets = Array.from({ length: frameCount }, (_, index) => {
+        const t = index / (frameCount - 1)
+        const progress = easeInOutSine(t)
+        return length * (1 - progress)
       })
+
+      for (let j = 0; j < frameCount; j++) {
+        const { promise, resolve } = Promise.withResolvers<void>()
+
+        requestAnimationFrame(async () => {
+          const dashoffset = dashoffsets[j]!
+          path.setAttribute('stroke-dashoffset', String(dashoffset))
+          path.setAttribute('stroke', '#fff')
+
+          const svgString = serializer.serializeToString(signSvg)
+          const svgUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`
+
+          const img = new Image()
+          img.src = svgUrl
+          await img.decode()
+
+          scaleCtx.clearRect(0, 0, scaleCanvas.width, scaleCanvas.height)
+          scaleCtx.drawImage(img, 0, 0, scaleCanvas.width, scaleCanvas.height)
+
+          renderCtx.clearRect(0, 0, renderCanvas.width, renderCanvas.height)
+          renderCtx.drawImage(scaleCanvas, 0, 0, renderCanvas.width, renderCanvas.height)
+
+          renderCtx.globalCompositeOperation = 'lighter'
+          renderCtx.fillStyle = '#202020'
+          renderCtx.fillRect(0, 0, renderCanvas.width, renderCanvas.height)
+
+          frames.push({
+            width: renderCanvas.width,
+            height: renderCanvas.height,
+            data: renderCtx.getImageData(0, 0, renderCanvas.width, renderCanvas.height).data,
+            delay: j === frameCount - 1 ? 1000 : 30,
+          })
+
+          resolve()
+        })
+
+        await promise
+      }
     }
+
+    const gifBuffer = await encode({
+      frames,
+      width: renderCanvas.width,
+      height: renderCanvas.height,
+      workerUrl,
+    })
+
+    const blob = new Blob([gifBuffer], { type: 'image/gif' })
+
+    await Fsa.write(blob, fileHandle)
   }
-
-  const gifBuffer = await encode({
-    frames,
-    width: renderCanvas.width,
-    height: renderCanvas.height,
-    workerUrl,
-  })
-
-  const blob = new Blob([gifBuffer], { type: 'image/gif' })
-
-  Fsa.write(blob, fileHandle)
+  finally {
+    isGeneratingGif.value = false
+  }
 }
 
 const signWidth = ref('auto')
@@ -152,7 +275,7 @@ function startSignAnimation() {
     tl.sync().add(pathEls[i]!, {
       strokeDashoffset: 0,
       easing: 'easeInOutSine',
-      duration: Math.ceil(length * 5),
+      duration: getDuration(length),
       delay: 300,
     })
   }
@@ -212,9 +335,14 @@ onMounted(() => {
       </svg>
     </div>
 
-    <button class="cursor-pointer" @click="generateSignGif">
-      生成 GIF
-    </button>
+    <div class="absolute bottom-5 w-full max-w-screen-md flex items-center justify-end gap-4">
+      <button class="cursor-pointer" @click="generateSignImage">
+        生成图片{{ isGeneratingImage ? '中...' : '' }}
+      </button>
+      <button class="cursor-pointer" @click="generateSignGif">
+        生成 GIF {{ isGeneratingGif ? '中...' : '' }}
+      </button>
+    </div>
   </main>
 </template>
 
