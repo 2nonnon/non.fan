@@ -5,7 +5,6 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   modules: [
     '@vueuse/nuxt',
-    'dayjs-nuxt',
   ],
   devtools: { enabled: false },
   css: ['~/assets/css/main.css'],
