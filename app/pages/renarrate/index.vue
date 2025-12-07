@@ -98,7 +98,7 @@ useSeoMeta({
                 <h3 class="text-lg font-semibold mb-1">
                   <NuxtLink
                     class="underline underline-offset-2"
-                    :to="`/renarrate/${item.id}`"
+                    :to="`/renarrate/${item.id.slice(0, 4)}/${item.id.slice(4)}`"
                     prefetch-on="interaction"
                   >
                     {{ item.title }}
@@ -126,7 +126,7 @@ useSeoMeta({
             <li v-for="year in data?.years" :key="year.year">
               <NuxtLink
                 class="underline underline-offset-2"
-                :to="`/renarrate/list/${year.year}`"
+                :to="`/renarrate/${year.year}`"
                 prefetch-on="interaction"
               >
                 {{ `${year.year} · ${year.total}` }}

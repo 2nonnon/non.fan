@@ -34,14 +34,14 @@ interface ListItem {
 const route = useRoute()
 const request = useRequestURL()
 
-const year = ref((route.params.year || '2007') as string)
+const year = (route.params.year || '2007') as string
 
 const { data } = await useAsyncData(`renarrate`, async () => {
   const { list } = await $fetch(`${request.origin}/collect/index.json`, { method: 'get' }) as {
     list: Array<CollectItem>
   }
 
-  const res = list.filter(item => item.date.startsWith(`${year.value}`)).map((item) => {
+  const res = list.filter(item => item.date.startsWith(`${year}`)).map((item) => {
     const [date] = item.date.split(' ')
     const [y, m, d] = date!.split('-')
 
@@ -61,13 +61,11 @@ const { data } = await useAsyncData(`renarrate`, async () => {
     listTotal: res.length,
     total: list.length,
   })
-}, {
-  watch: [year],
 })
 
 useSeoMeta({
-  title: `Nounenrena's Blog Archive for ${year.value} - Renarrate`,
-  description: `A collection of blog posted by Nounenrena in ${year.value}.`,
+  title: `Nounenrena's Blog Archive for ${year} - Renarrate`,
+  description: `A collection of blog posted by Nounenrena in ${year}.`,
 })
 </script>
 
@@ -77,7 +75,7 @@ useSeoMeta({
       Nounenrena's Blog Archive for {{ year }}
     </h1>
 
-    <div class="fixed top-1/2 left-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-full max-w-screen-md" aria-hidden="true">
+    <div class="fixed top-1/2 left-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-full max-w-3xl" aria-hidden="true">
       <svg class="w-full h-auto" viewBox="0 0 100 100">
         <text
           x="50" y="50"
@@ -94,7 +92,7 @@ useSeoMeta({
       </svg>
     </div>
 
-    <div class="w-full max-w-screen-md mx-auto py-16 md:py-20">
+    <div class="w-full max-w-3xl mx-auto py-16 md:py-20">
       <h2 class="text-3xl font-bold mb-10">
         {{ `${year} · ${data!.listTotal} of ${data!.total}` }}
       </h2>
@@ -107,7 +105,7 @@ useSeoMeta({
 
           <ul class="flex flex-col gap-6">
             <li v-for="item in items" :key="item.id" class="flex">
-              <NuxtLink class="flex flex-col gap-2 md:flex-row md:items-end md:gap-4 text-base-content/80 hover:text-base-content transition-colors" :to="`/renarrate/${item.id}`" prefetch-on="interaction">
+              <NuxtLink class="flex flex-col gap-2 md:flex-row md:items-end md:gap-4 text-base-content/80 hover:text-base-content transition-colors" :to="`/renarrate/${item.id.slice(0, 4)}/${item.id.slice(4)}`" prefetch-on="interaction">
                 <span class="text-xl font-bold">{{ item.title }}</span>
                 <span class="text-sm opacity-60">{{ `${monthMap[item.month]} ${item.day}` }}</span>
               </NuxtLink>

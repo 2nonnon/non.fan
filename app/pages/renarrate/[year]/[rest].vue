@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { RendererHastRender } from '#components'
 import { pick } from 'es-toolkit'
 
 interface CollectData {
@@ -13,7 +12,7 @@ interface CollectData {
 const route = useRoute()
 const request = useRequestURL()
 
-const key = route.params.key as string
+const key = `${route.params.year}${route.params.rest}`
 
 const { data } = await useAsyncData(`renarrate-${key}`, async () => {
   const path = `${request.origin}/collect/${key}`
@@ -43,7 +42,7 @@ useSeoMeta({
       </p>
 
       <div class="text-base-content/90 prose prose-img:inline prose-img:m-0">
-        <RendererHastRender :html="data.html" />
+        <NHastRender :html="data.html" />
       </div>
 
       <div class="flex items-center justify-between gap-4 mt-12">
