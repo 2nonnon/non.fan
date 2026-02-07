@@ -35,4 +35,10 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+
+  hooks: {
+    'prepare:types': function ({ references }) {
+      references.push({ types: '@types/wicg-file-system-access' })
+    },
+  },
 })
