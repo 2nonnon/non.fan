@@ -34,7 +34,6 @@
     font-style: normal;
     font-optical-sizing: auto;
     font-size: clamp(16px, calc(16px + (1vw - 3.75px) * 0.25), 20px);
-    @apply bg-base-100 text-base-content;
   }
 }
 
