@@ -30,7 +30,7 @@ async function generateSignImage() {
   isGeneratingImage.value = true
 
   try {
-    const fileHandle = await Fsa.file({
+    const fileHandle = await file({
       suggestedName: 'non-sign.png',
       create: true,
     })
@@ -89,7 +89,7 @@ async function generateSignImage() {
     const url = URL.createObjectURL(blob)
     window.open(url, '_blank')
 
-    await Fsa.write(blob, fileHandle)
+    await write(blob, fileHandle)
   }
   finally {
     isGeneratingImage.value = false
@@ -138,7 +138,7 @@ async function generateSignGif() {
   isGeneratingGif.value = true
 
   try {
-    const fileHandle = await Fsa.file({
+    const fileHandle = await file({
       suggestedName: 'non-sign.gif',
       create: true,
     })
@@ -234,7 +234,7 @@ async function generateSignGif() {
 
     const blob = new Blob([gifBuffer], { type: 'image/gif' })
 
-    await Fsa.write(blob, fileHandle)
+    await write(blob, fileHandle)
   }
   finally {
     isGeneratingGif.value = false

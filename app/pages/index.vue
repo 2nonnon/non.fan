@@ -30,8 +30,8 @@ useHead({
         </svg>
       </header>
 
-      <main class="flex-1 flex flex-col justify-between items-center px-6 relative z-0">
-        <h1 class="w-full text-center text-white mt-10">
+      <main class="flex-1 flex flex-col justify-evenly items-center gap-6 p-6 relative z-0">
+        <h1 class="w-full text-center text-lg text-white">
           俳優、アーティスト
         </h1>
 
@@ -62,7 +62,7 @@ useHead({
           </div>
         </div>
 
-        <p class="text-[0.625rem] text-white mb-10 self-end">
+        <p class="text-[0.625rem] text-white self-end">
           やまないガール<br>
           変わること恐れない<br>
           やまないガール<br>

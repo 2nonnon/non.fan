@@ -5,26 +5,108 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme {
-  --color-base-100: oklch(24.353% 0 0);
-  --color-base-200: oklch(22.648% 0 0);
-  --color-base-300: oklch(20.944% 0 0);
-  --color-base-content: oklch(84.87% 0 0);
-  --color-primary: oklch(41.703% 0.099 251.473);
-  --color-primary-content: oklch(88.34% 0.019 251.473);
-  --color-secondary: oklch(64.092% 0.027 229.389);
-  --color-secondary-content: oklch(12.818% 0.005 229.389);
-  --color-accent: oklch(67.271% 0.167 35.791);
-  --color-accent-content: oklch(13.454% 0.033 35.791);
-  --color-neutral: oklch(27.441% 0.013 253.041);
-  --color-neutral-content: oklch(85.488% 0.002 253.041);
-  --color-info: oklch(62.616% 0.143 240.033);
-  --color-info-content: oklch(12.523% 0.028 240.033);
-  --color-success: oklch(70.226% 0.094 156.596);
-  --color-success-content: oklch(14.045% 0.018 156.596);
-  --color-warning: oklch(77.482% 0.115 81.519);
-  --color-warning-content: oklch(15.496% 0.023 81.519);
-  --color-error: oklch(51.61% 0.146 29.674);
-  --color-error-content: oklch(90.322% 0.029 29.674);
+  --color-primary-50: #fef2f3;
+  --color-primary-100: #fee2e5;
+  --color-primary-200: #fecacf;
+  --color-primary-300: #fba6af;
+  --color-primary-400: #f77280;
+  --color-primary-500: #ee4557;
+  --color-primary-600: #da283b;
+  --color-primary-700: #c21f30;
+  --color-primary-800: #981c29;
+  --color-primary-900: #7e1e28;
+  --color-primary-950: #440b11;
+
+  --color-secondary-50: #feffe7;
+  --color-secondary-100: #fcffc1;
+  --color-secondary-200: #feff86;
+  --color-secondary-300: #fff941;
+  --color-secondary-400: #ffec0d;
+  --color-secondary-500: #ffdd00;
+  --color-secondary-600: #d1a300;
+  --color-secondary-700: #a67502;
+  --color-secondary-800: #895b0a;
+  --color-secondary-900: #744a0f;
+  --color-secondary-950: #442704;
+
+  --color-accent-50: #f3fbea;
+  --color-accent-100: #e4f6d1;
+  --color-accent-200: #caeda9;
+  --color-accent-300: #a8e076;
+  --color-accent-400: #89cf4c;
+  --color-accent-500: #6bb82e;
+  --color-accent-600: #509020;
+  --color-accent-700: #3e6e1d;
+  --color-accent-800: #34581c;
+  --color-accent-900: #2d4b1c;
+  --color-accent-950: #15290a;
+
+  --color-info-50: #edfaff;
+  --color-info-100: #d6f1ff;
+  --color-info-200: #b5e9ff;
+  --color-info-300: #83ddff;
+  --color-info-400: #48c7ff;
+  --color-info-500: #1ea8ff;
+  --color-info-600: #068aff;
+  --color-info-700: #0070f3;
+  --color-info-800: #085ac5;
+  --color-info-900: #0d4e9b;
+  --color-info-950: #0e305d;
+
+  --color-success-50: #f0fdf5;
+  --color-success-100: #dcfce8;
+  --color-success-200: #bbf7d1;
+  --color-success-300: #86efad;
+  --color-success-400: #4ade81;
+  --color-success-500: #22c55f;
+  --color-success-600: #16a34b;
+  --color-success-700: #15803d;
+  --color-success-800: #166534;
+  --color-success-900: #14532c;
+  --color-success-950: #052e14;
+
+  --color-warning-50: #fff6eb;
+  --color-warning-100: #fee4c7;
+  --color-warning-200: #fdc88a;
+  --color-warning-300: #fcab4d;
+  --color-warning-400: #fb9724;
+  --color-warning-500: #f5880b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b46509;
+  --color-warning-800: #92550e;
+  --color-warning-900: #78470f;
+  --color-warning-950: #452603;
+
+  --color-error-50: #fff1f4;
+  --color-error-100: #ffe4ea;
+  --color-error-200: #fecdd8;
+  --color-error-300: #fda4b8;
+  --color-error-400: #fb718f;
+  --color-error-500: #f43f67;
+  --color-error-600: #e11d48;
+  --color-error-700: #be1238;
+  --color-error-800: #9f1231;
+  --color-error-900: #88132d;
+  --color-error-950: #4c0515;
+
+  --color-base-100: var(--color-neutral-700);
+  --color-base-200: var(--color-neutral-800);
+  --color-base-300: var(--color-neutral-900);
+  --color-base-content: var(--color-neutral-300);
+  --color-primary: var(--color-primary-700);
+  --color-primary-content: var(--color-primary-200);
+  --color-secondary: var(--color-secondary-500);
+  --color-secondary-content: var(--color-secondary-900);
+  --color-accent: var(--color-secondary-500);
+  --color-accent-content: var(--color-secondary-900);
+  --color-info: var(--color-info-500);
+  --color-info-content: var(--color-info-900);
+  --color-success: var(--color-success-500);
+  --color-success-content: var(--color-success-900);
+  --color-warning: var(--color-warning-500);
+  --color-warning-content: var(--color-warning-900);
+  --color-error: var(--color-error-500);
+  --color-error-content: var(--color-error-900);
 }
 
 @layer base {
