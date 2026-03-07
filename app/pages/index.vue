@@ -17,17 +17,9 @@ useHead({
   <div class="h-dvh relative overflow-hidden select-none">
     <div class="max-w-5xl w-full h-full mx-auto flex flex-col relative">
       <header class="px-6 py-4 sticky top-0 flex items-center justify-between gap-4 z-50">
-        <svg class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M5.98283 10.9499C8.29347 10.9499 11.5838 7.94995 11.5838 7.94995C11.5838 7.94995 8.48032 -0.0185049 6.2856 2.69994C4.16631 5.32494 4.54474 10.9499 5.98283 10.9499Z" fill="#6BB82E" />
-          <path d="M16.8086 1.19995C13.6262 1.19994 11.5838 7.94995 11.5838 7.94995C11.5838 7.94995 14.7099 11.9068 17.8683 8.99995C19.0092 7.94994 20.617 1.19996 16.8086 1.19995Z" fill="#6BB82E" />
-          <path d="M7.99619 22.8C11.932 20.175 11.5838 7.94995 11.5838 7.94995M11.5838 7.94995C11.5838 7.94995 8.29347 10.9499 5.98283 10.9499C4.54474 10.9499 4.16631 5.32494 6.2856 2.69994C8.48032 -0.0185049 11.5838 7.94995 11.5838 7.94995ZM11.5838 7.94995C11.5838 7.94995 13.6262 1.19994 16.8086 1.19995C20.617 1.19996 19.0092 7.94994 17.8683 8.99995C14.7099 11.9068 11.5838 7.94995 11.5838 7.94995Z" stroke="white" stroke-width="0.6" stroke-linecap="round" />
-        </svg>
+        <NLogo />
 
-        <svg class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M4 5H20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M4 12H20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M4 19H20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
+        <NNav />
       </header>
 
       <main class="flex-1 flex flex-col justify-evenly items-center gap-6 p-6 relative z-0">
@@ -55,8 +47,8 @@ useHead({
 
             <!-- light -->
             <div class="absolute inset-0 mx-auto flex items-center justify-center pointer-events-none -z-10 mask-[radial-gradient(circle_at_center,transparent_5.5rem,black_5.6rem)]">
-              <div id="light" class="w-full aspect-2/3 max-w-[min(100%,calc(100vh*2/3*0.6))] flex justify-center items-center relative opacity-0 transition-opacity duration-500">
-                <div class="w-7/10 h-full absolute rounded-[50%] bg-[#C21F30] blur-[12vw]" />
+              <div id="light" class="w-full aspect-2/3 max-w-[min(100%,calc(100vh*2/3*0.6))] flex justify-center items-center relative opacity-0 transition-opacity duration-1000">
+                <div class="w-7/10 h-full absolute rounded-[50%] bg-primary blur-[12vw]" />
               </div>
             </div>
           </div>
