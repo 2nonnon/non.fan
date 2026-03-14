@@ -74,12 +74,12 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="h-dvh overflow-auto scrollbar-hidden relative select-none px-5">
+  <div class="relative select-none px-6">
     <h1 class="sr-only">
       Nounenrena's Blog Archive
     </h1>
 
-    <div class="w-full max-w-3xl mx-auto py-16 md:py-20">
+    <div class="w-full max-w-3xl mx-auto py-12 md:py-20">
       <main class="mb-10 flex flex-col gap-8">
         <section>
           <h2 class="text-xl font-bold mb-4">

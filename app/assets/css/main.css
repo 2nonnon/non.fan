@@ -111,11 +111,15 @@
 
 @layer base {
   html {
+    color-scheme: dark;
+
     font-family: 'Inter', 'Kosugi Maru', sans-serif;
     font-weight: 400;
     font-style: normal;
     font-optical-sizing: auto;
     font-size: clamp(16px, calc(16px + (1vw - 3.75px) * 0.25), 20px);
+    color: var(--color-base-content);
+    background-color: var(--color-base-300);
   }
 }
 

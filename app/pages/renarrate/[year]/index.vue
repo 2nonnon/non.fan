@@ -37,9 +37,7 @@ const request = useRequestURL()
 const year = (route.params.year || '2007') as string
 
 const { data } = await useAsyncData(`renarrate`, async () => {
-  const { list } = await $fetch(`${request.origin}/collect/index.json`, { method: 'get' }) as {
-    list: Array<CollectItem>
-  }
+  const { list }: { list: Array<CollectItem> } = await $fetch(`${request.origin}/collect/index.json`, { method: 'get' })
 
   const res = list.filter(item => item.date.startsWith(`${year}`)).map((item) => {
     const [date] = item.date.split(' ')
@@ -70,7 +68,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="h-dvh overflow-auto scrollbar-hidden relative select-none px-5">
+  <main class="relative select-none px-6">
     <h1 class="sr-only">
       Nounenrena's Blog Archive for {{ year }}
     </h1>
@@ -92,7 +90,7 @@ useSeoMeta({
       </svg>
     </div>
 
-    <div class="w-full max-w-3xl mx-auto py-16 md:py-20">
+    <div class="w-full max-w-3xl mx-auto py-12 md:py-20">
       <h2 class="text-3xl font-bold mb-10">
         {{ `${year} · ${data!.listTotal} of ${data!.total}` }}
       </h2>
@@ -114,5 +112,5 @@ useSeoMeta({
         </section>
       </div>
     </div>
-  </div>
+  </main>
 </template>

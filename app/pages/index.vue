@@ -11,57 +11,52 @@ useHead({
     },
   ],
 })
+
+useSeoMeta({
+  title: `Non Fan`,
+  description: `A fan website for non.`,
+})
 </script>
 
 <template>
-  <div class="h-dvh relative overflow-hidden select-none">
-    <div class="max-w-5xl w-full h-full mx-auto flex flex-col relative">
-      <header class="px-6 py-4 sticky top-0 flex items-center justify-between gap-4 z-50">
-        <NLogo />
+  <main class="flex-1 flex flex-col justify-evenly items-center gap-6 p-6 relative z-0">
+    <h1 class="w-full text-center text-lg text-white">
+      俳優、アーティスト
+    </h1>
 
-        <NNav />
-      </header>
+    <!-- visual -->
+    <div class="w-full aspect-2/3 max-w-[min(100%,calc(100vh*2/3*0.6))] flex justify-center items-center relative -z-10">
+      <div class="w-full aspect-818/460 relative peer">
+        <img class="mask-[url(#visual-mask)] w-7/10 absolute -top-17/20 left-1/2 -translate-x-1/2" :src="VisualImg" draggable="false" alt="">
 
-      <main class="flex-1 flex flex-col justify-evenly items-center gap-6 p-6 relative z-0">
-        <h1 class="w-full text-center text-lg text-white">
-          俳優、アーティスト
-        </h1>
+        <img class="mask-[url(#visual-mask)] w-7/10 absolute -bottom-17/20 left-1/2 -translate-x-1/2 rotate-180" :src="VisualImg" draggable="false" alt="">
 
-        <!-- visual -->
-        <div class="w-full aspect-2/3 max-w-[min(100%,calc(100vh*2/3*0.6))] flex justify-center items-center relative -z-10">
-          <div class="w-full aspect-818/460 relative peer">
-            <img class="mask-[url(#visual-mask)] w-7/10 absolute -top-17/20 left-1/2 -translate-x-1/2" :src="VisualImg" draggable="false" alt="">
+        <div class="w-full h-full filter-[url(#inner-shadow)]">
+          <div class="w-full h-full bg-white mask-[url(#non-mask)]" />
+        </div>
+      </div>
 
-            <img class="mask-[url(#visual-mask)] w-7/10 absolute -bottom-17/20 left-1/2 -translate-x-1/2 rotate-180" :src="VisualImg" draggable="false" alt="">
-
-            <div class="w-full h-full filter-[url(#inner-shadow)]">
-              <div class="w-full h-full bg-white mask-[url(#non-mask)]" />
-            </div>
-          </div>
-
-          <div class="[--opacity-light:clamp(0.3,1vw/30px,0.6)] absolute w-screen h-[calc(100vh+14rem)] top-1/2 left-1/2 -translate-1/2 -z-10 peer-hover:[&_#light]:opacity-(--opacity-light) peer-active:[&_#light]:opacity-(--opacity-light) pointer-events-none">
-            <!-- background -->
-            <div class="absolute inset-0 bg-[radial-gradient(50%_50%_at_50%_50%,#1a1a1a_36%,#000_100%)] bg-cover -z-20">
-              <div class="absolute inset-0 filter-[url(#noise-filter)] mix-blend-color-dodge" />
-            </div>
-
-            <!-- light -->
-            <div class="absolute inset-0 mx-auto flex items-center justify-center pointer-events-none -z-10 mask-[radial-gradient(circle_at_center,transparent_5.5rem,black_5.6rem)]">
-              <div id="light" class="w-full aspect-2/3 max-w-[min(100%,calc(100vh*2/3*0.6))] flex justify-center items-center relative opacity-0 transition-opacity duration-1000">
-                <div class="w-7/10 h-full absolute rounded-[50%] bg-primary blur-[12vw]" />
-              </div>
-            </div>
-          </div>
+      <div class="fixed not-first-of-type:[--opacity-light:clamp(0.3,1vw/30px,0.6)] w-screen h-[calc(100vh+14rem)] -z-10 peer-hover:[&_#light]:opacity-(--opacity-light) peer-active:[&_#light]:opacity-(--opacity-light) pointer-events-none">
+        <!-- background -->
+        <div class="absolute inset-0 bg-[radial-gradient(50%_50%_at_50%_50%,#1a1a1a_36%,#000_100%)] bg-cover -z-20">
+          <div class="absolute inset-0 filter-[url(#noise-filter)] mix-blend-color-dodge" />
         </div>
 
-        <p class="text-[0.625rem] text-white self-end">
-          やまないガール<br>
-          変わること恐れない<br>
-          やまないガール<br>
-          どこまでも燦々と
-        </p>
-      </main>
+        <!-- light -->
+        <div class="absolute inset-0 mx-auto flex items-center justify-center pointer-events-none -z-10 mask-[radial-gradient(circle_at_center,transparent_5.5rem,black_5.6rem)]">
+          <div id="light" class="w-full aspect-2/3 max-w-[min(100%,calc(100vh*2/3*0.6))] flex justify-center items-center relative opacity-0 transition-opacity duration-1000">
+            <div class="w-7/10 h-full absolute rounded-[50%] bg-primary blur-[12vw]" />
+          </div>
+        </div>
+      </div>
     </div>
+
+    <p class="text-[0.625rem] text-white self-end">
+      やまないガール<br>
+      変わること恐れない<br>
+      やまないガール<br>
+      どこまでも燦々と
+    </p>
 
     <svg class="absolute" width="0" height="0">
       <defs>
@@ -128,7 +123,7 @@ useHead({
         </mask>
       </defs>
     </svg>
-  </div>
+  </main>
 </template>
 
 <style scoped></style>
