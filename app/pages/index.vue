@@ -19,21 +19,31 @@ useSeoMeta({
 </script>
 
 <template>
-  <main class="flex-1 flex flex-col justify-evenly items-center gap-6 p-6 relative z-0">
+  <main class="flex-1 flex flex-col justify-evenly items-center gap-6 px-6 pt-8 pb-6 relative z-0">
     <h1 class="w-full text-center text-lg text-white">
       俳優、アーティスト
     </h1>
 
     <!-- visual -->
-    <div class="w-full aspect-2/3 max-w-[min(100%,calc(100vh*2/3*0.6))] flex justify-center items-center relative -z-10">
-      <div class="w-full aspect-818/460 relative peer">
-        <img class="mask-[url(#visual-mask)] w-7/10 absolute -top-17/20 left-1/2 -translate-x-1/2" :src="VisualImg" draggable="false" alt="">
+    <div class="flex-1 w-full flex flex-col justify-center items-center relative -z-10 ">
+      <div class="flex-1 aspect-2/3 max-w-full flex justify-center items-center landscape:hidden">
+        <div class="w-full aspect-818/460 relative peer">
+          <img class="mask-[url(#visual-mask)] w-7/10 absolute -top-17/20 left-1/2 -translate-x-1/2" :src="VisualImg" draggable="false" alt="" @contextmenu.prevent="">
 
-        <img class="mask-[url(#visual-mask)] w-7/10 absolute -bottom-17/20 left-1/2 -translate-x-1/2 rotate-180" :src="VisualImg" draggable="false" alt="">
+          <img class="mask-[url(#visual-mask)] w-7/10 absolute -bottom-17/20 left-1/2 -translate-x-1/2 rotate-180" :src="VisualImg" draggable="false" alt="" @contextmenu.prevent="">
 
-        <div class="w-full h-full filter-[url(#inner-shadow)]">
+          <div class="w-full h-full filter-[url(#inner-shadow)]">
+            <div class="w-full h-full bg-white mask-[url(#non-mask)]" />
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-1 w-full flex flex-col justify-center items-center relative peer @container/hz portrait:hidden">
+        <div class="flex-1 aspect-818/460 max-w-9/10 max-h-[50.6cqw] filter-[url(#inner-shadow)]">
           <div class="w-full h-full bg-white mask-[url(#non-mask)]" />
         </div>
+
+        <img class="w-[60cqw] max-h-[60dvh] fixed bottom-0 translate-y-8/100 object-contain" :src="VisualImg" draggable="false" alt="" @contextmenu.prevent="">
       </div>
 
       <div class="fixed not-first-of-type:[--opacity-light:clamp(0.3,1vw/30px,0.6)] w-screen h-[calc(100vh+14rem)] -z-10 peer-hover:[&_#light]:opacity-(--opacity-light) peer-active:[&_#light]:opacity-(--opacity-light) pointer-events-none">
@@ -43,11 +53,11 @@ useSeoMeta({
         </div>
 
         <!-- light -->
-        <div class="absolute inset-0 mx-auto flex items-center justify-center pointer-events-none -z-10 mask-[radial-gradient(circle_at_center,transparent_5.5rem,black_5.6rem)]">
+        <!-- <div class="absolute inset-0 mx-auto flex items-center justify-center pointer-events-none -z-10 mask-[radial-gradient(circle_at_center,transparent_5.5rem,black_5.6rem)]">
           <div id="light" class="w-full aspect-2/3 max-w-[min(100%,calc(100vh*2/3*0.6))] flex justify-center items-center relative opacity-0 transition-opacity duration-1000">
             <div class="w-7/10 h-full absolute rounded-[50%] bg-primary blur-[12vw]" />
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -126,4 +136,13 @@ useSeoMeta({
   </main>
 </template>
 
-<style scoped></style>
+<style>
+/* .test {
+  color: #000;
+}
+@container visual (orientation: landscape) {
+  .test {
+    display: none;
+  }
+} */
+</style>
