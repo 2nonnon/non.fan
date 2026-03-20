@@ -13,8 +13,8 @@ useHead({
 })
 
 useSeoMeta({
-  title: `Non Fan`,
-  description: `A fan website for non.`,
+  title: `或许你知道能年玲奈吗`,
+  description: `分享一些能年玲奈属于我的侧面`,
 })
 </script>
 

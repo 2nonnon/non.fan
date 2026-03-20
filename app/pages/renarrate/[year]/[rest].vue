@@ -17,7 +17,7 @@ const key = `${route.params.year}${route.params.rest}`
 const { data } = await useAsyncData(`renarrate-${key}`, async () => {
   const path = `${request.origin}/collect/${key}`
 
-  const res = await $fetch(`${path}/data.json`, { method: 'get' }) as CollectData
+  const res = await $fetch(`${path}/data.json`, { method: 'get' }) as unknown as CollectData
 
   return markRaw(pick(res, ['url', 'title', 'date', 'content', 'html']))
 })
@@ -26,7 +26,7 @@ if (!data.value)
   throw createError({ statusCode: 404 })
 
 useSeoMeta({
-  title: `${data.value.title} - Renarrate`,
+  title: `${data.value.title}`,
   description: `${data.value.content.slice(0, 50)}...`,
 })
 </script>
@@ -45,13 +45,13 @@ useSeoMeta({
         <NHastRender :html="data.html" />
       </div>
 
-      <div class="flex items-center justify-between gap-4 mt-12">
+      <div class="flex items-center justify-between gap-4 mt-12 text-sm">
         <NuxtLink class="opacity-50 hover:opacity-100 transition-opacity" :to="`/renarrate/${route.params.year}`">
-          > cd ..
+          返回列表
         </NuxtLink>
 
         <NuxtLink class="opacity-50 hover:opacity-100 transition-opacity" :to="data.url" target="_blank" rel="noopener noreferrer" external>
-          source ↗
+          查看原档
         </NuxtLink>
       </div>
     </div>

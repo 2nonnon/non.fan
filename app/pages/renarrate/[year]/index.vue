@@ -37,7 +37,7 @@ const request = useRequestURL()
 const year = (route.params.year || '2007') as string
 
 const { data } = await useAsyncData(`renarrate`, async () => {
-  const { list }: { list: Array<CollectItem> } = await $fetch(`${request.origin}/collect/index.json`, { method: 'get' })
+  const { list } = await $fetch(`${request.origin}/collect/index.json`, { method: 'get' }) as unknown as { list: Array<CollectItem> }
 
   const res = list.filter(item => item.date.startsWith(`${year}`)).map((item) => {
     const [date] = item.date.split(' ')
@@ -62,15 +62,15 @@ const { data } = await useAsyncData(`renarrate`, async () => {
 })
 
 useSeoMeta({
-  title: `Nounenrena's Blog Archive for ${year} - Renarrate`,
-  description: `A collection of blog posted by Nounenrena in ${year}.`,
+  title: `${year} 年能年玲奈博客存档`,
+  description: `能年玲奈在 ${year} 发布的博客集合`,
 })
 </script>
 
 <template>
   <main class="relative select-none px-6">
     <h1 class="sr-only">
-      Nounenrena's Blog Archive for {{ year }}
+      {{ year }} 年能年玲奈博客存档
     </h1>
 
     <div class="fixed top-1/2 left-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-full max-w-3xl" aria-hidden="true">
@@ -82,7 +82,7 @@ useSeoMeta({
           font-size="20"
           font-weight="bold"
           fill="none"
-          stroke-width="1"
+          stroke-width="0.5"
         >
           <tspan stroke="currentColor" opacity="0.1">{{ year.slice(0, 3) }}</tspan>
           <tspan class="stroke-primary" opacity="0.5">{{ year.slice(3) }}</tspan>
@@ -110,6 +110,12 @@ useSeoMeta({
             </li>
           </ul>
         </section>
+      </div>
+
+      <div class="flex items-center justify-between gap-4 mt-12 text-sm">
+        <NuxtLink class="opacity-50 hover:opacity-100 transition-opacity" to="/renarrate">
+          返回博客首页
+        </NuxtLink>
       </div>
     </div>
   </main>

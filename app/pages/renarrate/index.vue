@@ -25,9 +25,7 @@ const dayjs = useDayjs()
 const request = useRequestURL()
 
 const { data } = await useAsyncData(`renarrate-index`, async () => {
-  const { list } = await $fetch(`${request.origin}/collect/index.json`, { method: 'get' }) as {
-    list: Array<CollectItem>
-  }
+  const { list } = await $fetch(`${request.origin}/collect/index.json`, { method: 'get' }) as unknown as { list: Array<CollectItem> }
 
   const res = list.reduce((acc, item) => {
     const year = item.date.slice(0, 4)
@@ -68,28 +66,28 @@ const { data } = await useAsyncData(`renarrate-index`, async () => {
 })
 
 useSeoMeta({
-  title: `Nounenrena's Blog Archive - Renarrate`,
-  description: `A collection of blog posted by Nounenrena from 2007 to 2016.`,
+  title: `能年玲奈博客存档`,
+  description: `能年玲奈博客存档, 从 2007 到 2016`,
 })
 </script>
 
 <template>
   <div class="relative select-none px-6">
     <h1 class="sr-only">
-      Nounenrena's Blog Archive
+      能年玲奈博客存档
     </h1>
 
     <div class="w-full max-w-3xl mx-auto py-12 md:py-20">
       <main class="mb-10 flex flex-col gap-8">
         <section>
           <h2 class="text-xl font-bold mb-4">
-            This day through the years
+            那年今日
           </h2>
 
           <ul class="flex flex-col gap-6">
             <li v-if="!data?.today?.length">
               <p>
-                No blog post found for today.
+                今天没有博客更新哦~
               </p>
             </li>
 
@@ -119,7 +117,7 @@ useSeoMeta({
 
         <section>
           <h2 class="text-xl font-bold mb-4">
-            Collection by year
+            按年份归档
           </h2>
 
           <ul class="flex flex-wrap gap-2">
@@ -138,8 +136,8 @@ useSeoMeta({
 
       <footer>
         <p>
-          This is an collection of blog posts by Nounenrena from 2007 to 2016.
-          The original blog can be found at
+          这里是能年玲奈从 2007 年到 2016 年的博客集合。
+          原始博客快照可以在以下位置找到：
           <NuxtLink class="underline underline-offset-2" to="https://web.archive.org/web/20250101000000*/http://yaplog.jp/lp-n-rena/" target="_blank" rel="noopener noreferrer">
             Web Archive
           </NuxtLink>
