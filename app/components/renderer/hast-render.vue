@@ -22,7 +22,7 @@ function transformProperties(props: { className?: Array<string>, style?: string 
   if (!props.className)
     return { ...props }
 
-  const properties = Object.assign({}, props, { class: props.className?.join(' ') })
+  const properties = { ...props, ...{ class: props.className?.join(' ') } }
   delete properties.className
 
   return properties
