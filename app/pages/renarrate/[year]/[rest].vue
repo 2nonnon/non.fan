@@ -32,7 +32,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <main class="relative select-none px-5">
+  <main class="relative select-none px-6">
     <div v-if="data" class="w-full max-w-[65ch] py-8 md:py-16 mx-auto">
       <h1 class="text-3xl font-bold mb-2">
         {{ data.title }}
