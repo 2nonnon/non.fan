@@ -41,7 +41,7 @@ useSeoMeta({
         {{ data.date }}
       </p>
 
-      <div class="text-base-content/90 prose prose-img:inline prose-img:m-0">
+      <div class="text-base-content/90 prose prose-invert prose-img:inline prose-img:m-0">
         <NHastRender :html="data.html" />
       </div>
 
