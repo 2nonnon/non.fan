@@ -57,7 +57,7 @@ onMounted(() => {
 })
 
 useSeoMeta({
-  title: `能年玲奈签名`,
+  title: `签名`,
   description: `能年玲奈 Renarrate 专辑塔店小票版签名动画`,
 })
 </script>

@@ -13,8 +13,8 @@ useHead({
 })
 
 useSeoMeta({
-  title: `或许你知道能年玲奈吗`,
-  description: `分享一些能年玲奈属于我的侧面`,
+  title: `首页`,
+  description: `视觉图`,
 })
 </script>
 

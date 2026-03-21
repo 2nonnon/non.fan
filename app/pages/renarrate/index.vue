@@ -66,7 +66,7 @@ const { data } = await useAsyncData(`renarrate-index`, async () => {
 })
 
 useSeoMeta({
-  title: `能年玲奈博客存档`,
+  title: `博客存档`,
   description: `能年玲奈博客存档, 从 2007 到 2016`,
 })
 </script>
