@@ -11,7 +11,8 @@ function handleMenuClick(e: PointerEvent) {
 const routes = [
   { name: '首页', path: '/' },
   { name: '签名', path: '/sign' },
-  { name: '博客存档', path: '/renarrate' },
+  { name: '歌曲', path: '/song' },
+  { name: '博客', path: '/renarrate' },
 ]
 </script>
 

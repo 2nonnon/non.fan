@@ -72,7 +72,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="relative select-none px-6">
+  <div class="relative px-6">
     <h1 class="sr-only">
       能年玲奈博客存档
     </h1>

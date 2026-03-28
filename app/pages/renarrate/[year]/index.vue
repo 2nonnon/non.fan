@@ -68,7 +68,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <main class="relative select-none px-6">
+  <main class="relative px-6">
     <h1 class="sr-only">
       {{ year }} 年能年玲奈博客存档
     </h1>

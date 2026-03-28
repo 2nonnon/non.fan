@@ -120,6 +120,7 @@
     font-size: clamp(16px, calc(16px + (1vw - 3.75px) * 0.25), 20px);
     color: var(--color-base-content);
     background-color: var(--color-base-300);
+    user-select: none;
   }
 }
 
