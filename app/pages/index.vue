@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import VisualImg from '~/assets/images/visual.png'
+import VisualImg from '~/assets/image/visual.png'
 
 useHead({
   link: [
@@ -135,14 +135,3 @@ useSeoMeta({
     </svg>
   </main>
 </template>
-
-<style>
-/* .test {
-  color: #000;
-}
-@container visual (orientation: landscape) {
-  .test {
-    display: none;
-  }
-} */
-</style>

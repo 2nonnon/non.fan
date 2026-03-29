@@ -63,7 +63,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <main class="flex-1 px-6 flex flex-col items-center justify-center">
+  <main class="flex-1 px-6 pb-20 flex flex-col items-center justify-center">
     <div ref="signRef" class="w-full aspect-3/2 text-white pointer-events-none [6>svg]:w-full [6>svg]:h-full">
       <svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -104,5 +104,3 @@ useSeoMeta({
     </div>
   </main>
 </template>
-
-<style scoped></style>

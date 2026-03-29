@@ -68,27 +68,10 @@ useSeoMeta({
 </script>
 
 <template>
-  <main class="relative px-6">
+  <main class="px-6">
     <h1 class="sr-only">
       {{ year }} 年能年玲奈博客存档
     </h1>
-
-    <div class="fixed top-1/2 left-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-full max-w-3xl" aria-hidden="true">
-      <svg class="w-full h-auto" viewBox="0 0 100 100">
-        <text
-          x="50" y="50"
-          text-anchor="middle"
-          dominant-baseline="middle"
-          font-size="20"
-          font-weight="700"
-          fill="none"
-          stroke-width="0.5"
-        >
-          <tspan stroke="currentColor" opacity="0.1">{{ year.slice(0, 3) }}</tspan>
-          <tspan class="stroke-primary" opacity="0.5">{{ year.slice(3) }}</tspan>
-        </text>
-      </svg>
-    </div>
 
     <div class="w-full max-w-3xl mx-auto py-12 md:py-20">
       <h2 class="text-3xl font-bold mb-10">

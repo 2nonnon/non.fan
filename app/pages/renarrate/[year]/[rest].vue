@@ -32,7 +32,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <main class="relative px-6">
+  <main class="px-6">
     <div v-if="data" class="w-full max-w-[65ch] py-8 md:py-16 mx-auto">
       <h1 class="text-3xl font-bold mb-2">
         {{ data.title }}
@@ -50,7 +50,7 @@ useSeoMeta({
           返回列表
         </NuxtLink>
 
-        <NuxtLink class="opacity-50 hover:opacity-100 transition-opacity" :to="data.url" target="_blank" rel="noopener noreferrer" external>
+        <NuxtLink class="opacity-50 hover:opacity-100 transition-opacity" :to="data.url" target="_blank" rel="noopener noreferrer nofollow" external>
           查看原档
         </NuxtLink>
       </div>
