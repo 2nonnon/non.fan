@@ -75,16 +75,18 @@ useSeoMeta({
 
           <li v-for="item in data?.today" :key="item.id">
             <NuxtLink
-              class=""
+              class="block"
               :to="`/renarrate/${item.id.slice(0, 4)}/${item.id.slice(4)}`"
               prefetch-on="interaction"
             >
-              <article>
+              <article class="relative pl-4 group">
+                <div class="absolute left-0 top-1 bottom-1 w-1 rounded-full transition-colors duration-300 bg-primary/60 group-hover:bg-primary" />
+
                 <h3 class="text-lg font-bold">
                   {{ item.title }}
                 </h3>
 
-                <time class="block text-sm opacity-60 mb-2" :datetime="item.ISODate">
+                <time class="block text-sm opacity-60 mb-1" :datetime="item.ISODate">
                   {{ item.date }}
                 </time>
 

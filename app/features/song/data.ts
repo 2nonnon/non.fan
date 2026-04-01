@@ -4,6 +4,7 @@ export interface Track {
   artist: string
   lyricist: string | null
   composer: string
+  lyric?: boolean
 }
 
 export interface Album {
@@ -636,6 +637,7 @@ export const data: SongData = {
           artist: '山田修とハローナイツ / のん',
           lyricist: '苦楽健人',
           composer: '景家淳',
+          lyric: true,
         },
       ],
     },
@@ -655,4 +657,29 @@ export const data: SongData = {
       ],
     },
   ],
+}
+
+export interface TrackInfo extends Track {
+  album: Album['name']
+  date: Album['date']
+  cover: Album['cover']
+}
+
+export function getTrackInfoById(id: string): TrackInfo | null {
+  const ablums = [...data.album, ...data.single, ...data.appearsOn, ...data.OST]
+
+  for (const album of ablums) {
+    const track = album.trackList.find(track => track.id === id)
+
+    if (track) {
+      return {
+        ...track,
+        album: album.name,
+        date: album.date,
+        cover: album.cover,
+      }
+    }
+  }
+
+  return null
 }

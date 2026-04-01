@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { NuxtLink } from '#components'
 import { data } from '@/features/song/data'
 
 const categoryList = [
@@ -46,7 +47,7 @@ useSeoMeta({
 
             <ul class="[&>li]:not-last:mb-4">
               <li v-for="track in item.trackList" :key="track.id">
-                <div class="flex items-center gap-4">
+                <component :is="track.lyric ? NuxtLink : 'div'" class="flex items-center gap-4" v-bind="track.lyric ? { to: `/song/${track.id}` } : {}">
                   <img class="shrink-0 md:w-16 md:h-16 rounded" :src="`/cover/${item.cover[0]!}.jpg`" width="48px" height="48px" :alt="`${item.name} 封面`">
 
                   <div class="flex-1 flex flex-col gap-1">
@@ -54,7 +55,7 @@ useSeoMeta({
                       {{ track.name }} - {{ track.artist }}
                     </div>
 
-                    <div>
+                    <div class="text-sm opacity-90">
                       <span v-if="track.lyricist" class="mr-2">
                         词: {{ track.lyricist }}
                       </span>
@@ -63,7 +64,7 @@ useSeoMeta({
                       </span>
                     </div>
                   </div>
-                </div>
+                </component>
               </li>
             </ul>
           </section>
