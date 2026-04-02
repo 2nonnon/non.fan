@@ -36,6 +36,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'renarrate',
@@ -43,6 +44,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'ひぐちけい',
+          lyric: true,
         },
         {
           id: 'yume-no-aji',
@@ -50,13 +52,15 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'ひぐちけい',
+          lyric: true,
         },
         {
-          id: 'climie',
+          id: 'cry-me',
           name: 'クライミー',
           artist: 'のん',
           lyricist: '樋口愛',
           composer: 'ひぐちけい',
+          lyric: true,
         },
         {
           id: 'meiwaku-na-rinjin',
@@ -64,6 +68,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'mizu-wo',
@@ -71,6 +76,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'kirei-na-kutsu-haite',
@@ -78,6 +84,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'ひぐちけい',
           composer: 'ひぐちけい',
+          lyric: true,
         },
         {
           id: 'haru-yo-ukete-tatsu',
@@ -85,6 +92,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'ひぐちけい',
+          lyric: true,
         },
         {
           id: 'byoushin',
@@ -92,6 +100,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'nigai-kajitsu',
@@ -99,6 +108,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'orokamono-no-boku-to-kimi',
@@ -106,13 +116,15 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
-          id: 'kousagi-bonus-track',
+          id: 'kousagi',
           name: '子うさぎ (Bonus track)',
           artist: 'のん',
           lyricist: 'のん',
           composer: 'ひぐちけい',
+          lyric: true,
         },
       ],
     },
@@ -128,6 +140,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: '後藤正文',
           composer: '後藤正文',
+          lyric: true,
         },
         {
           id: 'namaiki-ni-skirt',
@@ -135,6 +148,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'ノマアキコ',
           composer: 'ユウ',
+          lyric: true,
         },
         {
           id: 'watashi-wa-heiyaju',
@@ -142,6 +156,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: '柴田隆浩',
           composer: '柴田隆浩',
+          lyric: true,
         },
         {
           id: 'usupperai-na',
@@ -149,20 +164,23 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
-          id: 'aliens-cover',
+          id: 'aliens',
           name: 'エイリアンズ (Cover)',
           artist: 'のん',
           lyricist: '堀込泰行',
           composer: '堀込泰行',
+          lyric: true,
         },
         {
-          id: 'yume-ga-itamu-kara-inspired-by-tokyo-hyakkei',
+          id: 'yume-ga-itamu-kara',
           name: '夢が傷むから Inspired by 東京百景',
           artist: 'のん',
           lyricist: 'のん',
           composer: 'ひぐちけい',
+          lyric: true,
         },
         {
           id: 'kocchi-wo-miteru',
@@ -170,6 +188,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'boku-wa-kimi-no-taiyo',
@@ -177,6 +196,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'ひぐちけい',
+          lyric: true,
         },
         {
           id: 'oh-oh-oh',
@@ -184,6 +204,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: '堀込泰行',
           composer: '堀込泰行',
+          lyric: true,
         },
         {
           id: 'mushakusha',
@@ -191,6 +212,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'kono-hibi-yo-uta-ni-nare',
@@ -198,6 +220,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: '柴田隆浩',
           composer: '柴田隆浩',
+          lyric: true,
         },
         {
           id: 'kouya-ni-tatsu',
@@ -205,6 +228,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'ヒグチアイ',
           composer: 'ヒグチアイ',
+          lyric: true,
         },
       ],
     },
@@ -220,6 +244,7 @@ export const data: SongData = {
           artist: 'のんとも。M',
           lyricist: 'Sachiko M',
           composer: '大友良英',
+          lyric: true,
         },
         {
           id: 'sherry',
@@ -227,6 +252,7 @@ export const data: SongData = {
           artist: 'のんとも。M',
           lyricist: 'Bob Gaudio',
           composer: 'Bob Gaudio',
+          lyric: true,
         },
         {
           id: 'nemurenai',
@@ -234,6 +260,7 @@ export const data: SongData = {
           artist: 'のんとも。M',
           lyricist: '大友良英',
           composer: '大友良英',
+          lyric: true,
         },
         {
           id: 'tokimeki',
@@ -241,6 +268,7 @@ export const data: SongData = {
           artist: 'のんとも。M',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'hassuru-hoi',
@@ -248,6 +276,7 @@ export const data: SongData = {
           artist: 'のんとも。M',
           lyricist: '青島幸男',
           composer: '萩原哲晶',
+          lyric: true,
         },
         {
           id: 'hinageshi-no-hana',
@@ -255,6 +284,7 @@ export const data: SongData = {
           artist: 'のんとも。M',
           lyricist: '山上路夫',
           composer: '森田公一',
+          lyric: true,
         },
         {
           id: 'snow-dance',
@@ -262,6 +292,7 @@ export const data: SongData = {
           artist: 'のんとも。M',
           lyricist: 'Sachiko M',
           composer: 'Sachiko M',
+          lyric: true,
         },
         {
           id: 'lalala-nichiyoubi',
@@ -269,6 +300,7 @@ export const data: SongData = {
           artist: 'のんとも。M',
           lyricist: 'Sachiko M',
           composer: 'Sachiko M',
+          lyric: true,
         },
         {
           id: 'itsu-demo-kimi-wa',
@@ -276,6 +308,7 @@ export const data: SongData = {
           artist: 'のんとも。M',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'ashita-ga-aru-sa',
@@ -283,6 +316,7 @@ export const data: SongData = {
           artist: 'のんとも。M',
           lyricist: '青島幸男',
           composer: '中村八大',
+          lyric: true,
         },
         {
           id: 'sanae-chan',
@@ -290,6 +324,7 @@ export const data: SongData = {
           artist: 'のんとも。M',
           lyricist: '仲井戸麗市',
           composer: '仲井戸麗市',
+          lyric: true,
         },
       ],
     },
@@ -305,6 +340,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'ノマアキコ',
           composer: 'ユウ',
+          lyric: true,
         },
         {
           id: 'moyamoya',
@@ -312,6 +348,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'akogarete',
@@ -319,6 +356,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'aoi-shakunetsu',
@@ -326,6 +364,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'namida-no-aji-nigai-aji',
@@ -333,6 +372,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'ノマアキコ',
           composer: 'ユウ',
+          lyric: true,
         },
       ],
     },
@@ -348,6 +388,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'saa-ikou',
@@ -355,6 +396,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: '真島昌利',
           composer: '真島昌利',
+          lyric: true,
         },
         {
           id: 'shojiki-mono-wa-yuku',
@@ -362,6 +404,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'aru-koto-nai-koto',
@@ -369,6 +412,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'run',
@@ -376,6 +420,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'Sachiko M',
           composer: 'Sachiko M',
+          lyric: true,
         },
         {
           id: 'sketchbook',
@@ -383,6 +428,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: '尾崎亜美',
           composer: '尾崎亜美',
+          lyric: true,
         },
         {
           id: 'my-day',
@@ -390,6 +436,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: '佐藤美恵子',
           composer: '高橋幸宏',
+          lyric: true,
         },
         {
           id: 'sutoreto-kaido',
@@ -397,6 +444,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'watashi-no-daisuki-na-uta',
@@ -404,6 +452,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'watashi-wa-baby',
@@ -411,6 +460,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: '矢野顕子',
           composer: '矢野顕子',
+          lyric: true,
         },
         {
           id: 'superhero-ni-naritai',
@@ -418,6 +468,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: '高野寛',
           composer: '高野寛',
+          lyric: true,
         },
         {
           id: 'oyasumi',
@@ -425,6 +476,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: '大友良英 & Sachiko M',
           composer: '大友良英 & Sachiko M',
+          lyric: true,
         },
       ],
     },
@@ -440,6 +492,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'Sachiko M',
           composer: 'Sachiko M',
+          lyric: true,
         },
         {
           id: 'sutoreto-kaido',
@@ -447,6 +500,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
       ],
     },
@@ -462,6 +516,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: '高野寛',
           composer: '高野寛',
+          lyric: true,
         },
         {
           id: 'hen-nano',
@@ -469,6 +524,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
         {
           id: 'i-like-you',
@@ -476,13 +532,15 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: '忌野清志郎',
           composer: '忌野清志郎',
+          lyric: true,
         },
         {
-          id: 'taimumashin-ni-onegai-world-happiness-2017-mix',
+          id: 'taimumashin-ni-onegai',
           name: 'タイムマシンにお願い (WORLD HAPPINESS 2017 MIX)',
           artist: 'のん',
           lyricist: '松山猛',
           composer: '加藤和彦',
+          lyric: true,
         },
       ],
     },
@@ -498,6 +556,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: '松山猛',
           composer: '加藤和彦',
+          lyric: true,
         },
         {
           id: 'i-like-you',
@@ -505,6 +564,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: '忌野清志郎',
           composer: '忌野清志郎',
+          lyric: true,
         },
       ],
     },
@@ -522,6 +582,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: '谷口鮪, POKEMON MUSIC COLLECTIVE',
           composer: '谷口鮪',
+          lyric: true,
         },
       ],
     },
@@ -537,6 +598,7 @@ export const data: SongData = {
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
+          lyric: true,
         },
       ],
     },
@@ -554,6 +616,7 @@ export const data: SongData = {
           artist: 'のん / SOIL & "PIMP" SESSIONS',
           lyricist: 'John Denver / Taffy Nivert / Bill Danoff / 鈴木麻実子 /（宮崎駿）',
           composer: 'John Denver / Taffy Nivert / Bill Danoff',
+          lyric: true,
         },
       ],
     },
@@ -569,6 +632,7 @@ export const data: SongData = {
           artist: 'ROCKETMAN / のん',
           lyricist: 'ふかわりょう',
           composer: 'ふかわりょう',
+          lyric: true,
         },
       ],
     },
@@ -584,6 +648,7 @@ export const data: SongData = {
           artist: 'ひぐちけい',
           lyricist: null,
           composer: 'ひぐちけい',
+          lyric: false,
         },
         {
           id: 'ribbon',
@@ -591,6 +656,7 @@ export const data: SongData = {
           artist: 'ひぐちけい',
           lyricist: 'のん',
           composer: 'ひぐちけい',
+          lyric: true,
         },
         {
           id: 'azayaka-na-hibi',
@@ -598,6 +664,7 @@ export const data: SongData = {
           artist: 'ひぐちけい',
           lyricist: 'のん',
           composer: 'ひぐちけい',
+          lyric: true,
         },
       ],
     },
@@ -613,6 +680,7 @@ export const data: SongData = {
           artist: 'ライトガールズ(やついいちろう×Sundayカミデ)',
           lyricist: 'Sundayカミデ',
           composer: 'Sundayカミデ',
+          lyric: true,
         },
       ],
     },
@@ -630,6 +698,7 @@ export const data: SongData = {
           artist: 'のん / ハローナイツ',
           lyricist: '松浦有希',
           composer: '宮原慶太',
+          lyric: true,
         },
         {
           id: 'miss-you',
@@ -648,11 +717,12 @@ export const data: SongData = {
       cover: ['amachan-uta-no-arubamu'],
       trackList: [
         {
-          id: 'shiosai-no-memori-ozashiki-ressha-bashon',
+          id: 'shiosai-no-memori',
           name: '潮騒のメモリー (お座敷列車バージョン)',
           artist: '橋本愛 / 能年玲奈',
           lyricist: '宮藤官九郎',
           composer: '大友良英、Sachiko M',
+          lyric: true,
         },
       ],
     },
@@ -663,20 +733,22 @@ export interface TrackInfo extends Track {
   album: Album['name']
   date: Album['date']
   cover: Album['cover']
+  category: keyof SongData
 }
 
 export function getTrackInfoById(id: string): TrackInfo | null {
-  const ablums = [...data.album, ...data.single, ...data.appearsOn, ...data.OST]
+  for (const [category, albums] of Object.entries(data) as Array<[keyof SongData, Album[]]>) {
+    for (const album of albums) {
+      const track = album.trackList.find(track => track.id === id)
 
-  for (const album of ablums) {
-    const track = album.trackList.find(track => track.id === id)
-
-    if (track) {
-      return {
-        ...track,
-        album: album.name,
-        date: album.date,
-        cover: album.cover,
+      if (track) {
+        return {
+          ...track,
+          album: album.name,
+          date: album.date,
+          cover: album.cover,
+          category,
+        }
       }
     }
   }

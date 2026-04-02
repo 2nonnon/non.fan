@@ -33,7 +33,7 @@ useSeoMeta({
       能年玲奈歌曲列表
     </h1>
 
-    <div class="w-full max-w-3xl mx-auto py-8 md:py-12 flex flex-col gap-12">
+    <div class="w-full max-w-3xl mx-auto py-12 md:py-16 flex flex-col gap-16">
       <section v-for="category in categoryList" :key="category.title">
         <h2 class="font-bold text-2xl mb-8">
           {{ category.title }}
