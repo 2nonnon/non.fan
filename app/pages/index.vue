@@ -25,7 +25,7 @@ useSeoMeta({
     </h1>
 
     <!-- visual -->
-    <div class="flex-1 w-full flex flex-col justify-center items-center relative -z-10 ">
+    <div class="flex-1 w-full flex flex-col justify-center items-center relative -z-10">
       <div class="flex-1 aspect-2/3 max-w-full flex justify-center items-center landscape:hidden">
         <div class="w-full aspect-818/460 relative peer">
           <img class="mask-[url(#visual-mask)] w-7/10 absolute -top-17/20 left-1/2 -translate-x-1/2" :src="VisualImg" draggable="false" alt="" @contextmenu.prevent="">

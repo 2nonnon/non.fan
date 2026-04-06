@@ -9,8 +9,6 @@ interface CollectItem {
 const dayjs = useDayjs()
 const request = useRequestURL()
 
-console.log(dayjs().isSame(dayjs('2026-03-29 21:18'), 'day'))
-
 const { data } = await useAsyncData(`renarrate-index`, async () => {
   const { list } = await $fetch(`${request.origin}/collect/index.json`, { method: 'get' }) as unknown as { list: Array<CollectItem> }
 
