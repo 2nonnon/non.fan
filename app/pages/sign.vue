@@ -57,8 +57,8 @@ onMounted(() => {
 })
 
 useSeoMeta({
-  title: `签名`,
-  description: `能年玲奈 Renarrate 专辑塔店小票版签名动画`,
+  title: `サイン再現 - のん (能年玲奈)`,
+  description: `のん (能年玲奈) のアルバム『Renarrate』タワーレコード特典レシートのサインを、SVG パスアニメーションで再現しました。手書きの筆致を丁寧にトレースした、軽量で滑らかな Web アニメーション作品です。`,
 })
 </script>
 

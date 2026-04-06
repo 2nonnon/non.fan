@@ -6,7 +6,7 @@
   <div class="h-dvh relative select-none overflow-x-hidden">
     <div class="max-w-5xl w-full min-h-full mx-auto flex flex-col relative">
       <header class="px-6 py-4 sticky top-0 flex items-center justify-between gap-4 z-50">
-        <NuxtLink id="logo" to="/">
+        <NuxtLink id="logo" aria-label="回到首页" to="/">
           <NLogo />
         </NuxtLink>
 

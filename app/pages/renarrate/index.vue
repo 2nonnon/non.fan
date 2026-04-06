@@ -47,8 +47,8 @@ const { data } = await useAsyncData(`renarrate-index`, async () => {
 })
 
 useSeoMeta({
-  title: `博客存档`,
-  description: `能年玲奈博客存档, 从 2007 到 2016`,
+  title: `ブログアーカイブ - のん (能年玲奈)`,
+  description: `のん (能年玲奈) のブログアーカイブ。2007 年から 2016 年までの記事を収録。`,
 })
 </script>
 
@@ -56,18 +56,18 @@ useSeoMeta({
   <main class="px-6">
     <div class="w-full max-w-3xl mx-auto py-12 md:py-20 flex flex-col gap-12">
       <h1 class="sr-only">
-        能年玲奈博客存档
+        のん (能年玲奈) のブログアーカイブ
       </h1>
 
       <section>
         <h2 class="text-xl font-bold mb-4">
-          那年今日
+          あの日の今日
         </h2>
 
         <ul class="flex flex-col gap-4">
           <li v-if="!data?.today?.length">
             <p>
-              今天没有博客更新哦~
+              今日の更新はお休みです〜
             </p>
           </li>
 
@@ -99,7 +99,7 @@ useSeoMeta({
 
       <section>
         <h2 class="text-xl font-bold mb-4">
-          按年份归档
+          年別アーカイブ
         </h2>
 
         <ul class="flex flex-wrap gap-x-4 gap-y-2">
@@ -116,8 +116,8 @@ useSeoMeta({
       </section>
 
       <p>
-        这里是能年玲奈从 2007 年到 2016 年的博客存档。
-        原始博客快照可以在以下位置找到：
+        のん (能年玲奈) の 2007 年から 2016 年までのブログアーカイブです。
+        オリジナルのブログスナップショットは、こちらからご確認いただけます：
         <NuxtLink class="underline underline-offset-2" to="https://web.archive.org/web/20250101000000*/http://yaplog.jp/lp-n-rena/" target="_blank" rel="noopener noreferrer nofollow">
           Web Archive
         </NuxtLink>

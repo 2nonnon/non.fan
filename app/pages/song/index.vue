@@ -4,15 +4,15 @@ import { data } from '@/features/song/data'
 
 const categoryList = [
   {
-    title: '专辑',
+    title: 'Album',
     items: data.album,
   },
   {
-    title: '单曲',
+    title: 'Single',
     items: data.single,
   },
   {
-    title: '参与',
+    title: 'Appears On',
     items: data.appearsOn,
   },
   {
@@ -22,15 +22,15 @@ const categoryList = [
 ]
 
 useSeoMeta({
-  title: `歌曲`,
-  description: `能年玲奈歌曲列表`,
+  title: `歌 - のん (能年玲奈)`,
+  description: `のん (能年玲奈) の歌を聴く。`,
 })
 </script>
 
 <template>
   <main class="relative px-6">
     <h1 class="sr-only">
-      能年玲奈歌曲列表
+      のん (能年玲奈) の歌を聴く
     </h1>
 
     <div class="w-full max-w-3xl mx-auto py-12 md:py-16 flex flex-col gap-16">

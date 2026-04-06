@@ -9,9 +9,9 @@ export default defineNuxtConfig({
   pwa: {
     includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
     manifest: {
-      name: 'Non Fan',
-      short_name: 'NonFan',
-      description: 'A fan website for non.',
+      name: 'ノンファン',
+      short_name: 'ノンファン',
+      description: 'のん (能年玲奈) のファンサイト。',
       theme_color: '#171717',
       icons: [
         {
@@ -75,11 +75,15 @@ export default defineNuxtConfig({
   },
 
   app: {
+
     head: {
-      title: 'Non Fan',
+      htmlAttrs: {
+        lang: 'ja',
+      },
+      title: 'ノンファン',
       meta: [
-        { name: 'description', content: 'A fan website for non.' },
-        { name: 'keywords', content: 'non, nounen rana' },
+        { name: 'description', content: 'のん (能年玲奈) のファンサイト。' },
+        { name: 'keywords', content: 'のん、能年玲奈、non、能年' },
         { name: 'theme-color', content: '#171717' },
       ],
       link: [
@@ -87,6 +91,9 @@ export default defineNuxtConfig({
         { rel: 'alternate icon', href: '/favicon.ico', sizes: '32x32' },
         { rel: 'mask-icon', href: '/mask-icon.svg', color: '6BB82E' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Kosugi+Maru&display=swap' },
       ],
     },
   },

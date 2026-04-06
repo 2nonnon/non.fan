@@ -26,7 +26,7 @@ if (!data.value)
   throw createError({ statusCode: 404 })
 
 useSeoMeta({
-  title: `${data.value.title}`,
+  title: `${data.value.title} - のん (能年玲奈)`,
   description: `${data.value.content.slice(0, 50)}...`,
 })
 </script>
@@ -47,11 +47,11 @@ useSeoMeta({
 
       <div class="flex items-center justify-between gap-4 mt-12 text-sm">
         <NuxtLink class="opacity-50 hover:opacity-100 transition-opacity" :to="`/renarrate/${route.params.year}`">
-          返回列表
+          Back to {{ route.params.year }} archive
         </NuxtLink>
 
         <NuxtLink class="opacity-50 hover:opacity-100 transition-opacity" :to="data.url" target="_blank" rel="noopener noreferrer nofollow" external>
-          查看原档
+          View original
         </NuxtLink>
       </div>
     </div>

@@ -62,15 +62,15 @@ const { data } = await useAsyncData(`renarrate`, async () => {
 })
 
 useSeoMeta({
-  title: `${year} 年博客存档`,
-  description: `能年玲奈在 ${year} 发布的博客集合`,
+  title: `${year} 年ブログアーカイブ - のん (能年玲奈)`,
+  description: `${year} 年に公開された、のん (能年玲奈) のブログ記事アーカイブ。`,
 })
 </script>
 
 <template>
   <main class="px-6">
     <h1 class="sr-only">
-      {{ year }} 年能年玲奈博客存档
+      のん (能年玲奈) の {{ year }} 年ブログアーカイブ
     </h1>
 
     <div class="w-full max-w-3xl mx-auto py-12 md:py-20">
@@ -97,7 +97,7 @@ useSeoMeta({
 
       <div class="flex items-center justify-between gap-4 mt-12 text-sm">
         <NuxtLink class="opacity-50 hover:opacity-100 transition-opacity" to="/renarrate">
-          返回博客存档首页
+          Back to archive
         </NuxtLink>
       </div>
     </div>

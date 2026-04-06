@@ -12,7 +12,7 @@ if (!track)
 
 useSeoMeta({
   title: `${track.name} - ${track.artist}`,
-  description: `${track.name} 是能年玲奈演唱的一首歌曲，由${track.lyricist}作词，${track.composer}作曲。`,
+  description: `「${track.name}」は、のん (能年玲奈) が歌う楽曲です。作詞は${track.lyricist}、作曲は${track.composer}が担当しています。`,
 })
 </script>
 
@@ -24,7 +24,7 @@ useSeoMeta({
       </h1>
       <p class="text-sm opacity-90 mb-6">
         <span v-if="track.lyricist">
-          词: {{ track.lyricist }}
+          詞: {{ track.lyricist }}
         </span>
         &nbsp;
         <span>

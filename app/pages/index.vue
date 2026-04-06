@@ -13,8 +13,8 @@ useHead({
 })
 
 useSeoMeta({
-  title: `首页`,
-  description: `视觉图`,
+  title: `ファンサイト - のん (能年玲奈)`,
+  description: `のん (能年玲奈)。俳優・アーティスト。1993年生まれ、兵庫県出身。俳優、音楽、映画製作、アートなど幅広いジャンルで活動。`,
 })
 </script>
 
@@ -105,19 +105,19 @@ useSeoMeta({
           />
         </filter>
 
-        <filter id="inner-shadow" x="-50%" y="-50%" width="200%" height="200%">
+        <filter id="inner-shadow" x="-50%" y="-50%" width="200%" height="200%" primitiveUnits="objectBoundingBox">
           <feFlood flood-color="#000" result="flood" />
 
           <feComposite in="flood" in2="SourceAlpha" operator="out" result="inverted" />
 
-          <feGaussianBlur in="inverted" stdDeviation="24" result="blurred" />
+          <feGaussianBlur in="inverted" stdDeviation="0.05" result="blurred" />
 
           <feOffset dx="0" dy="0" in="blurred" result="offsetBlurred" />
 
           <feComposite in="offsetBlurred" in2="SourceAlpha" operator="in" result="shadow" />
 
           <feComponentTransfer in="shadow" result="finalShadow">
-            <feFuncA type="linear" slope="0.7" />
+            <feFuncA type="linear" slope="0.6" />
           </feComponentTransfer>
 
           <feMerge>
