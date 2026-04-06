@@ -18,7 +18,7 @@ useSeoMeta({
 
 <template>
   <main class="relative px-6">
-    <div class="w-full max-w-3xl mx-auto py-8 md:py-12">
+    <div class="w-full max-w-3xl mx-auto py-8 md:py-12 text-center">
       <h1 class="text-2xl font-bold mb-1">
         {{ track.name }} - {{ track.artist }}
       </h1>
@@ -26,6 +26,7 @@ useSeoMeta({
         <span v-if="track.lyricist">
           词: {{ track.lyricist }}
         </span>
+        &nbsp;
         <span>
           曲: {{ track.composer }}
         </span>
