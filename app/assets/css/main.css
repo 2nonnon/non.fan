@@ -106,13 +106,29 @@
   --color-warning-content: var(--color-warning-900);
   --color-error: var(--color-error-500);
   --color-error-content: var(--color-error-900);
+
+  /* 1. 非衬线字体 (Sans-serif) - 现代 UI 风格 */
+  --font-sans:
+    system-ui, ui-sans-serif, 'Segoe UI Variable Display', 'Segoe UI', 'SF Pro Display', -apple-system,
+    BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+
+  /* 2. 衬线字体 (Serif) - 阅读与典雅风格 */
+  --font-serif:
+    ui-serif, Georgia, Cambria, 'Times New Roman', Times, 'Source Han Serif SC', 'Source Han Serif CN', 'STSong',
+    'SimSun', serif;
+
+  /* 3. 等宽字体 (Monospace) - 代码与技术风格 */
+  --font-mono:
+    ui-monospace, 'Cascadia Code', 'Segoe UI Mono', 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono',
+    'PingFang SC', 'Microsoft YaHei', monospace;
 }
 
 @layer base {
   html {
     color-scheme: dark;
 
-    font-family: 'Inter', 'Kosugi Maru', sans-serif;
+    font-family: 'Inter', 'Kosugi Maru', var(--font-sans);
     font-weight: 400;
     font-style: normal;
     font-optical-sizing: auto;
@@ -120,6 +136,19 @@
     color: var(--color-base-content);
     background-color: var(--color-base-300);
     user-select: none;
+
+    /* 基础优化属性 */
+    -webkit-font-smoothing: antialiased; /* macOS/iOS 抗锯齿 */
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility; /* 启用连字和间距优化 */
+    text-size-adjust: 100%; /* 防止移动端横屏时字体自动缩放 */
+    /* 防止中文字体合成假粗体导致模糊 */
+    font-synthesis: none;
+    /* 优化东亚字符排版 */
+    font-variant-east-asian: proportional-width;
+    /* 启用现代浏览器的文本修剪功能，减少首尾不必要的空白 */
+    text-box-trim: both;
+    text-box-edge: cap alphabetic;
   }
 
   ::-webkit-scrollbar {

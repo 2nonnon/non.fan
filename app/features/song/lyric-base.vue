@@ -32,7 +32,7 @@ useSeoMeta({
         </span>
       </p>
 
-      <div class="[&>p]:odd:mb-1 [&>p]:even:mb-4 [&>p]:even:opacity-80 [&>p]:even:text-sm">
+      <div class="[&>p]:odd:mb-1 [&>p]:even:mb-4 [&>p]:even:opacity-80 [&>p]:even:text-sm [&>p]:even:font-sans">
         <slot />
       </div>
     </div>
