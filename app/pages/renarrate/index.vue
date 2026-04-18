@@ -1,16 +1,10 @@
 <script setup lang="ts">
-interface CollectItem {
-  id: string
-  title: string
-  date: string
-  content: string
-}
-
 const dayjs = useDayjs()
-const request = useRequestURL()
 
 const { data } = await useAsyncData(`renarrate-index`, async () => {
-  const { list } = await $fetch(`${request.origin}/collect/index.json`, { method: 'get' }) as unknown as { list: Array<CollectItem> }
+  const list = await $fetch(`/api/collect/list`, {
+    method: 'post',
+  })
 
   const res = list.reduce((acc, item) => {
     const year = item.date.slice(0, 4)

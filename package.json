@@ -15,39 +15,33 @@
     "tup": "taze major -r -I"
   },
   "dependencies": {
-    "@ark-ui/vue": "^5.34.1",
-    "@vite-pwa/nuxt": "1.1.1",
     "animejs": "^4.3.6",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.19",
     "es-toolkit": "^1.45.1",
     "hast-util-from-html": "^2.0.3",
     "modern-gif": "^2.0.4",
-    "nuxt": "^4.3.1",
-    "peerjs": "^1.5.5",
     "tailwind-merge": "^3.5.0",
-    "uqr": "^0.1.2",
-    "vue": "^3.5.29",
-    "vue-router": "^5.0.3"
+    "uqr": "^0.1.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^8.0.0",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.2.1",
+    "@types/node": "^25.6.0",
     "@types/wicg-file-system-access": "^2023.10.7",
+    "@vite-pwa/nuxt": "1.1.1",
     "@vueuse/core": "^14.2.1",
     "@vueuse/nuxt": "^14.2.1",
-    "cross-env": "^10.1.0",
-    "daisyui": "^5.5.19",
     "eslint": "^10.0.3",
     "eslint-plugin-format": "^2.0.1",
-    "nano-staged": "^0.9.0",
+    "nano-staged": "^1.0.2",
+    "nuxt": "^4.3.1",
     "simple-git-hooks": "^2.13.1",
     "tailwindcss": "^4.2.1",
     "taze": "^19.10.0",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.2",
-    "vueuc": "^0.4.65"
+    "typescript": "^6.0.2"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm nano-staged"

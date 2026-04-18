@@ -1,23 +1,17 @@
 <script setup lang="ts">
 import { pick } from 'es-toolkit'
 
-interface CollectData {
-  url: string
-  title: string
-  date: string
-  content: string
-  html: string
-}
-
 const route = useRoute()
-const request = useRequestURL()
 
 const key = `${route.params.year}${route.params.rest}`
 
 const { data } = await useAsyncData(`renarrate-${key}`, async () => {
-  const path = `${request.origin}/collect/${key}`
-
-  const res = await $fetch(`${path}/data.json`, { method: 'get' }) as unknown as CollectData
+  const res = await $fetch(`/api/collect/detail`, {
+    method: 'post',
+    body: {
+      key,
+    },
+  })
 
   return markRaw(pick(res, ['url', 'title', 'date', 'content', 'html']))
 })

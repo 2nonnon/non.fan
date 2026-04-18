@@ -12,6 +12,7 @@ export default antfu(
       'no-console': 'off',
       'antfu/no-top-level-await': 'off',
       'prefer-promise-reject-errors': 'off',
+      'e18e/prefer-static-regex': 'off',
     },
   },
 )

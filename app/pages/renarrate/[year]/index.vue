@@ -1,13 +1,6 @@
 <script setup lang="ts">
 import { groupBy } from 'es-toolkit/compat'
 
-interface CollectItem {
-  id: string
-  title: string
-  date: string
-  content: string
-}
-
 const monthMap = {
   '01': 'January',
   '02': 'February',
@@ -23,23 +16,19 @@ const monthMap = {
   '12': 'December',
 } as Record<string, string>
 
-interface ListItem {
-  id: string
-  title: string
-  year: string
-  month: string
-  day: string
-}
-
 const route = useRoute()
-const request = useRequestURL()
 
 const year = (route.params.year || '2007') as string
 
 const { data } = await useAsyncData(`renarrate`, async () => {
-  const { list } = await $fetch(`${request.origin}/collect/index.json`, { method: 'get' }) as unknown as { list: Array<CollectItem> }
+  const list = await $fetch(`/api/collect/list`, {
+    method: 'post',
+    body: {
+      year,
+    },
+  })
 
-  const res = list.filter(item => item.date.startsWith(`${year}`)).map((item) => {
+  const res = list.map((item) => {
     const [date] = item.date.split(' ')
     const [y, m, d] = date!.split('-')
 
@@ -49,7 +38,7 @@ const { data } = await useAsyncData(`renarrate`, async () => {
       year: y,
       month: m,
       day: d,
-    } as ListItem
+    } as CollectListItem
   })
 
   const grouped = Object.entries(groupBy(res, 'month')).sort((a, b) => Number(a[0]) - Number(b[0]))

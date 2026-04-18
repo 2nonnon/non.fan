@@ -51,13 +51,6 @@ useSeoMeta({
         <div class="absolute inset-0 bg-[radial-gradient(50%_50%_at_50%_50%,#1a1a1a_36%,#000_100%)] bg-cover -z-20">
           <div class="absolute inset-0 filter-[url(#noise-filter)] mix-blend-color-dodge" />
         </div>
-
-        <!-- light -->
-        <!-- <div class="absolute inset-0 mx-auto flex items-center justify-center pointer-events-none -z-10 mask-[radial-gradient(circle_at_center,transparent_5.5rem,black_5.6rem)]">
-          <div id="light" class="w-full aspect-2/3 max-w-[min(100%,calc(100vh*2/3*0.6))] flex justify-center items-center relative opacity-0 transition-opacity duration-1000">
-            <div class="w-7/10 h-full absolute rounded-[50%] bg-primary blur-[12vw]" />
-          </div>
-        </div> -->
       </div>
     </div>
 

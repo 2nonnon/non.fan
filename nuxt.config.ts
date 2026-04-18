@@ -1,4 +1,23 @@
+import fs from 'node:fs'
+import path from 'node:path'
+import process from 'node:process'
 import tailwindcss from '@tailwindcss/vite'
+
+function generateRoutes() {
+  const collectDir = path.resolve(process.cwd(), 'server/assets/collect')
+
+  const items = fs.readdirSync(collectDir).filter(item => !item.endsWith('.json'))
+  const routes = ['/', '/sign', '/song', '/renarrate']
+
+  for (const item of items) {
+    const year = item.slice(0, 4)
+    const rest = item.slice(4)
+
+    routes.push(`/renarrate/${year}/${rest}`)
+  }
+
+  return routes
+}
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -66,6 +85,18 @@ export default defineNuxtConfig({
     plugins: [
       tailwindcss() as any,
     ],
+  },
+
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: import.meta.dev ? [] : generateRoutes(),
+      concurrency: 60,
+    },
+  },
+
+  routeRules: {
+    '/api/**': { cors: true },
   },
 
   hooks: {
