@@ -7,7 +7,7 @@ function generateRoutes() {
   const collectDir = path.resolve(process.cwd(), 'server/assets/collect')
 
   const items = fs.readdirSync(collectDir).filter(item => !item.endsWith('.json'))
-  const routes = ['/', '/sign', '/song', '/renarrate']
+  const routes = ['/', '/sign', '/song']
 
   for (const item of items) {
     const year = item.slice(0, 4)
@@ -96,6 +96,7 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
+    '/renarrate': { swr: 60 },
     '/api/**': { cors: true },
   },
 

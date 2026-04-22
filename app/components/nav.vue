@@ -9,10 +9,10 @@ function handleMenuClick(e: PointerEvent) {
 }
 
 const routes = [
-  { name: '首頁', path: '/' },
-  { name: '簽名', path: '/sign' },
-  { name: '歌曲', path: '/song' },
-  { name: '博客', path: '/renarrate' },
+  { name: 'Home', path: '/' },
+  { name: 'Sign', path: '/sign' },
+  { name: 'Song', path: '/song' },
+  { name: 'Blog', path: '/renarrate' },
 ]
 </script>
 

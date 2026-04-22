@@ -192,7 +192,7 @@ export const data: SongData = {
         },
         {
           id: 'boku-wa-kimi-no-taiyo',
-          name: '僕は君の太阳',
+          name: '僕は君の太陽',
           artist: 'のん',
           lyricist: 'のん',
           composer: 'ひぐちけい',

@@ -57,7 +57,7 @@ useSeoMeta({
 
                     <div class="text-sm opacity-90">
                       <span v-if="track.lyricist" class="mr-2">
-                        词: {{ track.lyricist }}
+                        詞: {{ track.lyricist }}
                       </span>
                       <span>
                         曲: {{ track.composer }}
