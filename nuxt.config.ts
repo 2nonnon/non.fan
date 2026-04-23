@@ -91,12 +91,13 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
       routes: import.meta.dev ? [] : generateRoutes(),
+      ignore: [path => path === '/renarrate'],
       concurrency: 60,
     },
   },
 
   routeRules: {
-    '/renarrate': { swr: 60 },
+    '/renarrate': { swr: 900 },
     '/api/**': { cors: true },
   },
 
@@ -107,7 +108,6 @@ export default defineNuxtConfig({
   },
 
   app: {
-
     head: {
       htmlAttrs: {
         lang: 'ja',
