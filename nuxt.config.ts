@@ -97,7 +97,7 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/renarrate': { swr: 900 },
+    '/renarrate': { ssr: true },
     '/api/**': { cors: true },
   },
 
