@@ -20,3 +20,16 @@ export interface CollectDetail {
   content: string
   html: string
 }
+
+export interface CollectCountItem {
+  year: string
+  total: number
+}
+
+export interface CollectTodayItem {
+  id: string
+  title: string
+  date: string
+  content: string
+  ISODate: string
+}

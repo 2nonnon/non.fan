@@ -20,7 +20,7 @@ const route = useRoute()
 
 const year = (route.params.year || '2007') as string
 
-const { data } = await useAsyncData(`renarrate`, async () => {
+const { data } = await useAsyncData(`renarrate-${year}`, async () => {
   const list = await $fetch(`/api/collect/list`, {
     method: 'post',
     body: {

@@ -1,40 +1,22 @@
 <script setup lang="ts">
 const dayjs = useDayjs()
 
-const { data } = await useAsyncData(`renarrate-index`, async () => {
-  const list = await $fetch(`/api/collect/list`, {
-    method: 'post',
+const { data: todayList, status: todayStatus } = useAsyncData(`renarrate-today`, async () => {
+  const res = await $fetch(`/api/collect/today`, {
+    method: 'get',
+    query: {
+      date: dayjs().format('YYYY-MM-DD'),
+    },
   })
 
-  const res = list.reduce((acc, item) => {
-    const year = item.date.slice(0, 4)
+  return markRaw(res)
+}, {
+  server: false,
+})
 
-    const yearRecord = acc.years.find(y => y.year === year)
-
-    if (!yearRecord) {
-      acc.years.push({ year, total: 1 })
-    }
-    else {
-      yearRecord.total += 1
-    }
-
-    const recordDate = dayjs(item.date)
-    const currentDate = dayjs()
-
-    if (recordDate.get('month') === currentDate.get('month') && recordDate.get('date') === currentDate.get('date')) {
-      acc.today.push({
-        ...item,
-        ISODate: item.date.replace(' ', 'T'),
-      })
-    }
-
-    return acc
-  }, {
-    today: [],
-    years: [],
-  } as {
-    today: Array<{ id: string, title: string, content: string, date: string, ISODate: string }>
-    years: Array<{ year: string, total: number }>
+const { data: countList } = await useAsyncData(`renarrate-count`, async () => {
+  const res = await $fetch(`/api/collect/count`, {
+    method: 'post',
   })
 
   return markRaw(res)
@@ -58,14 +40,18 @@ useSeoMeta({
           あの日の今日
         </h2>
 
-        <ul class="flex flex-col gap-4">
-          <li v-if="!data?.today?.length">
-            <p>
-              今日の更新はお休みです〜
-            </p>
-          </li>
+        <div v-if="todayStatus === 'pending' || todayStatus === 'idle'" class="flex items-center">
+          <p>読み込み中...</p>
+        </div>
 
-          <li v-for="item in data?.today" :key="item.id">
+        <div v-else-if="!todayList?.length" class="flex items-center">
+          <p>
+            今日の更新はお休みです〜
+          </p>
+        </div>
+
+        <ul v-else class="flex flex-col gap-4">
+          <li v-for="item in todayList" :key="item.id">
             <NuxtLink
               class="block"
               :to="`/renarrate/${item.id.slice(0, 4)}/${item.id.slice(4)}`"
@@ -97,13 +83,13 @@ useSeoMeta({
         </h2>
 
         <ul class="flex flex-wrap gap-x-4 gap-y-2">
-          <li v-for="year in data?.years" :key="year.year">
+          <li v-for="item in countList" :key="item.year">
             <NuxtLink
               class="underline underline-offset-2"
-              :to="`/renarrate/${year.year}`"
+              :to="`/renarrate/${item.year}`"
               prefetch-on="interaction"
             >
-              {{ `${year.year} · ${year.total}` }}
+              {{ `${item.year} · ${item.total}` }}
             </NuxtLink>
           </li>
         </ul>
