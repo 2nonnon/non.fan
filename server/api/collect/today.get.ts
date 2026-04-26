@@ -4,6 +4,11 @@ import dayjs from 'dayjs'
 export default defineWrappedResponseHandler(async (event) => {
   const { date } = getQuery(event)
 
+  setHeaders(event, {
+    'ETag': date,
+    'Cache-Control': 'no-cache',
+  })
+
   const ifNoneMatch = getHeader(event, 'if-none-match')
 
   if (ifNoneMatch === date) {
@@ -34,11 +39,6 @@ export default defineWrappedResponseHandler(async (event) => {
 
     return acc
   }, [] as Array<CollectTodayItem>)
-
-  setHeaders(event, {
-    'ETag': date,
-    'Cache-Control': 'no-cache',
-  })
 
   return res
 })
