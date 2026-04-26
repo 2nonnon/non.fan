@@ -46,9 +46,9 @@ useSeoMeta({
         <img class="w-[60cqw] max-h-[60dvh] fixed bottom-0 translate-y-8/100 object-contain" :src="VisualImg" draggable="false" alt="" @contextmenu.prevent="">
       </div>
 
-      <div class="fixed not-first-of-type:[--opacity-light:clamp(0.3,1vw/30px,0.6)] w-screen h-[calc(100vh+14rem)] -z-10 peer-hover:[&_#light]:opacity-(--opacity-light) peer-active:[&_#light]:opacity-(--opacity-light) pointer-events-none">
+      <div class="fixed w-screen h-[calc(100vh+14rem)] -z-10 pointer-events-none">
         <!-- background -->
-        <div class="absolute inset-0 bg-[radial-gradient(50%_50%_at_50%_50%,#1a1a1a_36%,#000_100%)] bg-cover -z-20">
+        <div class="absolute inset-0 bg-radial from-transparent via-neutral-950 via-36% to-black bg-cover -z-20">
           <div class="absolute inset-0 filter-[url(#noise-filter)] mix-blend-color-dodge" />
         </div>
       </div>

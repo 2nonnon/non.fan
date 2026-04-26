@@ -7,7 +7,7 @@ function generateRoutes() {
   const collectDir = path.resolve(process.cwd(), 'server/assets/collect')
 
   const items = fs.readdirSync(collectDir).filter(item => !item.endsWith('.json'))
-  const routes = ['/', '/sign', '/song']
+  const routes = ['/', '/sign', '/song', '/podcast', '/renarrate']
 
   for (const item of items) {
     const year = item.slice(0, 4)
@@ -64,16 +64,19 @@ export default defineNuxtConfig({
       path: '~/components',
       pathPrefix: false,
       prefix: 'N',
+      ignore: ['**/*.ts'],
     },
     {
       path: '~/widgets',
       pathPrefix: false,
       prefix: 'W',
+      ignore: ['**/*.ts'],
     },
     {
       path: '~/features',
       pathPrefix: false,
       prefix: 'F',
+      ignore: ['**/*.ts'],
     },
   ],
 
@@ -91,7 +94,6 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
       routes: import.meta.dev ? [] : generateRoutes(),
-      ignore: [path => path === '/renarrate'],
       concurrency: 60,
     },
   },
