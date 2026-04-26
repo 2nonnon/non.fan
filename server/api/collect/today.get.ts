@@ -15,6 +15,7 @@ export default defineWrappedResponseHandler(async (event) => {
   setHeaders(event, {
     'ETag': formatWeakETag(date),
     'Cache-Control': 'no-cache',
+    'Last-Date': date,
   })
 
   const ifNoneMatch = getHeader(event, 'if-none-match')
