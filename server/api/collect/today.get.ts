@@ -1,22 +1,26 @@
 import type { CollectTodayItem } from '~~/shared/types/collect'
 import dayjs from 'dayjs'
 
+function formatWeakETag(content: string) {
+  return `W/"${content}"`
+}
+
 export default defineWrappedResponseHandler(async (event) => {
   const { date } = getQuery(event)
 
+  if (typeof date !== 'string') {
+    return []
+  }
+
   setHeaders(event, {
-    'ETag': date,
+    'ETag': formatWeakETag(date),
     'Cache-Control': 'no-cache',
   })
 
   const ifNoneMatch = getHeader(event, 'if-none-match')
 
-  if (ifNoneMatch === date) {
+  if (ifNoneMatch === formatWeakETag(date)) {
     return sendNoContent(event, 304)
-  }
-
-  if (typeof date !== 'string') {
-    return []
   }
 
   const currentDate = dayjs(date, 'YYYY-MM-DD', true)
