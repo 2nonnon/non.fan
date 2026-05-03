@@ -19,8 +19,10 @@ useSeoMeta({
 </script>
 
 <template>
-  <main class="flex-1 flex flex-col justify-evenly items-center gap-6 px-6 pt-8 pb-6 relative z-0">
-    <h1 class="w-full text-center text-lg text-white">
+  <main class="flex-1 flex flex-col justify-evenly items-center gap-8 py-6 relative z-0">
+    <div />
+
+    <h1 class="w-full text-center text-lg">
       俳優、アーティスト
     </h1>
 
@@ -45,16 +47,9 @@ useSeoMeta({
 
         <img class="w-[60cqw] max-h-[60dvh] fixed bottom-0 translate-y-8/100 object-contain" :src="VisualImg" draggable="false" alt="" @contextmenu.prevent="">
       </div>
-
-      <div class="fixed w-screen h-[calc(100vh+14rem)] -z-10 pointer-events-none">
-        <!-- background -->
-        <div class="absolute inset-0 bg-radial from-transparent via-neutral-950 via-36% to-black bg-cover -z-20">
-          <div class="absolute inset-0 filter-[url(#noise-filter)] mix-blend-color-dodge" />
-        </div>
-      </div>
     </div>
 
-    <p class="text-[0.625rem] text-white self-end">
+    <p class="text-xs self-end">
       やまないガール<br>
       変わること恐れない<br>
       やまないガール<br>
@@ -74,29 +69,6 @@ useSeoMeta({
             />
           </svg>
         </mask>
-
-        <filter id="noise-filter">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.5"
-            numOctaves="2"
-            stitchTiles="stitch"
-            result="noise"
-          />
-
-          <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise" />
-
-          <feColorMatrix
-            type="matrix"
-            values="
-                1 0 0 0 0
-                0 1 0 0 0
-                0 0 1 0 0
-                0 0 0 0.2 0
-              "
-            in="grayNoise"
-          />
-        </filter>
 
         <filter id="inner-shadow" x="-50%" y="-50%" width="200%" height="200%" primitiveUnits="objectBoundingBox">
           <feFlood flood-color="#000" result="flood" />
