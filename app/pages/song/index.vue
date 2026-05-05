@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// import { NuxtLink } from '#components'
+import { NuxtLink } from '#components'
 import { data } from '@/features/song/data'
 import { cn } from '~/libs/cn'
 
@@ -22,7 +22,7 @@ const categoryList = [
   },
 ]
 
-const groupList = categoryList.map(category => category.items).flat()
+const groupList = categoryList.map(category => category.items.map(item => ({ ...item, category: category.title }))).flat()
 
 const scrollIndex = ref(0)
 
@@ -40,7 +40,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <main class="relative z-0 flex-1 flex flex-col justify-between pt-12 pb-16">
+  <main class="relative z-0 flex-1 flex flex-col justify-between pt-12 pb-16 pc:pt-16">
     <h1 class="relative z-10 font-bold text-5xl text-primary-600/95">
       NON Music<br>NON Life
     </h1>
@@ -48,13 +48,13 @@ useSeoMeta({
     <div class="group" :style="{ '--count': groupList.length, '--scroll-index': scrollIndex }" @scroll.passive="handleScroll">
       <div class="group-wrapper">
         <div class="group-container">
-          <div v-for="group, i in groupList" :key="group.id" class="group-item" :style="{ '--index': i }">
+          <button v-for="group, i in groupList" :key="group.id" class="group-item" :style="{ '--index': i }" type="button" command="show-modal" :commandfor="group.id">
             <div class="group-img">
               <div class="group-img-container">
                 <img v-for="j in 9" :key="j" :style="{ '--img-index': j }" :src="`/cover/${group.cover[0]!}.jpg`" alt="">
               </div>
             </div>
-          </div>
+          </button>
         </div>
       </div>
 
@@ -72,44 +72,66 @@ useSeoMeta({
       />
     </div>
 
-    <!-- <div class="w-full max-w-3xl mx-auto py-12 md:py-16 flex flex-col gap-16">
-      <section v-for="category in categoryList" :key="category.title">
-        <h2 class="font-bold text-2xl mb-8">
-          {{ category.title }}
-        </h2>
+    <dialog v-for="group in groupList" :id="group.id" :key="group.id" class="mx-auto mt-auto pc:mb-auto w-full h-full bg-base-content text-base-100 rounded-t-2xl pc:rounded-b-2xl max-w-full pc:max-w-[min(calc(100%-3rem),var(--container-content))] max-h-[calc(100%-6rem)] pc:max-h-160 backdrop:backdrop-blur" closedby="any">
+      <div class="h-full overflow-hidden relative z-0">
+        <button class="absolute top-2 right-2 z-50 w-12 h-12 flex items-center justify-center cursor-pointer outline-none" type="button" command="close" :commandfor="group.id">
+          <svg class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 14 4 9l5-5" />
+            <path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11" />
+          </svg>
+        </button>
 
-        <div class="flex flex-col gap-8">
-          <section v-for="item in category.items" :key="item.id">
-            <h3 class="font-bold text-lg mb-4">
-              {{ item.name }} ({{ item.date }})
-            </h3>
+        <div class="vinyl">
+          <div class="vinyl-record" />
 
-            <ul class="[&>li]:not-last:mb-4">
-              <li v-for="track in item.trackList" :key="track.id">
-                <component :is="track.lyric ? NuxtLink : 'div'" class="flex items-center gap-4" v-bind="track.lyric ? { to: `/song/${track.id}` } : {}">
-                  <img class="shrink-0 md:w-16 md:h-16 rounded" :src="`/cover/${item.cover[0]!}.jpg`" width="48px" height="48px" :alt="`${item.name} 封面`">
+          <div class="vinyl-cover absolute flex aspect-square rounded-full overflow-hidden">
+            <img class="w-full h-full object-cover" :src="`/cover/${group.cover[0]!}.jpg`" width="48px" height="48px" :alt="`Cover of ${group.name}`">
+          </div>
+        </div>
 
-                  <div class="flex-1 flex flex-col gap-1">
-                    <div>
-                      {{ track.name }} - {{ track.artist }}
-                    </div>
+        <div class="h-full overflow-hidden pt-6 px-6 pc:p-12 flex flex-col items-start gap-6 pc:gap-12">
+          <div>
+            <div class="text-4xl mb-4">
+              <h3 class="inline font-bold">
+                {{ group.name }}
+              </h3>
 
-                    <div class="text-sm opacity-90">
-                      <span v-if="track.lyricist" class="mr-2">
-                        詞: {{ track.lyricist }}
-                      </span>
-                      <span>
-                        曲: {{ track.composer }}
-                      </span>
-                    </div>
+              <span>
+                <span class="inline-block ml-3 relative -top-1 px-1 rounded text-xs border border-base-100 opacity-80 whitespace-nowrap">
+                  {{ group.category }}
+                </span>
+              </span>
+            </div>
+
+            <p class="opacity-80">
+              {{ group.artist }} · {{ group.date }} · {{ group.trackList.length }} {{ group.trackList.length > 1 ? 'tracks' : 'track' }}
+            </p>
+          </div>
+
+          <div class="flex-1 w-full overflow-auto scrollbar-hidden">
+            <ul class="pc:[writing-mode:vertical-lr] [&>li]:mb-4 pc:[&>li]:not-last:mr-5">
+              <li v-for="track in group.trackList" :key="track.id">
+                <component :is="track.lyric ? NuxtLink : 'div'" class="flex flex-col items-start" v-bind="track.lyric ? { to: `/song/${track.id}` } : {}">
+                  <div>
+                    <span>{{ track.name }}</span>&nbsp;
+                    <span v-if="track.isCover">(Cover)</span>
+                  </div>
+
+                  <div class="pc:mt-2 flex flex-wrap gap-x-2 text-xs leading-5 opacity-80">
+                    <span v-if="track.lyricist">
+                      詞 · {{ track.lyricist }}
+                    </span>
+                    <span>
+                      曲 · {{ track.composer }}
+                    </span>
                   </div>
                 </component>
               </li>
             </ul>
-          </section>
+          </div>
         </div>
-      </section>
-    </div> -->
+      </div>
+    </dialog>
   </main>
 </template>
 
@@ -194,6 +216,8 @@ useSeoMeta({
   z-index: calc(var(--index) * -2);
   transform: translateX(calc(var(--index) * var(--card-offset-x)))
     translateY(calc(var(--index) * var(--card-offset-y) * -1));
+  cursor: pointer;
+  outline: none !important;
 }
 
 .group-img {
@@ -225,6 +249,96 @@ useSeoMeta({
     border-radius: 2px;
     transform: translateZ(calc(var(--img-index) * 1px));
     box-shadow: 0 0 1px 0 var(--color-base-100);
+  }
+}
+
+.vinyl {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  transform: translate(30%, 15%);
+  filter: blur(4px);
+}
+
+.vinyl::before {
+  content: '';
+  position: absolute;
+  inset: -5%;
+  z-index: -1;
+
+  border-radius: inherit;
+  background-color: rgba(0, 0, 0, 0.03);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.03);
+}
+
+.vinyl-record {
+  width: 21rem;
+  aspect-ratio: 1;
+  border-radius: inherit;
+
+  position: relative;
+  z-index: 0;
+}
+
+.vinyl-record::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  border-radius: inherit;
+  background-color: var(--color-base-100);
+  background-image: repeating-radial-gradient(
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0.5) 2px,
+    rgba(255, 255, 255, 0.01) 4px
+  );
+}
+
+.vinyl-record::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+
+  border-radius: inherit;
+  background: conic-gradient(
+    from 100deg at 50% 50%,
+    transparent 0deg,
+    rgba(255, 255, 255, 0.2) 45deg,
+    transparent 90deg,
+    rgba(0, 0, 0, 0.3) 135deg,
+    transparent 180deg,
+    transparent 180deg,
+    rgba(255, 255, 255, 0.2) 225deg,
+    transparent 270deg,
+    rgba(0, 0, 0, 0.3) 315deg,
+    transparent 360deg
+  );
+  box-shadow: inset 0 0 0 2px var(--color-base-100);
+}
+
+.vinyl-cover {
+  width: 66%;
+  z-index: 10;
+
+  box-shadow: 0 0 0 4px var(--color-base-100);
+  animation: vinyl-rotate 30s 2s linear infinite;
+}
+
+@keyframes vinyl-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 </style>

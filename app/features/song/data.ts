@@ -4,7 +4,9 @@ export interface Track {
   artist: string
   lyricist: string | null
   composer: string
-  lyric?: boolean
+  lyric: boolean
+  isCover?: boolean
+  feat?: string[]
 }
 
 export interface Album {
@@ -12,6 +14,7 @@ export interface Album {
   date: `${number}`
   name: string
   cover: string[]
+  artist: string
   trackList: Track[]
 }
 
@@ -29,6 +32,7 @@ export const data: SongData = {
       date: '2025',
       name: 'Renarrate',
       cover: ['renarrate-1', 'renarrate-2'],
+      artist: 'のん',
       trackList: [
         {
           id: 'film-no-hikari',
@@ -133,6 +137,7 @@ export const data: SongData = {
       date: '2023',
       name: 'PURSUE',
       cover: ['pursue-1', 'pursue-2'],
+      artist: 'のん',
       trackList: [
         {
           id: 'beautiful-stars',
@@ -168,11 +173,12 @@ export const data: SongData = {
         },
         {
           id: 'aliens',
-          name: 'エイリアンズ (Cover)',
+          name: 'エイリアンズ',
           artist: 'のん',
           lyricist: '堀込泰行',
           composer: '堀込泰行',
           lyric: true,
+          isCover: true,
         },
         {
           id: 'yume-ga-itamu-kara',
@@ -237,6 +243,7 @@ export const data: SongData = {
       date: '2020',
       name: 'ショーがはじまるョ！',
       cover: ['show-ga-hajimaru-yo'],
+      artist: 'のんとも。M',
       trackList: [
         {
           id: 'show-ga-hajimaru',
@@ -248,11 +255,12 @@ export const data: SongData = {
         },
         {
           id: 'sherry',
-          name: 'Sherry (Cover)',
+          name: 'Sherry',
           artist: 'のんとも。M',
           lyricist: 'Bob Gaudio',
           composer: 'Bob Gaudio',
           lyric: true,
+          isCover: true,
         },
         {
           id: 'nemurenai',
@@ -272,19 +280,21 @@ export const data: SongData = {
         },
         {
           id: 'hassuru-hoi',
-          name: 'ハッスルホイ (Cover)',
+          name: 'ハッスルホイ',
           artist: 'のんとも。M',
           lyricist: '青島幸男',
           composer: '萩原哲晶',
           lyric: true,
+          isCover: true,
         },
         {
           id: 'hinageshi-no-hana',
-          name: 'ひなげしの花 (Cover)',
+          name: 'ひなげしの花',
           artist: 'のんとも。M',
           lyricist: '山上路夫',
           composer: '森田公一',
           lyric: true,
+          isCover: true,
         },
         {
           id: 'snow-dance',
@@ -312,19 +322,22 @@ export const data: SongData = {
         },
         {
           id: 'ashita-ga-aru-sa',
-          name: '明日があるさ (Cover) [feat. 小泉今日子, 尾美としのり, 渡辺えり, 片桐はいり & 尾身美詞]',
+          name: '明日があるさ',
           artist: 'のんとも。M',
           lyricist: '青島幸男',
           composer: '中村八大',
           lyric: true,
+          isCover: true,
+          feat: ['小泉今日子', '尾美としのり', '渡辺えり', '片桐はいり', '尾身美詞'],
         },
         {
           id: 'sanae-chan',
-          name: 'さなえちゃん (Cover)',
+          name: 'さなえちゃん',
           artist: 'のんとも。M',
           lyricist: '仲井戸麗市',
           composer: '仲井戸麗市',
           lyric: true,
+          isCover: true,
         },
       ],
     },
@@ -333,6 +346,7 @@ export const data: SongData = {
       date: '2019',
       name: 'ベビーフェイス',
       cover: ['baby-face'],
+      artist: 'のん',
       trackList: [
         {
           id: 'yamanai-girl',
@@ -360,7 +374,7 @@ export const data: SongData = {
         },
         {
           id: 'aoi-shakunetsu',
-          name: '苍い灼熱',
+          name: '蒼い灼熱',
           artist: 'のん',
           lyricist: 'のん',
           composer: 'のん',
@@ -381,6 +395,7 @@ export const data: SongData = {
       date: '2018',
       name: 'スーパーヒーローズ',
       cover: ['super-heroes-1', 'super-heroes-2', 'super-heroes-3'],
+      artist: 'のん',
       trackList: [
         {
           id: 'hen-nano',
@@ -485,6 +500,7 @@ export const data: SongData = {
       date: '2018',
       name: 'RUN!!!',
       cover: ['run'],
+      artist: 'のん',
       trackList: [
         {
           id: 'run',
@@ -509,6 +525,7 @@ export const data: SongData = {
       date: '2017',
       name: 'スーパーヒーローになりたい',
       cover: ['superhero-ni-naritai'],
+      artist: 'のん',
       trackList: [
         {
           id: 'superhero-ni-naritai',
@@ -549,6 +566,7 @@ export const data: SongData = {
       date: '2017',
       name: 'オヒロメ・パック',
       cover: ['ohirome-pakku-1', 'ohirome-pakku-2'],
+      artist: 'のん',
       trackList: [
         {
           id: 'taimumashin-ni-onegai',
@@ -575,6 +593,7 @@ export const data: SongData = {
       date: '2025',
       name: 'GwGw',
       cover: ['gwgw'],
+      artist: 'のん',
       trackList: [
         {
           id: 'gwgw',
@@ -591,6 +610,7 @@ export const data: SongData = {
       date: '2019',
       name: 'クリスマスソング',
       cover: ['christmas-song'],
+      artist: 'のん',
       trackList: [
         {
           id: 'christmas-song',
@@ -609,6 +629,7 @@ export const data: SongData = {
       date: '2026',
       name: 'スタジオジブリトリビュートアルバム「ジブリをうたう その2」',
       cover: ['ghibli-wo-utau-sono'],
+      artist: 'VARIOUS',
       trackList: [
         {
           id: 'country-road',
@@ -625,14 +646,16 @@ export const data: SongData = {
       date: '2025',
       name: 'no worries',
       cover: ['no-worries'],
+      artist: 'ROCKETMAN',
       trackList: [
         {
           id: 'no-worries',
-          name: 'no worries (feat. のん)',
+          name: 'no worries',
           artist: 'ROCKETMAN / のん',
           lyricist: 'ふかわりょう',
           composer: 'ふかわりょう',
           lyric: true,
+          feat: ['のん'],
         },
       ],
     },
@@ -641,30 +664,34 @@ export const data: SongData = {
       date: '2022',
       name: 'Parallel Ribbons',
       cover: ['parallel-ribbons'],
+      artist: 'ひぐちけい',
       trackList: [
         {
           id: 'ribbon-kumikyoku',
-          name: 'Ribbon組曲 (feat. のん)',
+          name: 'Ribbon組曲',
           artist: 'ひぐちけい',
           lyricist: null,
           composer: 'ひぐちけい',
           lyric: false,
+          feat: ['のん'],
         },
         {
           id: 'ribbon',
-          name: 'ribbon (feat. のん)',
+          name: 'ribbon ',
           artist: 'ひぐちけい',
           lyricist: 'のん',
           composer: 'ひぐちけい',
           lyric: true,
+          feat: ['のん'],
         },
         {
           id: 'azayaka-na-hibi',
-          name: '鮮やかな日々 (feat. のん)',
+          name: '鮮やかな日々',
           artist: 'ひぐちけい',
           lyricist: 'のん',
           composer: 'ひぐちけい',
           lyric: true,
+          feat: ['のん'],
         },
       ],
     },
@@ -673,14 +700,16 @@ export const data: SongData = {
       date: '2018',
       name: '円山町ロマンチック通り',
       cover: ['maruyamacho-romantic-dori'],
+      artist: 'ライトガールズ(やついいちろうxSundayカミデ)',
       trackList: [
         {
           id: 'cinderella',
-          name: 'シンデレラ (feat. のん,奇妙礼太郎)',
-          artist: 'ライトガールズ(やついいちろう×Sundayカミデ)',
+          name: 'シンデレラ',
+          artist: 'ライトガールズ(やついいちろうxSundayカミデ)',
           lyricist: 'Sundayカミデ',
           composer: 'Sundayカミデ',
           lyric: true,
+          feat: ['のん', '奇妙礼太郎'],
         },
       ],
     },
@@ -691,6 +720,7 @@ export const data: SongData = {
       date: '2020',
       name: '映画「星屑の町」オリジナル・サウンドトラック',
       cover: ['hoshikuzu-no-machi-original-soundtrack'],
+      artist: '宮原慶太',
       trackList: [
         {
           id: 'shabon-dama',
@@ -715,6 +745,7 @@ export const data: SongData = {
       date: '2013',
       name: 'あまちゃん 歌のアルバム',
       cover: ['amachan-uta-no-arubamu'],
+      artist: 'TV サントラ',
       trackList: [
         {
           id: 'shiosai-no-memori',
