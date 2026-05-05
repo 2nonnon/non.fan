@@ -31,7 +31,7 @@ const routes = [
       <div :class="cn('fixed z-9980 w-[200dvw] h-[200dvh] bg-base-content pointer-events-none nav-bg', showMenu && 'nav-bg--active')" />
     </div>
 
-    <div :class="cn('max-w-5xl mx-auto fixed inset-0 z-9990 transition-opacity duration-(--duration-double) opacity-0 pointer-events-none', showMenu && 'opacity-100 pointer-events-auto')">
+    <div :class="cn('max-w-content mx-auto fixed inset-0 z-9990 transition-opacity duration-(--duration-double) opacity-0 pointer-events-none', showMenu && 'opacity-100 pointer-events-auto')">
       <nav class="px-6 py-24 text-lg text-base-100 text-center">
         <ul class="flex flex-col gap-6" @click="handleMenuClick">
           <li v-for="item in routes" :key="item.path">

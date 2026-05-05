@@ -57,12 +57,12 @@ useSeoMeta({
 </script>
 
 <template>
-  <main class="px-6">
+  <main class="relative">
     <h1 class="sr-only">
       のん (能年玲奈) の {{ year }} 年ブログアーカイブ
     </h1>
 
-    <div class="w-full max-w-3xl mx-auto py-12 md:py-20">
+    <div class="w-full mx-auto py-12 pc:py-20">
       <h2 class="text-3xl font-bold mb-10">
         {{ `${year} · ${data!.listTotal} of ${data!.total}` }}
       </h2>

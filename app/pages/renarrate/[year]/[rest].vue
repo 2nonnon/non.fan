@@ -27,7 +27,7 @@ useSeoMeta({
 
 <template>
   <main class="px-6">
-    <div v-if="data" class="w-full max-w-[65ch] py-8 md:py-16 mx-auto">
+    <div v-if="data" class="w-full max-w-read py-8 pc:py-16 mx-auto">
       <h1 class="text-3xl font-bold mb-2">
         {{ data.title }}
       </h1>

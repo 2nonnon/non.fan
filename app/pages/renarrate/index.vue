@@ -29,8 +29,8 @@ useSeoMeta({
 </script>
 
 <template>
-  <main class="px-6">
-    <div class="w-full max-w-3xl mx-auto py-12 md:py-20 flex flex-col gap-12">
+  <main class="relative">
+    <div class="w-full mx-auto py-12 pc:py-20 flex flex-col gap-12">
       <h1 class="sr-only">
         のん (能年玲奈) のブログアーカイブ
       </h1>

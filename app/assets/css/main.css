@@ -4,6 +4,13 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme {
+  --breakpoint-*: initial;
+  --breakpoint-pc: 768px;
+
+  --container-*: initial;
+  --container-read: 65ch;
+  --container-content: 1280px;
+
   --color-primary-50: #fef2f3;
   --color-primary-100: #fee2e5;
   --color-primary-200: #fecacf;

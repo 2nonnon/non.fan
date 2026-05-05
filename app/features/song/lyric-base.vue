@@ -17,8 +17,8 @@ useSeoMeta({
 </script>
 
 <template>
-  <main class="relative px-6">
-    <div class="w-full max-w-3xl mx-auto py-8 md:py-12 text-center">
+  <main class="relative">
+    <div class="w-full mx-auto py-8 pc:py-12 text-center">
       <h1 class="text-2xl font-bold mb-1">
         {{ track.name }} - {{ track.artist }}
       </h1>
