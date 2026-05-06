@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import VisualImg from '~/assets/image/visual.png'
-
 useHead({
   link: [
     {
       rel: 'preload',
       as: 'image',
-      href: VisualImg,
+      href: '/image/visual.png',
       fetchpriority: 'high',
     },
   ],
@@ -30,9 +28,9 @@ useSeoMeta({
     <div class="flex-1 w-full flex flex-col justify-center items-center relative -z-10">
       <div class="flex-1 aspect-2/3 max-w-full flex justify-center items-center landscape:hidden">
         <div class="w-full aspect-818/460 relative peer">
-          <img class="mask-[url(#visual-mask)] w-7/10 absolute -top-17/20 left-1/2 -translate-x-1/2" :src="VisualImg" draggable="false" alt="" @contextmenu.prevent="">
+          <img class="mask-[url(#visual-mask)] w-7/10 absolute -top-17/20 left-1/2 -translate-x-1/2" src="/image/visual.png" draggable="false" alt="" @contextmenu.prevent="">
 
-          <img class="mask-[url(#visual-mask)] w-7/10 absolute -bottom-17/20 left-1/2 -translate-x-1/2 rotate-180" :src="VisualImg" draggable="false" alt="" @contextmenu.prevent="">
+          <img class="mask-[url(#visual-mask)] w-7/10 absolute -bottom-17/20 left-1/2 -translate-x-1/2 rotate-180" src="/image/visual.png" draggable="false" alt="" @contextmenu.prevent="">
 
           <div class="w-full h-full filter-[url(#inner-shadow)]">
             <div class="w-full h-full bg-white mask-[url(#non-mask)]" />
@@ -45,7 +43,7 @@ useSeoMeta({
           <div class="w-full h-full bg-white mask-[url(#non-mask)]" />
         </div>
 
-        <img class="w-[60cqw] max-h-[60dvh] fixed bottom-0 translate-y-8/100 object-contain" :src="VisualImg" draggable="false" alt="" @contextmenu.prevent="">
+        <img class="w-[60cqw] max-h-[60dvh] fixed bottom-0 translate-y-8/100 object-contain" src="/image/visual.png" draggable="false" alt="" @contextmenu.prevent="">
       </div>
     </div>
 

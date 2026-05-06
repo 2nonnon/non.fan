@@ -25,13 +25,40 @@ const categoryList = [
 const groupList = categoryList.map(category => category.items.map(item => ({ ...item, category: category.title }))).flat()
 
 const scrollIndex = ref(0)
+const isScrolling = ref(false)
+let isChanging = false
+
+let scrollTimeout: ReturnType<typeof setTimeout> | null = null
 
 function handleScroll(event: Event) {
+  if (isChanging) {
+    isChanging = false
+    return
+  }
+
+  scrollTimeout && clearTimeout(scrollTimeout)
+
+  isScrolling.value = true
+
   const target = event.target as HTMLElement
   const { scrollTop } = target
 
   scrollIndex.value = Math.floor(scrollTop / 100)
+
+  scrollTimeout = setTimeout(() => {
+    isScrolling.value = false
+  }, 100)
 }
+
+const scrollRef = useTemplateRef('scrollRef')
+
+watch(scrollIndex, (newIndex) => {
+  if (!scrollRef.value || isScrolling.value)
+    return
+
+  isChanging = true
+  scrollRef.value.scrollTop = newIndex * 100
+})
 
 useSeoMeta({
   title: `歌 - のん (能年玲奈)`,
@@ -41,11 +68,11 @@ useSeoMeta({
 
 <template>
   <main class="relative z-0 flex-1 flex flex-col justify-between pt-12 pb-16 pc:pt-16">
-    <h1 class="relative z-10 font-bold text-5xl text-primary-600/95">
+    <h1 class="relative z-10 font-bold text-4xl pc:text-5xl text-primary-600/95">
       NON Music<br>NON Life
     </h1>
 
-    <div class="group" :style="{ '--count': groupList.length, '--scroll-index': scrollIndex }" @scroll.passive="handleScroll">
+    <div ref="scrollRef" class="group" :style="{ '--count': groupList.length, '--scroll-index': scrollIndex }" @scroll.passive="handleScroll">
       <div class="group-wrapper">
         <div class="group-container">
           <button v-for="group, i in groupList" :key="group.id" class="group-item" :style="{ '--index': i }" type="button" command="show-modal" :commandfor="group.id">
@@ -61,15 +88,19 @@ useSeoMeta({
       <div class="group-height" />
     </div>
 
-    <div class="relative z-10 flex items-center justify-end gap-2">
-      <div
-        v-for="i in groupList.length" :key="i"
-        :class="cn('w-0.5 h-5 rounded bg-base-content transition-transform', {
-          'bg-primary-600 scale-y-250': i === scrollIndex,
-          'bg-primary-400 scale-y-150': scrollIndex > 0 && (i === scrollIndex - 1 || i === scrollIndex + 1),
-          'bg-primary-200 scale-y-110': scrollIndex > 0 && (i === scrollIndex - 2 || i === scrollIndex + 2),
-        })"
-      />
+    <div class="relative z-10 flex justify-end">
+      <div class="relative flex items-center gap-2">
+        <div
+          v-for="i in Array.from({ length: groupList.length + 1 }).map((_, i) => i)" :key="i"
+          :class="cn('w-0.5 h-5 rounded bg-base-content transition-transform', {
+            'bg-primary-600 scale-y-250': i === scrollIndex,
+            'bg-primary-400 scale-y-150': (i === scrollIndex - 1 || i === scrollIndex + 1),
+            'bg-primary-200 scale-y-110': (i === scrollIndex - 2 || i === scrollIndex + 2),
+          })"
+        />
+
+        <input v-model.number="scrollIndex" type="range" class="absolute inset-0 cursor-pointer z-1 opacity-0" min="0" :max="groupList.length" step="1">
+      </div>
     </div>
 
     <dialog v-for="group in groupList" :id="group.id" :key="group.id" class="mx-auto mt-auto pc:mb-auto w-full h-full bg-base-content text-base-100 rounded-t-2xl pc:rounded-b-2xl max-w-full pc:max-w-[min(calc(100%-3rem),var(--container-content))] max-h-[calc(100%-6rem)] pc:max-h-160 backdrop:backdrop-blur" closedby="any">
@@ -91,7 +122,7 @@ useSeoMeta({
 
         <div class="h-full overflow-hidden pt-6 px-6 pc:p-12 flex flex-col items-start gap-6 pc:gap-12">
           <div>
-            <div class="text-4xl mb-4">
+            <div class="text-4xl mb-4 pr-6">
               <h3 class="inline font-bold">
                 {{ group.name }}
               </h3>
@@ -263,8 +294,12 @@ useSeoMeta({
   justify-content: center;
 
   border-radius: 50%;
-  transform: translate(30%, 15%);
+  transform: translate(32%, 16%);
   filter: blur(4px);
+
+  @media screen and (min-width: 768px) {
+    transform: translate(30%, 15%);
+  }
 }
 
 .vinyl::before {
