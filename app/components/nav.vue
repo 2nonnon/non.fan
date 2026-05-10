@@ -10,8 +10,7 @@ function handleMenuClick(e: PointerEvent) {
 
 const routes = [
   { name: 'Home', path: '/' },
-  { name: 'Song', path: '/song' },
-  { name: 'Podcast', path: '/podcast' },
+  { name: 'Music', path: '/music' },
   { name: 'Blog', path: '/renarrate' },
   { name: 'Sign', path: '/sign' },
 ]

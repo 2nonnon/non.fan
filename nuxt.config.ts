@@ -7,7 +7,7 @@ function generateRoutes() {
   const collectDir = path.resolve(process.cwd(), 'server/assets/collect')
 
   const items = fs.readdirSync(collectDir).filter(item => !item.endsWith('.json'))
-  const routes = ['/', '/sign', '/song', '/podcast', '/renarrate']
+  const routes = ['/', '/sign', '/music', '/renarrate']
 
   for (const item of items) {
     const year = item.slice(0, 4)
