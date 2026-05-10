@@ -21,7 +21,7 @@ const routes = [
   <div class="nav">
     <div class="flex justify-center items-center">
       <button :class="cn('relative z-9999 cursor-pointer mix-blend-difference delay-(--duration-double)', showMenu && 'delay-0')" aria-label="菜单" @click="showMenu = !showMenu">
-        <svg class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <svg class="w-6 pc:w-8 aspect-square" viewBox="0 0 24 24" fill="none">
           <path :class="cn('line top', showMenu && 'top--active')" d="M4 5H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           <path :class="cn('line middle', showMenu && 'middle--active')" d="M4 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           <path :class="cn('line bottom', showMenu && 'bottom--active')" d="M4 19H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -32,8 +32,8 @@ const routes = [
     </div>
 
     <div :class="cn('max-w-content mx-auto fixed inset-0 z-9990 transition-opacity duration-(--duration-double) opacity-0 pointer-events-none', showMenu && 'opacity-100 pointer-events-auto')">
-      <nav class="px-6 py-24 text-lg text-base-100 text-center">
-        <ul class="flex flex-col gap-6" @click="handleMenuClick">
+      <nav class="px-6 py-24 text-lg pc:text-2xl text-base-100 text-center">
+        <ul class="flex flex-col gap-6 pc:gap-8" @click="handleMenuClick">
           <li v-for="item in routes" :key="item.path">
             <NuxtLink class="nav-item" :to="item.path">
               {{ item.name }}

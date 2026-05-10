@@ -17,10 +17,10 @@ useSeoMeta({
 </script>
 
 <template>
-  <main class="flex-1 flex flex-col justify-evenly items-center gap-8 py-6 relative z-0">
+  <main class="flex-1 flex flex-col justify-evenly items-center gap-8 pc:gap-12 py-6 pc:py-8 relative z-0">
     <div />
 
-    <h1 class="w-full text-center text-lg">
+    <h1 class="w-full font-semibold text-center text-lg pc:text-2xl">
       俳優、アーティスト
     </h1>
 
@@ -47,7 +47,7 @@ useSeoMeta({
       </div>
     </div>
 
-    <p class="text-xs self-end">
+    <p class="text-[10px] pc:text-xs leading-4 self-end">
       やまないガール<br>
       変わること恐れない<br>
       やまないガール<br>

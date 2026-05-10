@@ -8,7 +8,6 @@
   --breakpoint-pc: 768px;
 
   --container-*: initial;
-  --container-read: 65ch;
   --container-content: 1280px;
 
   --color-primary-50: #fef2f3;
@@ -113,22 +112,6 @@
   --color-warning-content: var(--color-warning-900);
   --color-error: var(--color-error-500);
   --color-error-content: var(--color-error-900);
-
-  /* 1. 非衬线字体 (Sans-serif) - 现代 UI 风格 */
-  --font-sans:
-    system-ui, ui-sans-serif, 'Segoe UI Variable Display', 'Segoe UI', 'SF Pro Display', -apple-system,
-    BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji';
-
-  /* 2. 衬线字体 (Serif) - 阅读与典雅风格 */
-  --font-serif:
-    ui-serif, Georgia, Cambria, 'Times New Roman', Times, 'Source Han Serif SC', 'Source Han Serif CN', 'STSong',
-    'SimSun', serif;
-
-  /* 3. 等宽字体 (Monospace) - 代码与技术风格 */
-  --font-mono:
-    ui-monospace, 'Cascadia Code', 'Segoe UI Mono', 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono',
-    'PingFang SC', 'Microsoft YaHei', monospace;
 }
 
 @layer base {
@@ -139,7 +122,7 @@
     font-weight: 400;
     font-style: normal;
     font-optical-sizing: auto;
-    font-size: clamp(16px, calc(16px + (1vw - 3.75px) * 0.25), 20px);
+    font-size: 16px;
     color: var(--color-base-content);
     background-color: var(--color-base-100);
     user-select: none;

@@ -14,7 +14,7 @@ useSeoMeta({
       のん TOPPAN INNOVATION WORLD ERA
     </h1>
 
-    <div class="w-full mx-auto py-12 pc:py-16 flex flex-col gap-16">
+    <div class="w-full max-w-prose mx-auto py-12 pc:py-16 flex flex-col gap-16">
       <ul class="[&>li]:not-last:mb-4">
         <li v-for="podcast in podcasts" :key="podcast.id">
           <NuxtLink class="flex items-start gap-4" :to="`/podcast/${podcast.id}`">

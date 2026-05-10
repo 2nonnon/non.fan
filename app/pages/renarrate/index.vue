@@ -30,13 +30,13 @@ useSeoMeta({
 
 <template>
   <main class="relative">
-    <div class="w-full mx-auto py-12 pc:py-20 flex flex-col gap-12">
+    <div class="w-full max-w-prose mx-auto py-12 pc:py-20 flex flex-col gap-12">
       <h1 class="sr-only">
         のん (能年玲奈) のブログアーカイブ
       </h1>
 
       <section>
-        <h2 class="text-xl font-bold mb-4">
+        <h2 class="text-xl pc:text-2xl font-bold mb-4 pc:mb-6">
           あの日の今日
         </h2>
 
@@ -60,15 +60,15 @@ useSeoMeta({
               <article class="relative pl-4 group">
                 <div class="absolute left-0 top-1 bottom-1 w-1 rounded-full transition-colors duration-300 bg-primary/60 group-hover:bg-primary" />
 
-                <h3 class="text-lg font-bold">
+                <h3 class="text-lg pc:text-xl font-bold">
                   {{ item.title }}
                 </h3>
 
-                <time class="block text-sm opacity-60 mb-1" :datetime="item.ISODate">
+                <time class="block text-sm pc:text-base opacity-60 mb-1" :datetime="item.ISODate">
                   {{ item.date }}
                 </time>
 
-                <p class="opacity-90">
+                <p class="opacity-80 hover:opacity-90 transition-opacity pc:text-lg">
                   {{ item.content }}
                 </p>
               </article>
@@ -78,11 +78,11 @@ useSeoMeta({
       </section>
 
       <section>
-        <h2 class="text-xl font-bold mb-4">
+        <h2 class="text-xl pc:text-2xl font-bold mb-4 pc:mb-6">
           年別アーカイブ
         </h2>
 
-        <ul class="flex flex-wrap gap-x-4 gap-y-2">
+        <ul class="flex flex-wrap gap-x-4 gap-y-2 pc:text-lg">
           <li v-for="item in countList" :key="item.year">
             <NuxtLink
               class="underline underline-offset-2"
@@ -95,7 +95,7 @@ useSeoMeta({
         </ul>
       </section>
 
-      <p>
+      <p class="pc:text-lg">
         のん (能年玲奈) の 2007 年から 2016 年までのブログアーカイブです。
         オリジナルのブログスナップショットは、こちらからご確認いただけます：
         <NuxtLink class="underline underline-offset-2" to="https://web.archive.org/web/20250101000000*/http://yaplog.jp/lp-n-rena/" target="_blank" rel="noopener noreferrer nofollow">

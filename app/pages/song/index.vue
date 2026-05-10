@@ -67,8 +67,8 @@ useSeoMeta({
 </script>
 
 <template>
-  <main class="relative z-0 flex-1 flex flex-col justify-between pt-12 pb-16 pc:pt-16">
-    <h1 class="relative z-10 font-bold text-4xl pc:text-5xl text-primary-600/95">
+  <main class="relative z-0 flex-1 flex flex-col justify-between pt-12 pb-16 pc:pt-20 pc:pb-24">
+    <h1 class="relative z-10 font-bold text-4xl pc:text-6xl text-primary-600/95">
       NON Music<br>NON Life
     </h1>
 
@@ -89,10 +89,10 @@ useSeoMeta({
     </div>
 
     <div class="relative z-10 flex justify-end">
-      <div class="relative flex items-center gap-2">
+      <div class="relative flex items-center gap-2 pc:gap-2.5">
         <div
           v-for="i in Array.from({ length: groupList.length + 1 }).map((_, i) => i)" :key="i"
-          :class="cn('w-0.5 h-5 rounded bg-base-content transition-transform', {
+          :class="cn('w-0.5 pc:w-0.75 h-5 pc:h-6 rounded bg-base-content transition-transform', {
             'bg-primary-600 scale-y-250': i === scrollIndex,
             'bg-primary-400 scale-y-150': (i === scrollIndex - 1 || i === scrollIndex + 1),
             'bg-primary-200 scale-y-110': (i === scrollIndex - 2 || i === scrollIndex + 2),
@@ -103,10 +103,10 @@ useSeoMeta({
       </div>
     </div>
 
-    <dialog v-for="group in groupList" :id="group.id" :key="group.id" class="mx-auto mt-auto pc:mb-auto w-full h-full bg-base-content text-base-100 rounded-t-2xl pc:rounded-b-2xl max-w-full pc:max-w-[min(calc(100%-3rem),var(--container-content))] max-h-[calc(100%-6rem)] pc:max-h-160 backdrop:backdrop-blur" closedby="any">
+    <dialog v-for="group in groupList" :id="group.id" :key="group.id" class="mx-auto mt-auto pc:mb-auto w-full h-full bg-base-content text-base-100 rounded-t-3xl pc:rounded-b-3xl max-w-full pc:max-w-[min(calc(100%-3rem),var(--container-content))] max-h-[calc(100%-5rem)] pc:max-h-200 backdrop:backdrop-blur" closedby="any">
       <div class="h-full overflow-hidden relative z-0">
-        <button class="absolute top-2 right-2 z-50 w-12 h-12 flex items-center justify-center cursor-pointer outline-none" type="button" command="close" :commandfor="group.id">
-          <svg class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <button class="absolute top-2 pc:top-4 right-2 pc:right-4 z-50 w-12 h-12 flex items-center justify-center cursor-pointer outline-none" type="button" command="close" :commandfor="group.id">
+          <svg class="w-6 pc:w-8 aspect-square" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 14 4 9l5-5" />
             <path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11" />
           </svg>
@@ -120,35 +120,35 @@ useSeoMeta({
           </div>
         </div>
 
-        <div class="h-full overflow-hidden pt-6 px-6 pc:p-12 flex flex-col items-start gap-6 pc:gap-12">
+        <div class="h-full overflow-hidden pt-6 px-6 pc:p-16 flex flex-col items-start gap-6 pc:gap-16">
           <div>
-            <div class="text-4xl mb-4 pr-6">
+            <div class="text-4xl pc:text-5xl mb-4 pc:mb-8 pr-6">
               <h3 class="inline font-bold">
                 {{ group.name }}
               </h3>
 
               <span>
-                <span class="inline-block ml-3 relative -top-1 px-1 rounded text-xs border border-base-100 opacity-80 whitespace-nowrap">
+                <span class="inline-block ml-3 relative -top-1 px-1 rounded text-xs pc:text-sm border border-base-100 opacity-80 whitespace-nowrap">
                   {{ group.category }}
                 </span>
               </span>
             </div>
 
-            <p class="opacity-80">
+            <p class="opacity-80 pc:text-xl">
               {{ group.artist }} · {{ group.date }} · {{ group.trackList.length }} {{ group.trackList.length > 1 ? 'tracks' : 'track' }}
             </p>
           </div>
 
           <div class="flex-1 w-full overflow-auto scrollbar-hidden">
-            <ul class="pc:[writing-mode:vertical-lr] [&>li]:mb-4 pc:[&>li]:not-last:mr-5">
+            <ul class="pc:[writing-mode:vertical-lr] [&>li]:mb-4 pc:[&>li]:not-last:mr-6">
               <li v-for="track in group.trackList" :key="track.id">
                 <component :is="track.lyric ? NuxtLink : 'div'" class="flex flex-col items-start" v-bind="track.lyric ? { to: `/song/${track.id}` } : {}">
-                  <div>
+                  <div class="pc:text-xl leading-6 pc:leading-8">
                     <span>{{ track.name }}</span>&nbsp;
                     <span v-if="track.isCover">(Cover)</span>
                   </div>
 
-                  <div class="pc:mt-2 flex flex-wrap gap-x-2 text-xs leading-5 opacity-80">
+                  <div class="pc:mt-3 flex flex-wrap gap-x-2 pc:gap-x-3 text-sm pc:text-base leading-6 opacity-80">
                     <span v-if="track.lyricist">
                       詞 · {{ track.lyricist }}
                     </span>
@@ -185,6 +185,12 @@ useSeoMeta({
   --card-offset-y: 2rem;
 
   max-height: calc((var(--count) * var(--card-offset-y) + var(--card-size)));
+
+  @media screen and (min-width: 768px) {
+    --card-size: 16rem;
+    --card-offset-x: 6rem;
+    --card-offset-y: 3rem;
+  }
 
   @media screen and (max-width: 1280px) {
     left: -1.5rem;
@@ -320,6 +326,10 @@ useSeoMeta({
 
   position: relative;
   z-index: 0;
+
+  @media screen and (min-width: 768px) {
+    width: 29rem;
+  }
 }
 
 .vinyl-record::before {

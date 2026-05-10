@@ -18,11 +18,11 @@ useSeoMeta({
 
 <template>
   <main class="relative">
-    <div class="w-full mx-auto py-8 pc:py-12 text-center">
-      <h1 class="text-2xl font-bold mb-1">
+    <div class="w-full mx-auto py-8 pc:py-16 text-center">
+      <h1 class="font-bold text-2xl pc:text-3xl mb-1 pc:mb-2">
         {{ track.name }} - {{ track.artist }}
       </h1>
-      <p class="text-sm opacity-90 mb-6">
+      <p class="text-sm pc:text-base opacity-80 mb-6 pc:mb-8">
         <span v-if="track.lyricist">
           詞: {{ track.lyricist }}
         </span>
@@ -32,7 +32,7 @@ useSeoMeta({
         </span>
       </p>
 
-      <div class="[&>p]:odd:mb-1 [&>p]:even:mb-4 [&>p]:even:opacity-80 [&>p]:even:text-sm [&>p]:even:font-sans">
+      <div class="[&>p]:odd:mb-1 [&>p]:even:mb-4 pc:[&>p]:even:mb-6 [&>p]:even:opacity-80 [&>p]:even:font-sans [&>p]:even:text-sm pc:text-xl pc:[&>p]:even:text-base">
         <slot />
       </div>
     </div>
