@@ -5,7 +5,7 @@ interface MessageEvent {
 }
 
 function setup(): void {
-  let timerId: number
+  let timerId: NodeJS.Timeout
   const interval: number = 16.6
 
   globalThis.onmessage = (e: MessageEvent) => {
