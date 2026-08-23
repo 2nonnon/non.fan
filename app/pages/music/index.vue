@@ -142,7 +142,7 @@ useSeoMeta({
           <div class="flex-1 w-full overflow-auto scrollbar-hidden">
             <ul class="pc:[writing-mode:vertical-lr] [&>li]:mb-4 pc:[&>li]:not-last:mr-6">
               <li v-for="track in group.trackList" :key="track.id">
-                <component :is="track.lyric ? NuxtLink : 'div'" class="flex flex-col items-start" v-bind="track.lyric ? { to: `/music/${track.id}` } : {}">
+                <component :is="track.lyric ? NuxtLink : 'div'" class="flex flex-col items-start" v-bind="track.lyric ? { to: `/music/lyric/${track.id}` } : {}">
                   <div class="pc:text-xl leading-6 pc:leading-8">
                     <span>{{ track.name }}</span>&nbsp;
                     <span v-if="track.isCover">(Cover)</span>
