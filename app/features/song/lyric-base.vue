@@ -49,7 +49,7 @@ onMounted(async () => {
           </p>
         </div>
 
-        <div class="flex-1 overflow-auto scrollbar-hidden lyric-mask [&>p]:odd:mb-1 [&>p]:even:mb-4 pc:[&>p]:even:mb-6 [&>p]:even:opacity-80 [&>p]:even:font-sans [&>p]:even:text-sm pc:text-xl pc:[&>p]:even:text-base">
+        <div class="flex-1 overflow-auto scrollbar-hidden lyric-mask [&>p]:odd:mb-1 [&>p]:even:mb-4 pc:[&>p]:even:mb-6 [&>p]:even:opacity-80 [&>p]:even:font-hanzi [&>p]:even:text-sm pc:text-xl pc:[&>p]:even:text-base">
           <slot />
         </div>
       </div>

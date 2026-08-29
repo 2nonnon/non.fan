@@ -174,3 +174,7 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+@utility font-hanzi {
+  font-family: 'Inter', system-ui, var(--font-sans);
+}
