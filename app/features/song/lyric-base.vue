@@ -28,7 +28,7 @@ onMounted(async () => {
   <main class="relative z-0 h-full flex">
     <div class="flex-1 min-w-0 flex justify-end items-center">
       <div class="px-48">
-        <FVinyl class="w-[44vh]!" :cover="`/cover/${track.cover[0]!}.jpg`" :name="track.name" />
+        <FTurntable :cover="`/cover/${track.cover[0]!}.jpg`" :name="track.name" playing />
       </div>
     </div>
 

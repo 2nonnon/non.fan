@@ -2,11 +2,16 @@
 defineProps<{
   cover: string
   name: string
+  playing?: boolean
 }>()
 </script>
 
 <template>
-  <div class="vinyl">
+  <div
+    class="vinyl" :class="{
+      'vinyl--playing': playing,
+    }"
+  >
     <div class="vinyl-record" />
 
     <div class="vinyl-cover absolute flex aspect-square rounded-full overflow-hidden">
@@ -93,6 +98,9 @@ defineProps<{
   z-index: 10;
 
   box-shadow: 0 0 0 6px var(--color-base-100);
+}
+
+.vinyl--playing .vinyl-cover {
   animation: vinyl-rotate 30s 2s linear infinite;
 }
 
