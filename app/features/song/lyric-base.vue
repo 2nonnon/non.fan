@@ -26,16 +26,16 @@ onMounted(async () => {
 
 <template>
   <main class="relative z-0 h-full flex">
-    <div class="flex-1 min-w-0 flex justify-end items-center">
-      <div class="px-48">
-        <FTurntable :cover="`/cover/${track.cover[0]!}.jpg`" :name="track.name" playing />
+    <div class="flex-1 min-w-0 flex justify-end items-center absolute inset-0 pc:relative pc:inset-auto -z-1 blur-xs pc:blur-none">
+      <div class="flex-1 min-w-0 px-12 max-w-240 flex justify-center items-center">
+        <FTurntable class="w-[42vh]! max-w-full" :cover="`/cover/${track.cover[0]!}.jpg`" :name="track.name" playing />
       </div>
     </div>
 
     <div class="flex-1 min-w-0 h-full">
-      <div class="h-full py-8 pc:py-24 px-6 flex flex-col gap-6 pc:gap-8">
+      <div class="h-full py-16 pc:py-24 px-6 flex flex-col gap-6 pc:gap-8 text-center pc:text-start">
         <div>
-          <h1 class="font-bold text-2xl pc:text-3xl mb-1 pc:mb-2">
+          <h1 class="font-bold text-2xl pc:text-3xl mb-2">
             {{ track.name }} - {{ track.artist }}
           </h1>
           <p class="text-sm pc:text-base opacity-80">
@@ -55,7 +55,7 @@ onMounted(async () => {
       </div>
     </div>
 
-    <div class="absolute inset-0 -z-1">
+    <div class="absolute inset-0 -z-10">
       <FBlurGradient :colors="colors" />
     </div>
   </main>
