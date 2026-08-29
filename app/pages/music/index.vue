@@ -112,12 +112,8 @@ useSeoMeta({
           </svg>
         </button>
 
-        <div class="vinyl">
-          <div class="vinyl-record" />
-
-          <div class="vinyl-cover absolute flex aspect-square rounded-full overflow-hidden">
-            <img class="w-full h-full object-cover" :src="`/cover/${group.cover[0]!}.jpg`" width="48px" height="48px" :alt="`Cover of ${group.name}`">
-          </div>
+        <div class="vinyl-container">
+          <FVinyl class="w-100! pc:w-116!" :cover="`/cover/${group.cover[0]!}.jpg`" :name="group.name" playing />
         </div>
 
         <div class="h-full overflow-hidden pt-6 px-6 pc:p-16 flex flex-col items-start gap-6 pc:gap-16">
@@ -265,6 +261,7 @@ useSeoMeta({
   transition: transform 0.3s ease;
 }
 
+.group-item:hover .group-img,
 .group-img:hover,
 .group-img:has(.group-img-container:hover) {
   transform: translateX(50%) translateY(25%);
@@ -289,101 +286,19 @@ useSeoMeta({
   }
 }
 
-.vinyl {
+.vinyl-container {
   position: absolute;
   right: 0;
   bottom: 0;
   z-index: -1;
 
   display: flex;
-  align-items: center;
-  justify-content: center;
 
-  border-radius: 50%;
   transform: translate(32%, 16%);
   filter: blur(4px);
 
   @media screen and (min-width: 768px) {
     transform: translate(30%, 15%);
-  }
-}
-
-.vinyl::before {
-  content: '';
-  position: absolute;
-  inset: -5%;
-  z-index: -1;
-
-  border-radius: inherit;
-  background-color: rgba(0, 0, 0, 0.03);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.03);
-}
-
-.vinyl-record {
-  width: 21rem;
-  aspect-ratio: 1;
-  border-radius: inherit;
-
-  position: relative;
-  z-index: 0;
-
-  @media screen and (min-width: 768px) {
-    width: 29rem;
-  }
-}
-
-.vinyl-record::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-
-  border-radius: inherit;
-  background-color: var(--color-base-100);
-  background-image: repeating-radial-gradient(
-    rgba(0, 0, 0, 0) 0px,
-    rgba(0, 0, 0, 0.5) 2px,
-    rgba(255, 255, 255, 0.01) 4px
-  );
-}
-
-.vinyl-record::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-
-  border-radius: inherit;
-  background: conic-gradient(
-    from 100deg at 50% 50%,
-    transparent 0deg,
-    rgba(255, 255, 255, 0.2) 45deg,
-    transparent 90deg,
-    rgba(0, 0, 0, 0.3) 135deg,
-    transparent 180deg,
-    transparent 180deg,
-    rgba(255, 255, 255, 0.2) 225deg,
-    transparent 270deg,
-    rgba(0, 0, 0, 0.3) 315deg,
-    transparent 360deg
-  );
-  box-shadow: inset 0 0 0 2px var(--color-base-100);
-}
-
-.vinyl-cover {
-  width: 66%;
-  z-index: 10;
-
-  box-shadow: 0 0 0 4px var(--color-base-100);
-  animation: vinyl-rotate 30s 2s linear infinite;
-}
-
-@keyframes vinyl-rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
   }
 }
 </style>

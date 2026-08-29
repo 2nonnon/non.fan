@@ -22,7 +22,7 @@ defineProps<{
   position: relative;
   z-index: 0;
 
-  width: 400px;
+  width: 21rem;
   aspect-ratio: 1;
 
   display: flex;
