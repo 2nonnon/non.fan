@@ -783,19 +783,22 @@ export interface TrackInfo extends Track {
   category: keyof SongData
 }
 
-export function getTrackInfoById(id: string): TrackInfo | null {
+export function getTrackInfoById(id: string): [TrackInfo, Album] | null {
   for (const [category, albums] of Object.entries(data) as Array<[keyof SongData, Album[]]>) {
     for (const album of albums) {
       const track = album.trackList.find(track => track.id === id)
 
       if (track) {
-        return {
-          ...track,
-          album: album.name,
-          date: album.date,
-          cover: album.cover,
-          category,
-        }
+        return [
+          {
+            ...track,
+            album: album.name,
+            date: album.date,
+            cover: album.cover,
+            category,
+          },
+          album,
+        ]
       }
     }
   }

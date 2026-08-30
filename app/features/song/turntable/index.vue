@@ -40,8 +40,6 @@ defineProps<{
 
     transform-origin: center;
     transform: rotate(-30deg);
-
-    transition: transform 0.5s ease-in-out;
   }
 
   .vinyl {
@@ -53,6 +51,15 @@ defineProps<{
 }
 
 .turntable--playing .cartridge {
-  transform: rotate(0deg);
+  animation: cartridge-rotate 0.5s 1.5s ease-in-out forwards;
+}
+
+@keyframes cartridge-rotate {
+  from {
+    transform: rotate(-30deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }
 </style>
