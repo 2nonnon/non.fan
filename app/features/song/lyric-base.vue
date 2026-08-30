@@ -15,9 +15,10 @@ if (!trackInfo)
 const [track, album] = trackInfo
 
 const trackIndex = album.trackList.findIndex(t => t.id === track.id)
+const filteredTrackList = album.trackList.filter(t => t.lyric)
 
-const preTrack = album.trackList[trackIndex - 1] || album.trackList[album.trackList.length - 1]!
-const nextTrack = album.trackList[trackIndex + 1] || album.trackList[0]!
+const preTrack = filteredTrackList[trackIndex - 1] || filteredTrackList[filteredTrackList.length - 1]!
+const nextTrack = filteredTrackList[trackIndex + 1] || filteredTrackList[0]!
 
 useSeoMeta({
   title: `${track.name} - ${track.artist}`,
