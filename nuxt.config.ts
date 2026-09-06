@@ -122,7 +122,7 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg', sizes: 'any' },
-        { rel: 'alternate icon', href: '/favicon.ico', sizes: '32x32' },
+        { rel: 'shortcut icon', href: '/favicon.ico', sizes: '32x32' },
         { rel: 'mask-icon', href: '/mask-icon.svg', color: '6BB82E' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

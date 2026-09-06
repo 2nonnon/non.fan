@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { groupBy } from 'es-toolkit/compat'
 
+definePageMeta({
+  layout: 'scroll',
+})
+
 const monthMap = {
   '01': 'January',
   '02': 'February',

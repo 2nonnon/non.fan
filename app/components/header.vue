@@ -1,0 +1,47 @@
+<script setup lang="ts">
+
+</script>
+
+<template>
+  <header class="py-4 sticky top-0 flex items-center justify-between gap-4 z-50">
+    <NuxtLink id="logo" aria-label="回到首页" to="/">
+      <NLogo class="w-6 pc:w-8 aspect-square" />
+    </NuxtLink>
+
+    <NNav />
+  </header>
+</template>
+
+<style scoped>
+#logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    filter: blur(12px);
+    opacity: 0;
+
+    animation-name: light;
+    animation-fill-mode: both;
+    animation-timeline: scroll();
+    animation-range: 0px 100px;
+  }
+}
+
+@keyframes light {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+</style>

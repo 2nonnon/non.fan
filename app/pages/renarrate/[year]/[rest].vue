@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { pick } from 'es-toolkit'
 
+definePageMeta({
+  layout: 'scroll',
+})
+
 const route = useRoute()
 
 const key = `${route.params.year}${route.params.rest}`

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  layout: 'scroll',
+})
+
 const dayjs = useDayjs()
 
 const { data: todayList, status: todayStatus } = useAsyncData(`renarrate-today`, async () => {
